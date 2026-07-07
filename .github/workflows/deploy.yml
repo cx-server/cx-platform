@@ -26,7 +26,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           source: storybook-static/*
-          target: /html/storybook
+          target: ./storybook
           strip_components: 1
           rm: true
           overwrite: true
