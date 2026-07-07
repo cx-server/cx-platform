@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="tipico-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cx-copy — CX Workspace Flows</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{fontFamily:{inter:['Inter','Inter Fallback','sans-serif'],mono:['ui-monospace','SFMono-Regular','Menlo','monospace']},extend:{colors:{info:'rgb(var(--signals-bg-info) / <alpha-value>)',interaction:'rgb(var(--global-styling-branding-interaction) / <alpha-value>)',brand:'rgb(var(--global-styling-branding-brand) / <alpha-value>)'},backgroundColor:{surface:'rgb(var(--bg-surface) / <alpha-value>)',card:'rgb(var(--bg-card) / <alpha-value>)',code:'rgb(var(--bg-code) / <alpha-value>)'},textColor:{highlight:'rgb(var(--text-highlight) / <alpha-value>)',standard:'rgb(var(--text-standard) / <alpha-value>)',subtile:'rgb(var(--text-subtile) / <alpha-value>)',interaction:'rgb(var(--text-interaction) / <alpha-value>)'},borderColor:{standard:'rgb(var(--border-standard))',subtile:'rgb(var(--border-subtile))'},borderRadius:{DEFAULT:'8px',sm:'4px',md:'8px',lg:'12px',card:'12px'}}}}</script>
+  <style>
+    :root{--base-black:0 0 0;--base-white:255 255 255;--base-neutrals-25:250 250 250;--base-neutrals-50:245 246 246;--base-neutrals-100:229 231 232;--base-neutrals-200:205 210 211;--base-neutrals-300:169 178 181;--base-neutrals-500:100 111 117;--base-neutrals-700:74 79 83;--base-neutrals-800:51 53 56;--base-neutrals-900:32 34 37;--base-neutrals-950:18 20 20}
+    [data-theme="tipico-dark"]{color-scheme:dark;--text-highlight:var(--base-neutrals-25);--text-standard:var(--base-neutrals-200);--text-subtile:var(--base-neutrals-300);--text-interaction:95 192 227;--border-standard:255 255 255/0.15;--border-subtile:255 255 255/0.05;--bg-surface:var(--base-neutrals-950);--bg-card:var(--base-neutrals-900);--bg-code:var(--base-neutrals-900);--global-styling-branding-interaction:95 192 227;--global-styling-branding-brand:200 16 46;--signals-bg-info:28 126 161}
+    [data-theme="tipico-light"]{color-scheme:light;--text-highlight:var(--base-neutrals-950);--text-standard:var(--base-neutrals-700);--text-subtile:var(--base-neutrals-500);--text-interaction:28 126 161;--border-standard:18 20 20/0.15;--border-subtile:18 20 20/0.05;--bg-surface:var(--base-neutrals-50);--bg-card:var(--base-white);--bg-code:var(--base-neutrals-100);--global-styling-branding-interaction:28 126 161;--global-styling-branding-brand:200 16 46;--signals-bg-info:28 126 161}
+    body{background-color:rgb(var(--bg-surface));color:rgb(var(--text-standard))}code{background-color:rgb(var(--bg-code));padding:2px 6px;border-radius:4px;font-size:0.875em}pre{background-color:rgb(var(--bg-code));padding:16px;border-radius:8px;overflow-x:auto}pre code{padding:0;background:none}
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-inter min-h-screen">
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-standard" style="background-color: rgb(var(--bg-surface) / 0.85);">
+    <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center"><span class="text-white font-bold text-sm">CX</span></div><span class="font-semibold text-lg text-highlight">CX Workspace</span></a>
+      <nav class="hidden md:flex items-center gap-6 text-sm text-subtile">
+        <a href="/flows/" class="text-highlight font-medium">Flows</a>
+        <a href="/workspace/" class="hover:text-highlight transition-colors">Setup</a>
+        <a href="https://ds.cx-workspace.com/" class="hover:text-highlight transition-colors">Storybook</a>
+        <a href="https://github.com/cx-server/cx-workspace" class="hover:text-highlight transition-colors">GitHub</a>
+      </nav>
+      <button onclick="document.documentElement.dataset.theme=document.documentElement.dataset.theme==='tipico-light'?'tipico-dark':'tipico-light'" class="w-9 h-9 rounded-lg bg-card flex items-center justify-center" aria-label="Toggle theme">
+        <svg class="w-4 h-4 text-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.07-7.07-1.41 1.41M7.34 16.66l-1.41 1.41m12.73 0-1.41-1.41M7.34 7.34 5.93 5.93"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="pt-16">
+    <article class="max-w-4xl mx-auto px-6 py-16 md:py-24">
+
+      <nav class="text-sm text-subtile mb-8">
+        <a href="/flows/" class="hover:text-highlight">Flows</a><span class="mx-2">/</span><span class="text-highlight">cx-copy</span>
+      </nav>
+
+      <div class="mb-10">
+        <div class="flex items-center gap-3 mb-4">
+          <h1 class="text-3xl font-bold text-highlight">cx-copy</h1>
+          <span class="text-xs px-2 py-1 rounded-full border border-subtile text-subtile">Text → Style Guide → Ditto</span>
+        </div>
+        <p class="text-lg text-subtile">Extracts all text from a Figma frame, audits it against the Ditto style guide, produces English translations that follow the rules, and optionally pushes to Ditto with DE/TR variants.</p>
+      </div>
+
+      <section class="mb-10">
+        <h2 class="text-xl font-semibold text-highlight mb-4">How to trigger</h2>
+        <pre class="text-sm font-mono"><code>cx-copy</code></pre>
+        <p class="text-sm text-subtile mt-3">Type this in the Kiro chat with a Figma frame selected. All communication during the flow is in English.</p>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-xl font-semibold text-highlight mb-4">What happens</h2>
+        <ol class="space-y-4 text-standard">
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-info/10 flex items-center justify-center text-interaction text-xs font-semibold">1</span>
+            <div><strong class="text-highlight">Extract</strong> — Traverses the frame, collects all text nodes with their content and parent context.</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-info/10 flex items-center justify-center text-interaction text-xs font-semibold">2</span>
+            <div><strong class="text-highlight">Read annotations</strong> — Fetches Dev Mode annotations and pinned Figma comments for copy directions.</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-info/10 flex items-center justify-center text-interaction text-xs font-semibold">3</span>
+            <div><strong class="text-highlight">Load style guide</strong> — Fetches all Ditto rules (clarity, conciseness, active voice, CTAs, wordlist).</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-info/10 flex items-center justify-center text-interaction text-xs font-semibold">4</span>
+            <div><strong class="text-highlight">Search existing text</strong> — Checks Ditto for approved copy that could be reused.</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-info/10 flex items-center justify-center text-interaction text-xs font-semibold">5</span>
+            <div><strong class="text-highlight">Audit</strong> — Produces a table: current text, issue category, suggested EN text, violated rule.</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-info/10 flex items-center justify-center text-interaction text-xs font-semibold">6</span>
+            <div><strong class="text-highlight">Apply</strong> — Replace text in-place, or duplicate the frame with English text. Preserves hyperlinks.</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-info/10 flex items-center justify-center text-interaction text-xs font-semibold">7</span>
+            <div><strong class="text-highlight">Push to Ditto</strong> — Creates text items in Ditto (EN base), generates DE + TR variants, applies semantic tags.</div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-xl font-semibold text-highlight mb-4">Style guide priorities</h2>
+        <ol class="space-y-1 text-sm text-standard list-decimal list-inside">
+          <li>Be clear (comprehension first)</li>
+          <li>Be concise (remove fluff)</li>
+          <li>Avoid generic CTAs (specificity)</li>
+          <li>Use active language (engagement)</li>
+          <li>Stay neutral (tone)</li>
+        </ol>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-xl font-semibold text-highlight mb-4">MCP tools used</h2>
+        <div class="space-y-3">
+          <div class="p-4 rounded-card bg-card border border-subtile">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-medium text-highlight">Figma Console MCP</h3>
+                <p class="text-xs text-subtile mt-1">Selection, text extraction, annotations, comments, text replacement</p>
+              </div>
+              <a href="https://github.com/nichochar/figma-console-mcp" class="text-xs text-interaction hover:underline">Docs →</a>
+            </div>
+          </div>
+          <div class="p-4 rounded-card bg-card border border-subtile">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-medium text-highlight">Ditto MCP</h3>
+                <p class="text-xs text-subtile mt-1">Style guide rules, text search, text item creation, variant management</p>
+              </div>
+              <a href="https://www.dittowords.com/docs/api" class="text-xs text-interaction hover:underline">Docs →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-xl font-semibold text-highlight mb-4">Prerequisites</h2>
+        <ul class="space-y-2 text-standard text-sm">
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-interaction flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span>Figma Desktop with Bridge Plugin running</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-interaction flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span>DITTO_API_TOKEN set</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-interaction flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span>A frame with text content selected</span>
+          </li>
+        </ul>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-xl font-semibold text-highlight mb-4">Output formats</h2>
+        <ul class="space-y-2 text-sm text-standard">
+          <li><strong class="text-highlight">Audit table</strong> — Current text, issue, suggested EN, rule violated</li>
+          <li><strong class="text-highlight">In-place</strong> — Replaces text directly in the selected frame</li>
+          <li><strong class="text-highlight">Duplicate</strong> — Creates a copy with English text (original untouched)</li>
+          <li><strong class="text-highlight">Ditto sync</strong> — EN base (REVIEW status) + DE/TR variants (WIP status) with semantic tags</li>
+        </ul>
+      </section>
+
+      <div class="pt-6 border-t border-standard">
+        <a href="/flows/" class="text-sm text-interaction hover:underline">← Back to all flows</a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="border-t border-standard">
+    <div class="max-w-4xl mx-auto px-6 py-8 flex items-center justify-between text-sm text-subtile">
+      <span>CX Workspace</span>
+      <a href="https://github.com/cx-server/cx-workspace" class="hover:text-highlight transition-colors">GitHub</a>
+    </div>
+  </footer>
+</body>
+</html>

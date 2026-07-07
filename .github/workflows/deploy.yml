@@ -19,6 +19,7 @@ jobs:
           set mirror:parallel-transfer-count 5
           mkdir -p /cx-platform
           mkdir -p /workspace
+          mkdir -p /flows
           rm -f /storybook/index.html
           mirror --reverse --only-newer --parallel=5 --verbose ./storybook-static /storybook
           put ./storybook-static/index.html -o /storybook/index.html
