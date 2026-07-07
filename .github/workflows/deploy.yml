@@ -12,6 +12,7 @@ jobs:
 
       - name: Deploy via lftp
         run: |
+          sudo apt-get install -y lftp
           lftp -u "${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }}" sftp://${{ secrets.FTP_SERVER }} <<EOF
           set sftp:auto-confirm yes
           set net:max-retries 3
