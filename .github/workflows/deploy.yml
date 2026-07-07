@@ -12,14 +12,16 @@ jobs:
 
       - name: Deploy via lftp
         run: |
-          sudo apt-get install -y lftp
           lftp -u "${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }}" sftp://${{ secrets.FTP_SERVER }} <<EOF
           set sftp:auto-confirm yes
-          set mirror:overwrite true
+          set net:max-retries 3
+          set mirror:parallel-transfer-count 5
           mkdir -p /cx-platform
+          mkdir -p /workspace
           rm -f /storybook/index.html
-          mirror --reverse --overwrite --delete --verbose ./storybook-static /storybook
+          mirror --reverse --only-newer --parallel=5 --verbose ./storybook-static /storybook
           put ./storybook-static/index.html -o /storybook/index.html
           put public/index.html -o /cx-platform/index.html
+          mirror --reverse --only-newer --verbose ./public/workspace /workspace
           bye
           EOF
