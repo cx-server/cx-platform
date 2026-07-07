@@ -1,0 +1,1 @@
+const e=""+new URL("free_bet-UxI07VJA.svg",import.meta.url).href,s=""+new URL("million_free_bet-BdE0iSEp.svg",import.meta.url).href,o=""+new URL("odds_booster-C1TWEq-Y.svg",import.meta.url).href,r=""+new URL("odds_plus-Bp7a3AXG.svg",import.meta.url).href,t=""+new URL("risk_free_bet-D4hdO4z-.svg",import.meta.url).href;export{e as F,s as M,o as O,t as R,r as a};

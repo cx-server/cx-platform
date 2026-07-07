@@ -1,0 +1,10 @@
+import{j as m}from"./jsx-runtime-8P-18mTY.js";const u={primary:"btn-primary",secondary:"btn-secondary",outline:"btn-outline",link:"btn-link",brand:"btn-brand",success:"btn-success",negative:"btn-negative",warning:"btn-warning",info:"btn-info",icon:"btn-icon"},d={xs:"h-8 py-2 btn-xs",sm:"h-8 py-2 text-sm",md:"h-10 py-2 text-sm",lg:"h-12 py-3 text-base"},p={xs:"[&>svg]:icon-xs p-0.5",sm:"[&>svg]:icon-sm p-0.5 text-sm",md:"[&>svg]:icon-md p-1 text-sm",lg:"[&>svg]:icon-lg p-1 text-base"};function b({children:a,id:e,variant:n="primary",size:t="md",autoWidth:c,className:s,href:i,...l}){const r=c||n==="icon"?"w-fit":"w-full",o=n==="icon"?p[t]:d[t];return i?m.jsx("a",{id:e,"data-testid":e,href:i,className:`btn ${r} ${u[n]} ${o} ${s??""}`,...l,children:a}):m.jsx("button",{id:e,"data-testid":e,className:`btn ${r} ${u[n]} ${o} ${s??""}`,...l,children:a})}b.__docgenInfo={description:"",methods:[],displayName:"Button",props:{id:{required:!0,tsType:{name:"string"},description:""},variant:{required:!1,tsType:{name:"union",raw:`| "primary"
+| "secondary"
+| "outline"
+| "link"
+| "brand"
+| "success"
+| "negative"
+| "warning"
+| "info"
+| "icon"`,elements:[{name:"literal",value:'"primary"'},{name:"literal",value:'"secondary"'},{name:"literal",value:'"outline"'},{name:"literal",value:'"link"'},{name:"literal",value:'"brand"'},{name:"literal",value:'"success"'},{name:"literal",value:'"negative"'},{name:"literal",value:'"warning"'},{name:"literal",value:'"info"'},{name:"literal",value:'"icon"'}]},description:"",defaultValue:{value:'"primary"',computed:!1}},size:{required:!1,tsType:{name:"union",raw:'"xs" | "sm" | "md" | "lg"',elements:[{name:"literal",value:'"xs"'},{name:"literal",value:'"sm"'},{name:"literal",value:'"md"'},{name:"literal",value:'"lg"'}]},description:"",defaultValue:{value:'"md"',computed:!1}},autoWidth:{required:!1,tsType:{name:"boolean"},description:""},href:{required:!1,tsType:{name:"string"},description:""}},composes:["ButtonHTMLAttributes"]};export{b as B};

@@ -1,0 +1,24 @@
+<svg id="default" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 59 48" fill="none">
+    <path
+        d="M2.32227 1.16113H55.7422C56.3833 1.16127 56.9032 1.68113 56.9033 2.32227V27.8711C56.9033 28.5123 56.3834 29.0321 55.7422 29.0322H2.32227C1.68109 29.0321 1.1612 28.5123 1.16113 27.8711V2.32227C1.1613 1.68115 1.68115 1.1613 2.32227 1.16113Z"
+        stroke="currentColor" stroke-opacity="0.75" stroke-width="2.32258" />
+    <rect x="6.19336" y="6.19336" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <rect x="6.19336" y="13.1621" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <rect x="6.19336" y="20.1289" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <rect x="13.1611" y="6.19336" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <rect x="13.1611" y="13.1621" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <rect x="13.1611" y="20.1289" width="31.7419" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <path d="M19.355 37.5488L29.0324 46.4521L38.7098 37.5488" stroke="currentColor" stroke-opacity="0.75"
+        stroke-width="2.32258" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="20.1289" y="6.19336" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <rect x="20.1289" y="13.1621" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <rect x="27.0967" y="6.19336" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <rect x="27.0967" y="13.1621" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <rect x="34.0645" y="6.19336" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <rect x="34.0645" y="13.1621" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <rect x="41.0322" y="6.19336" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <rect x="41.0322" y="13.1621" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <rect x="48" y="6.19336" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <rect x="48" y="13.1621" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+    <rect x="48" y="20.1289" width="3.87097" height="3.87097" fill="currentColor" fill-opacity="0.75" />
+</svg>

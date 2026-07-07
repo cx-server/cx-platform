@@ -1,0 +1,1 @@
+import{j as r}from"./jsx-runtime-8P-18mTY.js";function e({id:t,className:i,...s}){return r.jsx("div",{id:t,"data-testid":t,className:`activity-bar ${i??""}`,...s})}e.__docgenInfo={description:"",methods:[],displayName:"ActivityBar",props:{id:{required:!0,tsType:{name:"string"},description:""}},composes:["HTMLProps"]};export{e as A};

@@ -1,0 +1,13 @@
+<svg id="default" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="6" cy="6" r="5.25" fill="none" stroke="currentColor" stroke-width="1.5" mask="url(#fade)" />
+    <defs>
+        <mask id="fade">
+            <rect width="12" height="12" fill="url(#fadeGradient)" />
+        </mask>
+        <linearGradient id="fadeGradient" x1="0%" y1="50%" x2="100%" y2="50%">
+            <stop offset="0%" style="stop-color:white" />
+            <stop offset="50%" style="stop-color:white" />
+            <stop offset="100%" style="stop-color:black" />
+        </linearGradient>
+    </defs>
+</svg>

@@ -1,0 +1,29 @@
+<svg id="default" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <defs>
+    <style>
+      .clock-sweep {
+        animation: sweepReveal 3.5s ease-out infinite;
+      }
+      
+      @keyframes sweepReveal {
+        0% { 
+          stroke-dashoffset: 30;
+        }
+        30% { 
+          stroke-dashoffset: 0;
+        }
+        100% { 
+          stroke-dashoffset: 0;
+        }
+      }
+    </style>
+  </defs>
+  
+  <path d="M15 18.9996V20.4H9V18.9996H15Z" />
+  <path d="M14.9983 13.5V8.77271H16.951C17.305 8.77271 17.6104 8.83657 17.8674 8.96429C18.1259 9.09047 18.3252 9.27205 18.4652 9.50903C18.6053 9.74447 18.6753 10.0238 18.6753 10.3469C18.6753 10.6747 18.6037 10.9532 18.4606 11.1825C18.3175 11.4103 18.1144 11.5841 17.8513 11.7042C17.5881 11.8227 17.2765 11.8819 16.9164 11.8819H15.6815V10.9817H16.7041C16.8764 10.9817 17.0203 10.9594 17.1357 10.9148C17.2526 10.8686 17.3411 10.7993 17.4011 10.707C17.4612 10.6131 17.4912 10.4931 17.4912 10.3469C17.4912 10.2007 17.4612 10.0799 17.4011 9.98453C17.3411 9.88758 17.2526 9.81526 17.1357 9.76756C17.0187 9.71831 16.8749 9.69369 16.7041 9.69369H16.1408V13.5H14.9983ZM17.6597 11.3395L18.8369 13.5H17.5904L16.4363 11.3395H17.6597Z" />
+  <path d="M10.8762 13.5H9.64819L11.2432 8.77271H12.7643L14.3593 13.5H13.1313L12.0211 9.96376H11.9841L10.8762 13.5ZM10.7123 11.6395H13.279V12.5074H10.7123V11.6395Z" />
+  <path d="M6.48689 8.77271L7.54407 12.2351H7.58331L8.64048 8.77271H9.91924L8.32425 13.5H6.80312L5.20813 8.77271H6.48689Z" />
+
+  <rect x="12" y="5" width="9" height="12" stroke="currentColor" stroke-dasharray="30 60" stroke-dashoffset="0" stroke-width="1.4" fill="none" class="clock-sweep" />
+  <rect x="12" y="5" width="9" height="12" stroke="currentColor" stroke-dasharray="30 60" stroke-dashoffset="0" stroke-width="1.4" fill="none" class="clock-sweep" transform="scale(-1 1)" transform-origin="12 0"  />
+</svg>
