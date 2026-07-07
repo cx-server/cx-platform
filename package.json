@@ -1,0 +1,35 @@
+{
+  "name": "cx-platform",
+  "version": "1.0.0",
+  "description": "CX Design System Platform — Storybook, Docs, Tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cx-server/cx-platform.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/cx-server/cx-platform/issues"
+  },
+  "homepage": "https://github.com/cx-server/cx-platform#readme",
+  "devDependencies": {
+    "storybook": "^10.4.6",
+    "@storybook/html-vite": "^10.4.6",
+    "@chromatic-com/storybook": "^5.2.1",
+    "@storybook/addon-vitest": "^10.4.6",
+    "@storybook/addon-a11y": "^10.4.6",
+    "@storybook/addon-docs": "^10.4.6",
+    "vitest": "^4.1.10",
+    "playwright": "^1.61.1",
+    "@vitest/browser-playwright": "^4.1.10",
+    "@vitest/coverage-v8": "^4.1.10"
+  }
+}
