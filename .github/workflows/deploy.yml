@@ -24,5 +24,6 @@ jobs:
           put ./storybook-static/index.html -o /storybook/index.html
           put public/index.html -o /cx-platform/index.html
           mirror --reverse --only-newer --verbose ./public/workspace /workspace
+          mirror --reverse --only-newer --verbose ./public/flows /flows
           bye
           EOF
