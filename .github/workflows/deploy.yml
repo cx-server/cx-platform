@@ -29,6 +29,7 @@ jobs:
           mkdir -p /cx-platform
           rm -f /storybook/index.html
           mirror --reverse --overwrite --delete --verbose ./storybook-static /storybook
+          put ./storybook-static/index.html -o /storybook/index.html
           put public/index.html -o /cx-platform/index.html
           bye
           EOF
