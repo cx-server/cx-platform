@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="tipico-light">
+<html lang="en" data-theme="tipico-dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -200,10 +200,10 @@
           <a href="/storybook/" class="hover:text-highlight transition-colors">Storybook</a>
         </nav>
         <button onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-card flex items-center justify-center hover:border hover:border-standard transition-all" aria-label="Toggle theme">
-          <svg id="icon-sun" class="w-4 h-4 text-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg id="icon-sun" class="w-4 h-4 text-standard hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
           </svg>
-          <svg id="icon-moon" class="w-4 h-4 text-standard hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg id="icon-moon" class="w-4 h-4 text-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
           </svg>
         </button>
@@ -309,10 +309,10 @@
   <script>
     function toggleTheme() {
       const html = document.documentElement;
-      const isLight = html.dataset.theme === 'tipico-light';
-      html.dataset.theme = isLight ? 'tipico-dark' : 'tipico-light';
-      document.getElementById('icon-sun').classList.toggle('hidden', isLight);
-      document.getElementById('icon-moon').classList.toggle('hidden', !isLight);
+      const isDark = html.dataset.theme === 'tipico-dark';
+      html.dataset.theme = isDark ? 'tipico-light' : 'tipico-dark';
+      document.getElementById('icon-sun').classList.toggle('hidden', !isDark);
+      document.getElementById('icon-moon').classList.toggle('hidden', isDark);
     }
   </script>
 </body>
