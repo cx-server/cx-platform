@@ -1,0 +1,5 @@
+# Disable any inherited rewrite rules
+RewriteEngine Off
+
+# Ensure DirectoryIndex works normally
+DirectoryIndex index.html
