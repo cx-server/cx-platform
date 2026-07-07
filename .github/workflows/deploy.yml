@@ -20,13 +20,13 @@ jobs:
       - run: npm run build-storybook
 
       - name: Deploy via SFTP
-        uses: appleboy/scp-action@v0.1.7
+        uses: pressidium/lftp-mirror-action@v1
         with:
           host: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          source: storybook-static/*
-          target: ./storybook
-          strip_components: 1
-          rm: true
-          overwrite: true
+          user: ${{ secrets.FTP_USERNAME }}
+          pass: ${{ secrets.FTP_PASSWORD }}
+          remoteDir: /storybook
+          localDir: ./storybook-static
+          options: --verbose
+          settings: set sftp:auto-confirm yes
+          protocol: sftp
