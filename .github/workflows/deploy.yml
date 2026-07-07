@@ -27,7 +27,7 @@ jobs:
           pass: ${{ secrets.FTP_PASSWORD }}
           remoteDir: /storybook
           localDir: ./storybook-static
-          options: --verbose
+          options: --verbose --delete --overwrite
           settings: set sftp:auto-confirm yes
           protocol: sftp
 
