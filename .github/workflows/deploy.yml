@@ -19,20 +19,22 @@ jobs:
 
       - run: npm run build-storybook
 
-      - name: Prepare deploy directory
-        run: |
-          mkdir -p deploy/storybook
-          cp -r storybook-static/* deploy/storybook/
-          cp public/index.html deploy/index.html
-
-      - name: Deploy via SFTP
+      - name: Deploy Storybook
         uses: pressidium/lftp-mirror-action@v1
         with:
           host: ${{ secrets.FTP_SERVER }}
           user: ${{ secrets.FTP_USERNAME }}
           pass: ${{ secrets.FTP_PASSWORD }}
-          remoteDir: /
-          localDir: ./deploy
+          remoteDir: /storybook
+          localDir: ./storybook-static
           options: --verbose
           settings: set sftp:auto-confirm yes
           protocol: sftp
+
+      - name: Deploy Landing Page
+        run: |
+          sudo apt-get install -y sshpass
+          sshpass -p "${{ secrets.FTP_PASSWORD }}" sftp -oBatchMode=no -oStrictHostKeyChecking=no ${{ secrets.FTP_USERNAME }}@${{ secrets.FTP_SERVER }} <<EOF
+          put public/index.html index.html
+          bye
+          EOF
