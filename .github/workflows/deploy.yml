@@ -19,26 +19,20 @@ jobs:
 
       - run: npm run build-storybook
 
-      - name: Deploy Storybook
-        uses: pressidium/lftp-mirror-action@v1
-        with:
-          host: ${{ secrets.FTP_SERVER }}
-          user: ${{ secrets.FTP_USERNAME }}
-          pass: ${{ secrets.FTP_PASSWORD }}
-          remoteDir: /storybook
-          localDir: ./storybook-static
-          options: --verbose --delete
-          settings: set sftp:auto-confirm yes
-          protocol: sftp
+      - name: Prepare deploy directory
+        run: |
+          mkdir -p deploy/storybook
+          cp -r storybook-static/* deploy/storybook/
+          cp public/index.html deploy/index.html
 
-      - name: Deploy Landing Page
+      - name: Deploy via SFTP
         uses: pressidium/lftp-mirror-action@v1
         with:
           host: ${{ secrets.FTP_SERVER }}
           user: ${{ secrets.FTP_USERNAME }}
           pass: ${{ secrets.FTP_PASSWORD }}
           remoteDir: /
-          localDir: ./public
-          options: --verbose --no-delete
+          localDir: ./deploy
+          options: --verbose
           settings: set sftp:auto-confirm yes
           protocol: sftp
