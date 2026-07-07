@@ -27,7 +27,8 @@ jobs:
           set sftp:auto-confirm yes
           set mirror:overwrite true
           mkdir -p /cx-platform
-          mirror --reverse --delete --verbose ./storybook-static /storybook
+          rm -f /storybook/index.html
+          mirror --reverse --overwrite --delete --verbose ./storybook-static /storybook
           put public/index.html -o /cx-platform/index.html
           bye
           EOF
