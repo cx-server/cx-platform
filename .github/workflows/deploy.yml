@@ -22,11 +22,11 @@ jobs:
       - name: Deploy via lftp
         run: |
           sudo apt-get install -y lftp
-          echo 'RewriteEngine Off' > ./storybook-static/.htaccess
           lftp -u "${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }}" sftp://${{ secrets.FTP_SERVER }} <<EOF
           set sftp:auto-confirm yes
           set mirror:overwrite true
+          mkdir -p /cx-platform
           mirror --reverse --delete --verbose ./storybook-static /storybook
-          put public/index.html -o /index.html
+          put public/index.html -o /cx-platform/index.html
           bye
           EOF
