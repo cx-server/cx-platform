@@ -20,11 +20,13 @@ jobs:
       - run: npm run build-storybook
 
       - name: Deploy via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        uses: appleboy/scp-action@v0.1.7
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          host: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local_path: ./storybook-static/*
-          remote_path: /html/storybook/
-          sftp_only: true
+          source: storybook-static/*
+          target: /html/storybook
+          strip_components: 1
+          rm: true
+          overwrite: true
