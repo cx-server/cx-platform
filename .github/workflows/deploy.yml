@@ -18,7 +18,7 @@ jobs:
           set net:max-retries 3
           set mirror:parallel-transfer-count 5
           mkdir -p /cx-platform
-          mkdir -p /workspace
+          mkdir -p /onboarding
           mkdir -p /flows
           rm -f /storybook/index.html
           mirror --reverse --only-newer --parallel=5 --verbose ./storybook-static /storybook
@@ -26,7 +26,7 @@ jobs:
           put public/index.html -o /cx-platform/index.html
           rm -f /index.html
           put public/index.html -o /index.html
-          mirror --reverse --only-newer --verbose ./public/workspace /workspace
+          mirror --reverse --only-newer --verbose ./public/onboarding /onboarding
           mirror --reverse --only-newer --verbose ./public/flows /flows
           bye
           EOF
