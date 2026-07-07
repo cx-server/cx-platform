@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CX Workspace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            base: {
+              DEFAULT: 'var(--color-base)',
+              contrast: 'var(--color-base-contrast)',
+            },
+            surface: {
+              0: 'var(--color-surface-0)',
+              1: 'var(--color-surface-1)',
+              2: 'var(--color-surface-2)',
+            },
+            text: {
+              DEFAULT: 'var(--color-text)',
+              secondary: 'var(--color-text-secondary)',
+            },
+            primary: {
+              DEFAULT: 'var(--color-primary)',
+            },
+            tertiary: {
+              DEFAULT: 'var(--color-tertiary)',
+              1: 'var(--color-tertiary-1)',
+              2: 'var(--color-tertiary-2)',
+            },
+            border: 'var(--color-border)',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    :root {
+      /* Dark theme (default) */
+      --color-base: #141414;
+      --color-base-contrast: #ffffff;
+      --color-surface-0: #1d1d1d;
+      --color-surface-1: #272727;
+      --color-surface-2: #3a3a3a;
+      --color-text: #ffffff;
+      --color-text-secondary: #bdbdbd;
+      --color-primary: #d41534;
+      --color-tertiary: #5edaff;
+      --color-tertiary-1: #296070;
+      --color-tertiary-2: #132c33;
+      --color-border: rgba(255, 255, 255, 0.16);
+    }
+
+    .light {
+      --color-base: #ffffff;
+      --color-base-contrast: #141414;
+      --color-surface-0: #f4f4f4;
+      --color-surface-1: #ededed;
+      --color-surface-2: #bdbdbd;
+      --color-text: #141414;
+      --color-text-secondary: #3a3a3a;
+      --color-primary: #c8102e;
+      --color-tertiary: #2d6b7b;
+      --color-tertiary-1: #367d91;
+      --color-tertiary-2: #dff8ff;
+      --color-border: rgba(0, 0, 0, 0.16);
+    }
+
+    body {
+      background-color: var(--color-base);
+      color: var(--color-text);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-base/80 border-b border-border">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+          <span class="text-white font-bold text-sm">CX</span>
+        </div>
+        <span class="font-semibold text-lg">CX Workspace</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <nav class="hidden md:flex items-center gap-6 text-sm text-text-secondary">
+          <a href="#tools" class="hover:text-text transition-colors">Tools</a>
+          <a href="#platforms" class="hover:text-text transition-colors">Platforms</a>
+          <a href="/storybook/" class="hover:text-text transition-colors">Storybook</a>
+        </nav>
+        <button onclick="toggleTheme()" class="w-9 h-9 rounded-full bg-surface-1 flex items-center justify-center hover:bg-surface-2 transition-colors" aria-label="Toggle theme">
+          <svg id="icon-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg id="icon-moon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="pt-16">
+    <section class="max-w-6xl mx-auto px-6 py-24 md:py-32">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary-2 text-tertiary text-xs font-medium mb-6">
+          <span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+          Design System Platform
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+          One place for components, docs, and exploration.
+        </h1>
+        <p class="text-lg text-text-secondary leading-relaxed mb-8">
+          The CX Workspace brings together the Design System across all platforms — Games, Sports, Retail. Browse components, read guidelines, and share prototypes via link.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/storybook/" class="inline-flex items-center gap-2 px-5 py-2.5 bg-text text-base rounded-lg font-medium hover:opacity-90 transition-opacity">
+            Open Storybook
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+          <a href="#tools" class="inline-flex items-center gap-2 px-5 py-2.5 border border-border rounded-lg font-medium text-text-secondary hover:text-text hover:border-text-secondary transition-colors">
+            Explore Tools
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <section id="tools" class="max-w-6xl mx-auto px-6 pb-24">
+      <h2 class="text-2xl font-semibold mb-8">Tools</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <a href="/storybook/" class="card-hover block p-6 rounded-xl bg-surface-0 border border-border transition-all">
+          <div class="w-10 h-10 rounded-lg bg-tertiary-2 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          </div>
+          <h3 class="font-semibold mb-1">Storybook</h3>
+          <p class="text-sm text-text-secondary">Components across all platforms with interactive examples and documentation.</p>
+        </a>
+
+        <div class="card-hover block p-6 rounded-xl bg-surface-0 border border-border transition-all opacity-60">
+          <div class="w-10 h-10 rounded-lg bg-tertiary-2 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <h3 class="font-semibold mb-1">Content Checker</h3>
+          <p class="text-sm text-text-secondary">Validate UI copy against style guide rules. Coming soon.</p>
+          <span class="inline-block mt-3 text-xs px-2 py-0.5 rounded-full bg-surface-2 text-text-secondary">Planned</span>
+        </div>
+
+        <div class="card-hover block p-6 rounded-xl bg-surface-0 border border-border transition-all opacity-60">
+          <div class="w-10 h-10 rounded-lg bg-tertiary-2 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-tertiary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+          </div>
+          <h3 class="font-semibold mb-1">Explore</h3>
+          <p class="text-sm text-text-secondary">Share design prototypes via link for review and feedback.</p>
+          <span class="inline-block mt-3 text-xs px-2 py-0.5 rounded-full bg-surface-2 text-text-secondary">Planned</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Platforms -->
+    <section id="platforms" class="max-w-6xl mx-auto px-6 pb-24">
+      <h2 class="text-2xl font-semibold mb-8">Platforms</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-5 rounded-xl bg-surface-0 border border-border">
+          <h3 class="font-medium mb-1">Games</h3>
+          <p class="text-xs text-text-secondary">Casino, Slots, Live</p>
+        </div>
+        <div class="p-5 rounded-xl bg-surface-0 border border-border">
+          <h3 class="font-medium mb-1">Sports</h3>
+          <p class="text-xs text-text-secondary">Betting, Live, Odds</p>
+        </div>
+        <div class="p-5 rounded-xl bg-surface-0 border border-border">
+          <h3 class="font-medium mb-1">Retail</h3>
+          <p class="text-xs text-text-secondary">POS, Till, Machine</p>
+        </div>
+        <div class="p-5 rounded-xl bg-surface-0 border border-border">
+          <h3 class="font-medium mb-1">Account</h3>
+          <p class="text-xs text-text-secondary">Registration, KYC, Settings</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-border">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-secondary">
+      <span>CX Workspace — Design System Platform</span>
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/cx-server" class="hover:text-text transition-colors">GitHub</a>
+        <a href="/storybook/" class="hover:text-text transition-colors">Storybook</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.classList.contains('dark');
+      html.classList.toggle('dark');
+      html.classList.toggle('light');
+      document.getElementById('icon-sun').classList.toggle('hidden', !isDark);
+      document.getElementById('icon-moon').classList.toggle('hidden', isDark);
+    }
+
+    // Default to dark
+    document.documentElement.classList.add('dark');
+  </script>
+</body>
+</html>
