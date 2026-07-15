@@ -22,6 +22,7 @@
   "homepage": "https://github.com/cx-server/cx-platform#readme",
   "dependencies": {
     "@tipico/ui": "file:../rethink-monoverse/packages/libs/ui",
+    "canvas-confetti": "^1.9.4",
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "remark-gfm": "^4.0.1",
