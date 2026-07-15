@@ -1,36 +1,48 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Preloader } from "@tipico/ui/Preloader";
 
-const meta: Meta = {
+const meta: Meta<typeof Preloader> = {
   title: "Components/Preloader",
+  component: Preloader,
   tags: [],
+  argTypes: {
+    spinnerSize: {
+      control: "select",
+      options: ["icon-sm", "icon-md", "icon-lg", "icon-xl"],
+      description: "Size class applied to the spinner SVG",
+    },
+  },
+  args: {
+    spinnerSize: "icon-lg",
+  },
   parameters: {
     layout: "fullscreen",
   },
 };
 
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<typeof Preloader>;
 
 export const Default: Story = {
   render: () => (
-    <div style={{ position: "relative", height: "200px", background: "rgb(var(--bg-surface))" }}>
-      <div style={{ position: "absolute", inset: 0, display: "grid", placeContent: "center" }}>
-        <svg className="icon-lg animate-spin text-interaction" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <circle cx="12" cy="12" r="10" strokeDasharray="60" strokeDashoffset="15" strokeLinecap="round" />
-        </svg>
-      </div>
+    <div style={{ position: "relative", height: "300px" }}>
+      <Preloader />
     </div>
   ),
 };
 
-export const FullScreen: Story = {
+export const SmallSpinner: Story = {
   render: () => (
-    <div style={{ position: "relative", height: "400px", background: "rgb(var(--bg-card))" }}>
-      <div style={{ position: "absolute", inset: 0, background: "rgb(0 0 0 / 0.5)", display: "grid", placeContent: "center" }}>
-        <svg className="icon-lg animate-spin text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <circle cx="12" cy="12" r="10" strokeDasharray="60" strokeDashoffset="15" strokeLinecap="round" />
-        </svg>
-      </div>
+    <div style={{ position: "relative", height: "200px" }}>
+      <Preloader spinnerSize="icon-md" />
+    </div>
+  ),
+};
+
+export const LargeSpinner: Story = {
+  render: () => (
+    <div style={{ position: "relative", height: "400px" }}>
+      <Preloader spinnerSize="icon-xl" />
     </div>
   ),
 };
