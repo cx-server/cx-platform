@@ -2,17 +2,23 @@ import { useEffect } from "react";
 import "./tipico-ui.css";
 import "./stepper.css";
 
-function ThemeWrapper({ children }) {
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", "tipico-light");
-    document.body.setAttribute("data-theme", "tipico-light");
-  }, []);
-
-  return <div data-theme="tipico-light">{children}</div>;
-}
-
 /** @type { import('@storybook/react').Preview } */
 const preview = {
+  globalTypes: {
+    theme: {
+      name: "Theme",
+      description: "Color theme",
+      defaultValue: "tipico-light",
+      toolbar: {
+        icon: "mirror",
+        items: [
+          { value: "tipico-light", title: "Light", icon: "sun" },
+          { value: "tipico-dark", title: "Dark", icon: "moon" },
+        ],
+        dynamicTitle: true,
+      },
+    },
+  },
   parameters: {
     controls: {
       matchers: {
@@ -25,11 +31,20 @@ const preview = {
     },
   },
   decorators: [
-    (Story) => (
-      <ThemeWrapper>
-        <Story />
-      </ThemeWrapper>
-    ),
+    (Story, context) => {
+      const theme = context.globals.theme || "tipico-light";
+
+      useEffect(() => {
+        document.documentElement.setAttribute("data-theme", theme);
+        document.body.setAttribute("data-theme", theme);
+      }, [theme]);
+
+      return (
+        <div data-theme={theme} style={{ backgroundColor: "rgb(var(--bg-surface))", padding: "16px", borderRadius: "8px", minHeight: "48px" }}>
+          <Story />
+        </div>
+      );
+    },
   ],
 };
 
