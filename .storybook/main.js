@@ -22,13 +22,14 @@ const config = {
     "@chromatic-com/storybook",
   ],
   framework: "@storybook/react-vite",
-  staticDirs: [],
+  staticDirs: ["../node_modules/@tipico/ui/dist/assets"],
   viteFinal: async (config) => {
     config.publicDir = false;
     config.build = config.build || {};
     config.build.cssMinify = false;
+    config.build.assetsInlineLimit = 0;
     config.plugins = config.plugins || [];
-    config.plugins.push(svgr());
+    config.plugins.push(svgr({ svgrOptions: { exportType: "default" }, include: "**/*.svg?react" }));
     return config;
   },
 };
