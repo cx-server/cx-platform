@@ -1,0 +1,110 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as AppBarStories from './AppBar.stories';
+
+<Meta of={AppBarStories} />
+
+# AppBar
+
+The top navigation bar of a screen. Contains the page title, back button, and optional action buttons. Fixed at the top of the viewport.
+
+## When to use
+
+| Use AppBar when... | Don't use AppBar when... |
+|---|---|
+| Every screen needs a header with navigation | Building a full desktop navigation (use custom nav) |
+| Back navigation is needed | The page has no hierarchy (top-level landing) |
+| Screen title must be visible | Content should be full-bleed without header |
+
+## Variants
+
+<Canvas of={AppBarStories.Default} />
+
+### With Close Button
+
+<Canvas of={AppBarStories.WithClose} />
+
+### Transparent (over brand gradient)
+
+<Canvas of={AppBarStories.Transparent} />
+
+## Composition
+
+AppBar is composed of sub-components:
+
+```tsx
+<AppBar hasBackground>
+  <AppBarBackButton id="back" onClick={goBack} />
+  <AppBarPageTitle id="title">Page Title</AppBarPageTitle>
+  <AppBarCloseButton id="close" onClick={close} />
+</AppBar>
+```
+
+| Sub-component | Purpose |
+|---|---|
+| `AppBarBackButton` | Left arrow — navigates back |
+| `AppBarPageTitle` | Centered page title |
+| `AppBarCloseButton` | Right X — closes current flow |
+| `AppBarIconButton` | Generic icon button (custom actions) |
+| `AppBarPill` | Badge/pill next to the title |
+| `TipicoLogo` | Brand logo (home screens) |
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `hasBackground` | boolean | false | Adds solid background color |
+| `safeTop` | boolean | false | Adds safe area padding for notch devices |
+| `className` | string | — | Additional CSS classes |
+
+## Best practices
+
+### Do
+
+- Always include a `BackButton` or `CloseButton` for navigation
+- Use `hasBackground` on content screens (not over hero images)
+- Keep the title short (max ~25 characters)
+- Use `safeTop` on native/PWA screens with device notch
+
+### Don't
+
+- Don't put multiple action buttons (max: back + 1 action)
+- Don't use for desktop-only layouts (AppBar is mobile-first)
+- Don't put form elements inside AppBar
+- Don't change AppBar between screens in the same flow
+
+## Accessibility
+
+- Contains semantic navigation landmarks
+- Back/Close buttons are keyboard accessible
+- Page title serves as the visible heading for the screen
+
+## Code reference
+
+```tsx
+import { AppBar, AppBarBackButton, AppBarPageTitle, AppBarCloseButton } from "@tipico/ui/AppBar";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/AppBar/` |
+| Replaces | Header (Account), NavigationBar (Retail) |
+
+## Migration guide
+
+### Before (custom Header)
+
+```tsx
+import { Header } from "components/Header";
+<Header title="Settings" onBack={goBack} />
+```
+
+### After (DS AppBar)
+
+```tsx
+import { AppBar, AppBarBackButton, AppBarPageTitle } from "@tipico/ui/AppBar";
+<AppBar hasBackground>
+  <AppBarBackButton id="back" onClick={goBack} />
+  <AppBarPageTitle id="title">Settings</AppBarPageTitle>
+</AppBar>
+```

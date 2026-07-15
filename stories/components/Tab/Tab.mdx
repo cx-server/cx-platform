@@ -1,0 +1,75 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as TabStories from './Tab.stories';
+
+<Meta of={TabStories} />
+
+# Tab
+
+A button-like element used for switching between views or content panels. Tabs are always used in groups.
+
+## When to use
+
+| Use Tab when... | Don't use Tab when... |
+|---|---|
+| Switching between related content panels | Navigating to a different page (use a link or nav) |
+| Filtering a list by category | Triggering an action (use Button) |
+| Organizing content at the same hierarchy level | Only 1 option exists (nothing to switch between) |
+
+## Tab Group
+
+<Canvas of={TabStories.TabGroup} />
+
+Tabs are always used together. Wrap in a container with `role="tablist"`:
+
+```tsx
+<div role="tablist">
+  <Tab id="tab-1" selected={active === 0} onClick={() => setActive(0)}>All</Tab>
+  <Tab id="tab-2" selected={active === 1} onClick={() => setActive(1)}>Live</Tab>
+</div>
+```
+
+## With Badges
+
+<Canvas of={TabStories.WithBadges} />
+
+Use `badge` to show a count — useful for "Open Bets (12)" patterns.
+
+## Props
+
+<ArgTypes of={TabStories} />
+
+## Best practices
+
+### Do
+
+- Always have one tab selected by default
+- Keep labels short (1–2 words)
+- Use badges for dynamic counts (unread, active items)
+- Place tabs at the top of the content they control
+
+### Don't
+
+- Don't use more than 5 tabs in one group (consider Dropdown)
+- Don't use tabs for sequential steps (use Stepper)
+- Don't nest tab groups inside tab panels
+- Don't mix tabs with other navigation patterns in the same row
+
+## Accessibility
+
+- Renders as `<button role="tab">` with `aria-selected`
+- Use `role="tablist"` on the container
+- Content panels should have `role="tabpanel"` with `aria-labelledby`
+- Keyboard: Arrow keys navigate between tabs
+
+## Code reference
+
+```tsx
+import { Tab } from "@tipico/ui/Tab";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/Tab/` |
+| Figma | [Tabs Component](https://www.figma.com/design/FazkRi1zigs8vJlcPzn8Xx/Tipico-Tailwind-DS) |
+| Replaces | TabsGeneric, MUI Tabs |

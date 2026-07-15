@@ -1,0 +1,65 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as PreloaderStories from './Preloader.stories';
+
+<Meta of={PreloaderStories} />
+
+# Preloader
+
+A full-screen loading overlay with a spinner. Blocks interaction while content is loading.
+
+## When to use
+
+| Use Preloader when... | Don't use Preloader when... |
+|---|---|
+| A full page is loading after navigation | A single section is loading (use Skeleton) |
+| An async operation blocks the entire UI | Data is refreshing in the background |
+| Payment processing, form submission | Lazy-loaded images or components |
+
+## Default
+
+<Canvas of={PreloaderStories.Default} />
+
+## Full Screen (with overlay)
+
+<Canvas of={PreloaderStories.FullScreen} />
+
+## Best practices
+
+### Do
+
+- Show after 300ms delay (avoid flash for fast loads)
+- Use for critical blocking operations (payment, auth)
+- Keep the overlay dark enough to prevent interaction
+
+### Don't
+
+- Don't show for operations under 500ms
+- Don't use for partial page loads (use Skeleton)
+- Don't leave the preloader visible indefinitely — add a timeout
+- Don't use multiple preloaders simultaneously
+
+## Accessibility
+
+- Renders with `role="status"` — announced by screen readers
+- Full overlay prevents keyboard interaction with background
+- Spinner has no accessible text (parent overlay provides context)
+
+## Code reference
+
+```tsx
+import { Preloader } from "@tipico/ui/Preloader";
+
+// Full screen loading
+<Preloader />
+
+// Custom spinner size
+<Preloader spinnerSize="icon-xl" />
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/Preloader/` |
+| Replaces | CircularLoading, MUI CircularProgress |
+
+**Note:** Preloader uses Portal internally and renders as a full-screen overlay. It cannot be rendered inside a Storybook Canvas without layout issues. The examples above simulate its appearance.

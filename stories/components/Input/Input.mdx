@@ -1,0 +1,93 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as InputStories from './Input.stories';
+
+<Meta of={InputStories} />
+
+# Input
+
+A text field for collecting user input. Supports multiple types (text, search, password, currency, phone, checkbox) through the `type` prop.
+
+## When to use
+
+| Use Input when... | Don't use Input when... |
+|---|---|
+| Collecting text, email, or numeric data | Selecting from predefined options (use Dropdown) |
+| Search functionality | Toggling a binary state (use Toggle/Checkbox) |
+| Password entry | Long-form text (use InputTextArea) |
+| Currency amounts | Date selection (use DatePicker) |
+
+## Types
+
+<Canvas of={InputStories.AllTypes} />
+
+| Type | Renders as |
+|---|---|
+| `text` (default) | Standard text input |
+| `search` | Input with search icon + clear button |
+| `password` | Input with show/hide toggle |
+| `tel` | Telephone input with country selector |
+| `checkbox` | Checkbox variant |
+| `checkmark` | Checkmark variant |
+| `radio` | Radio button |
+
+## Composition with InputField
+
+<Canvas of={InputStories.WithLabel} />
+
+For labeled inputs with descriptions, compose with:
+
+```tsx
+<InputField id="field">
+  <InputFieldTitle id="title">Label</InputFieldTitle>
+  <Input id="input" name="field" />
+  <InputFieldDescription id="desc">Helper text</InputFieldDescription>
+</InputField>
+```
+
+## Currency Input
+
+<Canvas of={InputStories.WithCurrency} />
+
+Set `showCurrency={true}` and `currency="€"` to display a currency symbol prefix.
+
+## Props
+
+<ArgTypes of={InputStories} />
+
+## Best practices
+
+### Do
+
+- Always pair with `InputFieldTitle` for accessibility
+- Use `placeholder` to show expected format, not as a label
+- Use `type="search"` for search fields (adds clear button)
+- Add `InputFieldDescription` for complex validation rules
+
+### Don't
+
+- Don't use Input for multi-line text (use InputTextArea)
+- Don't hide the label — placeholder disappears on focus
+- Don't use `type="number"` for phone numbers (use `type="tel"`)
+- Don't forget `name` prop — it's required for form submission
+
+## Accessibility
+
+- Label connected via `InputFieldTitle` → `htmlFor`
+- Description linked via `aria-describedby`
+- Search type includes clear button with keyboard support
+- Password type includes accessible show/hide toggle
+- Disabled state communicated to assistive technology
+
+## Code reference
+
+```tsx
+import { Input, InputField, InputFieldTitle, InputFieldDescription } from "@tipico/ui/Input";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/Input/` |
+| Figma | [Input Component](https://www.figma.com/design/FazkRi1zigs8vJlcPzn8Xx/Tipico-Tailwind-DS) |
+| Key | `497a56c5db2be7ad02473200b7b93dc030098247` |
+| Replaces | AppInput, custom MUI TextField wrappers |

@@ -1,0 +1,75 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as AlertStories from './Alert.stories';
+
+<Meta of={AlertStories} />
+
+# Alert
+
+Displays a brief, important message that attracts attention without interrupting the user's task. Non-modal — stays inline with the content.
+
+## When to use
+
+| Use Alert when... | Don't use Alert when... |
+|---|---|
+| Showing feedback after an action (success, error) | Requiring user confirmation (use Dialog) |
+| Displaying system status (maintenance, warnings) | Showing transient notifications (use Toast) |
+| Informing about important context | The message needs immediate action |
+| Providing non-blocking errors or tips | Content is purely decorative |
+
+## Variants
+
+<Canvas of={AlertStories.AllVariants} />
+
+| Variant | When to use |
+|---|---|
+| `info` | General information, tips, guidance |
+| `positive` | Success confirmations, completed actions |
+| `negative` | Errors, failed operations, critical issues |
+| `warning` | Caution, consequences, pending actions |
+| `neutral` | Low-emphasis information, system notes |
+| `plain` | Minimal styling, for custom contexts |
+
+## Dismissible
+
+<Canvas of={AlertStories.WithClose} />
+
+Add `onCloseClick` to make the alert dismissible. Use for non-critical messages the user may want to hide.
+
+## Props
+
+<ArgTypes of={AlertStories} />
+
+## Best practices
+
+### Do
+
+- Keep messages concise — one or two sentences max
+- Use a header for scannability, body for detail
+- Match variant to severity (don't use `positive` for errors)
+- Place alerts near the content they relate to
+
+### Don't
+
+- Don't stack more than 2 alerts in one view
+- Don't use alerts for marketing content
+- Don't use `negative` for non-critical validation hints
+- Don't rely only on color — the icon conveys meaning too
+
+## Accessibility
+
+- Renders with `role="alert"` — screen readers announce it immediately
+- Icon provides visual redundancy beyond color
+- Close button is keyboard-accessible
+
+## Code reference
+
+```tsx
+import { Alert } from "@tipico/ui/Alert";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/Alert/` |
+| Figma | [Alert Component](https://www.figma.com/design/FazkRi1zigs8vJlcPzn8Xx/Tipico-Tailwind-DS) |
+| Key | `a0f3a07b9ee9015bc59b6bbe0d54443388a07b8c` |
