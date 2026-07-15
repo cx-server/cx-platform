@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as StatusIconStories from './StatusIcon.stories';
+
+<Meta of={StatusIconStories} />
+
+# StatusIcon
+
+Visual indicator representing the current state of a bet (open, won, lost, live, canceled).
+
+## When to use
+
+| Use StatusIcon when... | Don't use StatusIcon when... |
+|---|---|
+| Displaying bet status alongside a slip or history item | You need a text-based status label (use Pill) |
+| Providing a quick visual scan of outcomes in a list | The status has no corresponding icon in the set |
+
+## Variants
+
+<Canvas of={StatusIconStories.AllStates} />
+
+## Best practices
+
+### Do
+- Always pair with a text label for clarity (icon + "Won")
+- Use consistent icon placement across bet history views
+
+### Don't
+- Use StatusIcon without adjacent text — icons alone are ambiguous
+- Invent new states outside the defined set (open, won, lost, live, canceled)
+
+## Accessibility
+- Each icon includes an `aria-label` matching its state name
+- Color is supplementary — the icon shape and label communicate the status independently
+
+## Code reference
+
+```tsx
+import { StatusIcon } from "@tipico/ui/StatusIcon";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/StatusIcon/` |

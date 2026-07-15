@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as BadgeStories from './Badge.stories';
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+Notification counter displayed on buttons or icons to indicate new or unread items.
+
+## When to use
+
+| Use Badge when... | Don't use Badge when... |
+|---|---|
+| Showing unread count on a navigation item or icon | You need a status label (use Pill) |
+| Indicating new items require attention | The count exceeds 99 — truncate to "99+" |
+
+## Variants
+
+<Canvas of={BadgeStories.OnButton} />
+
+## Best practices
+
+### Do
+- Position the badge at the top-right corner of its parent element
+- Use animation sparingly — only when the count increments
+
+### Don't
+- Show a badge with a count of zero — hide it instead
+- Stack multiple badges on the same element
+
+## Accessibility
+- Badge count is announced via `aria-label` on the parent element (e.g. "3 new notifications")
+- Animation respects `prefers-reduced-motion`
+
+## Code reference
+
+```tsx
+import { Badge } from "@tipico/ui/Badge";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/Badge/` |

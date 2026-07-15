@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as EmptyStateStories from './EmptyState.stories';
+
+<Meta of={EmptyStateStories} />
+
+# EmptyState
+
+Placeholder shown when a view has no data or content to display, guiding users toward an action.
+
+## When to use
+
+| Use EmptyState when... | Don't use EmptyState when... |
+|---|---|
+| A list, table, or section has zero items to show | Data is still loading — use Skeleton instead |
+| You want to guide the user to create their first item | An error occurred — use Alert for error messaging |
+
+## Variants
+
+<Canvas of={EmptyStateStories.WithAction} />
+
+## Best practices
+
+### Do
+- Include an illustration or icon to make the empty view feel intentional
+- Provide a clear call-to-action when the user can resolve the empty state themselves
+
+### Don't
+- Leave views completely blank — always explain why nothing is shown
+- Use generic messages like "No data" — be specific about what's missing
+
+## Accessibility
+- The empty state container uses a heading to structure the message for screen readers
+- Action buttons follow standard Button accessibility patterns
+
+## Code reference
+
+```tsx
+import { EmptyState } from "@tipico/ui/EmptyState";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/EmptyState/` |

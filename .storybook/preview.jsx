@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./tipico-ui.css";
+import "./stepper.css";
 
 function ThemeWrapper({ children }) {
   useEffect(() => {

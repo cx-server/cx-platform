@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as ListStories from './List.stories';
+
+<Meta of={ListStories} />
+
+# List
+
+Vertical list of items with consistent spacing and optional interactive states.
+
+## When to use
+
+| Use List when... | Don't use List when... |
+|---|---|
+| Displaying a series of related items vertically | You need a data grid with sorting and filtering (use a table) |
+| Building navigation menus or settings panels | Items have complex multi-column layouts |
+
+## Variants
+
+<Canvas of={ListStories.Default} />
+
+## Best practices
+
+### Do
+- Use consistent sizing (xs/sm/md/lg) within a single list
+- Add hover and active states for clickable lists
+
+### Don't
+- Nest lists more than two levels deep
+- Mix different list item sizes within the same list
+
+## Accessibility
+- Uses semantic list markup (`ul`/`li`) for screen reader enumeration
+- Clickable items are keyboard-focusable and respond to Enter/Space
+
+## Code reference
+
+```tsx
+import { List } from "@tipico/ui/List";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/List/` |

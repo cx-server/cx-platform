@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as ProgressBarStories from './ProgressBar.stories';
+
+<Meta of={ProgressBarStories} />
+
+# ProgressBar
+
+Horizontal bar that visualizes progress from 0% to 100%, commonly used for multi-step flows or wagering requirements.
+
+## When to use
+
+| Use ProgressBar when... | Don't use ProgressBar when... |
+|---|---|
+| Showing completion toward a goal (wagering, steps) | The process is indeterminate — use a spinner or Skeleton |
+| Visualizing numeric progress alongside a label | You need a circular indicator |
+
+## Variants
+
+<Canvas of={ProgressBarStories.Steps} />
+
+## Best practices
+
+### Do
+- Always pair with a text label showing the percentage or step count
+- Animate transitions smoothly when the value updates
+
+### Don't
+- Use extremely thin bars that are hard to perceive visually
+- Show progress bars for values that rarely change (static data)
+
+## Accessibility
+- Uses `role="progressbar"` with `aria-valuenow`, `aria-valuemin`, and `aria-valuemax`
+- Progress change is announced to assistive technology when the value updates significantly
+
+## Code reference
+
+```tsx
+import { ProgressBar } from "@tipico/ui/ProgressBar";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/ProgressBar/` |

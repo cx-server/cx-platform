@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as ChipStories from './Chip.stories';
+
+<Meta of={ChipStories} />
+
+# Chip
+
+Selectable filter tags that let users narrow content by category or attribute.
+
+## When to use
+
+| Use Chip when... | Don't use Chip when... |
+|---|---|
+| Users can filter a list by toggling categories on/off | You need a static, non-interactive label (use Pill) |
+| Showing active filter selections that can be removed | The selection is mutually exclusive — use Radio or Tabs |
+
+## Variants
+
+<Canvas of={ChipStories.AllVariants} />
+
+## Best practices
+
+### Do
+- Show chips in a horizontal scrollable row when space is limited
+- Indicate the selected state clearly with a filled background
+
+### Don't
+- Use more than two lines of chips — group or paginate instead
+- Rely on color alone to show selection state
+
+## Accessibility
+- Each chip uses `role="option"` or toggle button semantics for screen readers
+- Selected state is communicated via `aria-pressed` or `aria-selected`
+
+## Code reference
+
+```tsx
+import { Chip } from "@tipico/ui/Chip";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/Chip/` |

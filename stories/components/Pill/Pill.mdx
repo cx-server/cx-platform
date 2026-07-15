@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as PillStories from './Pill.stories';
+
+<Meta of={PillStories} />
+
+# Pill
+
+Status labels used to communicate the outcome or state of an item (e.g. Won, Lost, Live, Pending).
+
+## When to use
+
+| Use Pill when... | Don't use Pill when... |
+|---|---|
+| Showing bet or event status (won, lost, live) | You need interactive/clickable filter tags (use Chip) |
+| Labeling items with a semantic state | The label needs to be dismissed or removed by the user |
+
+## Variants
+
+<Canvas of={PillStories.AllVariants} />
+
+## Best practices
+
+### Do
+- Use the semantic color that matches the meaning (positive for won, negative for lost)
+- Keep label text short — one or two words maximum
+
+### Don't
+- Mix multiple pill colors in the same row without clear meaning
+- Use pills for actions — they are purely informational
+
+## Accessibility
+- Each pill includes sufficient color contrast for its text/background combination
+- Status meaning is conveyed through text, not color alone
+
+## Code reference
+
+```tsx
+import { Pill } from "@tipico/ui/Pill";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/Pill/` |

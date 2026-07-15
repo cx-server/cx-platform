@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as DropdownStories from './Dropdown.stories';
+
+<Meta of={DropdownStories} />
+
+# Dropdown
+
+Native select element styled with Design System tokens for consistent appearance across platforms.
+
+## When to use
+
+| Use Dropdown when... | Don't use Dropdown when... |
+|---|---|
+| The user must pick one option from a predefined list | Options need custom rendering (icons, descriptions) — use a custom listbox |
+| Fewer than ~15 options are available | You need multi-select — use Chip filters or a checkbox list |
+
+## Variants
+
+<Canvas of={DropdownStories.Default} />
+
+## Best practices
+
+### Do
+- Provide a clear label above the dropdown (pair with Input's title pattern)
+- Include a neutral placeholder option ("Select…") when no default applies
+
+### Don't
+- Use a dropdown for binary choices — use a Toggle or Radio instead
+- Nest dropdowns inside other dropdowns
+
+## Accessibility
+- Built on the native `<select>` element, inheriting full keyboard and screen reader support
+- Label association via `id`/`for` ensures the field is announced correctly
+
+## Code reference
+
+```tsx
+import { Dropdown } from "@tipico/ui/Dropdown";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/Dropdown/` |

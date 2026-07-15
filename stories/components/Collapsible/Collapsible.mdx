@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as CollapsibleStories from './Collapsible.stories';
+
+<Meta of={CollapsibleStories} />
+
+# Collapsible
+
+Expandable content panel that lets users show or hide secondary information on demand.
+
+## When to use
+
+| Use Collapsible when... | Don't use Collapsible when... |
+|---|---|
+| Content is supplementary and doesn't need to be visible by default | The content is critical and must always be visible |
+| Building FAQ sections or grouped settings | You need tabbed navigation between content areas (use Tabs) |
+
+## Variants
+
+<Canvas of={CollapsibleStories.Default} />
+
+## Best practices
+
+### Do
+- Use a clear, descriptive header that hints at the hidden content
+- Allow multiple panels to be open simultaneously unless space is very constrained
+
+### Don't
+- Hide primary actions or required fields inside a collapsed panel
+- Nest collapsibles more than one level deep
+
+## Accessibility
+- Header acts as a button with `aria-expanded` reflecting the open/closed state
+- Content region uses `aria-hidden` when collapsed to remove it from the tab order
+
+## Code reference
+
+```tsx
+import { Collapsible } from "@tipico/ui/Collapsible";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/Collapsible/` |

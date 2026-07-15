@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as SkeletonStories from './Skeleton.stories';
+
+<Meta of={SkeletonStories} />
+
+# Skeleton
+
+Loading placeholder that mirrors the shape of incoming content while data is being fetched.
+
+## When to use
+
+| Use Skeleton when... | Don't use Skeleton when... |
+|---|---|
+| Content layout is known but data hasn't loaded yet | The wait is less than 200ms — avoid flashing a skeleton |
+| You want to reduce perceived load time | An error state should be shown instead (use EmptyState) |
+
+## Variants
+
+<Canvas of={SkeletonStories.ContentPlaceholder} />
+
+## Best practices
+
+### Do
+- Match the skeleton shape to the actual content dimensions
+- Use a subtle shimmer animation to indicate loading
+
+### Don't
+- Show skeletons indefinitely — add a timeout fallback with an error message
+- Use skeletons for interactive elements that block user input
+
+## Accessibility
+- Skeleton regions are marked with `aria-busy="true"` while loading
+- Animation respects `prefers-reduced-motion` (falls back to static gray)
+
+## Code reference
+
+```tsx
+import { Skeleton } from "@tipico/ui/Skeleton";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/Skeleton/` |

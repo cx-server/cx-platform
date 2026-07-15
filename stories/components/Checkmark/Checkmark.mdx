@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as CheckmarkStories from './Checkmark.stories';
+
+<Meta of={CheckmarkStories} />
+
+# Checkmark
+
+Animated checkbox indicator with smooth appear/disappear transitions for confirming selections.
+
+## When to use
+
+| Use Checkmark when... | Don't use Checkmark when... |
+|---|---|
+| Providing visual confirmation of a toggle or selection | You need a full form checkbox with label (use Checkbox) |
+| Animating success feedback in a multi-step flow | The check state needs to be part of form submission |
+
+## Variants
+
+<Canvas of={CheckmarkStories.Interactive} />
+
+## Best practices
+
+### Do
+- Use the animation to reinforce a successful action (selection confirmed)
+- Keep the checkmark size proportional to its container
+
+### Don't
+- Use Checkmark as a replacement for the Checkbox form component
+- Trigger the animation on every re-render — only animate on state change
+
+## Accessibility
+- Animation respects `prefers-reduced-motion` (instant state change, no animation)
+- When used standalone, includes `aria-label` describing the checked state
+
+## Code reference
+
+```tsx
+import { Checkmark } from "@tipico/ui/Checkmark";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/Checkmark/` |

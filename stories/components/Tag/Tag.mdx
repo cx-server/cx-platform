@@ -1,0 +1,44 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as TagStories from './Tag.stories';
+
+<Meta of={TagStories} />
+
+# Tag
+
+Small label overlaid on cards or thumbnails to highlight a property (NEW, LIVE, Popular).
+
+## When to use
+
+| Use Tag when... | Don't use Tag when... |
+|---|---|
+| Highlighting a promotional or temporal attribute on a card | You need a removable filter — use Chip |
+| Drawing attention to new, live, or featured content | The label represents a bet/event outcome — use Pill |
+
+## Variants
+
+<Canvas of={TagStories.AllVariants} />
+
+## Best practices
+
+### Do
+- Position tags consistently (top-left or top-right of the card)
+- Limit to one tag per card to avoid visual clutter
+
+### Don't
+- Use tags on every item — they lose impact when overused
+- Write tag text longer than two words
+
+## Accessibility
+- Tags are purely decorative indicators — the information they convey is also available in surrounding text or metadata
+- Sufficient contrast ratio between tag text and background is enforced by design tokens
+
+## Code reference
+
+```tsx
+import { Tag } from "@tipico/ui/Tag";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/Tag/` |
