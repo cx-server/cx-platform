@@ -13,8 +13,6 @@ const config = {
   staticDirs: [],
   viteFinal: async (config) => {
     config.publicDir = false;
-    config.css = config.css || {};
-    config.css.lightningcss = undefined;
     config.build = config.build || {};
     config.build.cssMinify = false;
     return config;

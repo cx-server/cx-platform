@@ -1,4 +1,4 @@
-import "./styles.css";
+import "./tipico-ui.css";
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
@@ -13,6 +13,13 @@ const preview = {
       toc: true,
     },
   },
+  decorators: [
+    (Story) => (
+      <div data-theme="tipico-light">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default preview;
