@@ -10,7 +10,9 @@ const config = {
     "@chromatic-com/storybook",
   ],
   framework: "@storybook/react-vite",
+  staticDirs: [],
   viteFinal: async (config) => {
+    config.publicDir = false;
     config.css = config.css || {};
     config.css.lightningcss = undefined;
     config.build = config.build || {};
