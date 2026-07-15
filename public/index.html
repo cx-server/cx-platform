@@ -197,6 +197,7 @@
         <nav class="hidden md:flex items-center gap-6 text-sm text-subtile">
           <a href="/flows/" class="hover:text-highlight transition-colors">Flows</a>
           <a href="/onboarding/" class="hover:text-highlight transition-colors">Onboarding</a>
+          <a href="/platforms/" class="hover:text-highlight transition-colors">Health</a>
           <a href="https://ds.cx-workspace.com/" class="hover:text-highlight transition-colors" target="_blank">UI Components</a>
           <a href="https://github.com/cx-server/cx-workspace" class="hover:text-highlight transition-colors" target="_blank">GitHub</a>
         </nav>
@@ -274,24 +275,12 @@
 
     <!-- Platforms -->
     <section id="platforms" class="max-w-6xl mx-auto px-6 pb-24">
-      <h2 class="text-2xl font-semibold mb-8 text-highlight">Platforms</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="p-5 rounded-card bg-card border border-subtile">
-          <h3 class="font-medium mb-1 text-highlight">Games</h3>
-          <p class="text-xs text-subtile">Casino, Slots, Live</p>
-        </div>
-        <div class="p-5 rounded-card bg-card border border-subtile">
-          <h3 class="font-medium mb-1 text-highlight">Sports</h3>
-          <p class="text-xs text-subtile">Betting, Live, Odds</p>
-        </div>
-        <div class="p-5 rounded-card bg-card border border-subtile">
-          <h3 class="font-medium mb-1 text-highlight">Retail</h3>
-          <p class="text-xs text-subtile">POS, Till, Machine</p>
-        </div>
-        <div class="p-5 rounded-card bg-card border border-subtile">
-          <h3 class="font-medium mb-1 text-highlight">Account</h3>
-          <p class="text-xs text-subtile">Registration, KYC, Settings</p>
-        </div>
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl font-semibold text-highlight">Platform Health</h2>
+        <a href="/platforms/" class="text-sm text-interaction hover:underline">View all →</a>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4" id="platform-cards">
+        <!-- Populated by JS -->
       </div>
     </section>
   </main>
@@ -316,6 +305,43 @@
       document.getElementById('icon-sun').classList.toggle('hidden', isLight);
       document.getElementById('icon-moon').classList.toggle('hidden', !isLight);
     }
+
+    // Platform Health Cards
+    (async function() {
+      const platforms = [
+        { file: 'cornucopia' },
+        { file: 'mytipico' },
+        { file: 'tipclub' },
+        { file: 'sports-mobile' },
+        { file: 'retail' },
+        { file: 'account' },
+      ];
+
+      function scoreColor(score) {
+        if (score >= 75) return 'rgb(var(--signals-bg-positive))';
+        if (score >= 40) return 'rgb(var(--signals-bg-warning))';
+        return 'rgb(var(--signals-bg-negative))';
+      }
+
+      const grid = document.getElementById('platform-cards');
+      if (!grid) return;
+
+      for (const p of platforms) {
+        try {
+          const res = await fetch(`/data/${p.file}.json`);
+          const data = await res.json();
+          grid.insertAdjacentHTML('beforeend', `
+            <a href="/platforms/${data.slug}.html" class="card-hover block p-5 rounded-card bg-card border border-subtile hover:border-standard transition-all">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-medium text-highlight">${data.platform}</h3>
+                <span class="text-lg font-bold" style="color: ${scoreColor(data.score)}">${data.score}%</span>
+              </div>
+              <p class="text-xs text-subtile">${data.subtitle}</p>
+            </a>
+          `);
+        } catch (e) {}
+      }
+    })();
   </script>
 </body>
 </html>

@@ -20,6 +20,8 @@ jobs:
           mkdir -p /cx-platform
           mkdir -p /onboarding
           mkdir -p /flows
+          mkdir -p /platforms
+          mkdir -p /data
           rm -f /storybook/index.html
           mirror --reverse --only-newer --parallel=5 --verbose ./storybook-static /storybook
           put ./storybook-static/index.html -o /storybook/index.html
@@ -28,5 +30,7 @@ jobs:
           put public/index.html -o /index.html
           mirror --reverse --only-newer --verbose ./public/onboarding /onboarding
           mirror --reverse --only-newer --verbose ./public/flows /flows
+          mirror --reverse --only-newer --verbose ./public/platforms /platforms
+          mirror --reverse --only-newer --verbose ./public/data /data
           bye
           EOF

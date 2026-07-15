@@ -1,0 +1,30 @@
+{
+  "platform": "Retail Terminal",
+  "slug": "retail",
+  "subtitle": "POS, Till, Machine",
+  "path": "@tipico/apps-machine",
+  "repo": "rethink-machine-ui",
+  "lastUpdated": "2026-06-01",
+  "kpiVersion": "v1",
+  "score": 86,
+  "kpis": {
+    "legacyMigration": { "score": 100, "detail": "195 @tipico/ui imports, 0 @tipico/components (legacy). Fully migrated to DS." },
+    "colorTokenDensity": { "score": 100, "detail": "190 files with Tailwind color classes, 0 hardcoded hex in CSS/SCSS source." },
+    "typographyCompliance": { "score": null, "detail": "Not yet measured (v1 KPIs)." },
+    "replaceableCustom": { "score": 81, "detail": "45 custom components vs 195 DS imports. 8 replaceable with DS equivalents." }
+  },
+  "dsBreadth": null,
+  "trend": [
+    { "date": "2026-06-01", "score": 86, "kpiVersion": "v1" }
+  ],
+  "gap": {
+    "weakestKpi": "Legacy-Free (MUI)",
+    "action": "Eliminate 215 @mui/* imports (makeStyles migration to Tailwind)",
+    "impactEstimate": "86% → ~92%"
+  },
+  "nextSteps": [
+    { "action": "Migrate AppDialog + Modal → @tipico/ui/Dialog (35 files)", "impact": "High", "effort": "Medium" },
+    { "action": "Eliminate makeStyles (195 instances, ~83 files)", "impact": "Legacy-Free 64% → ~90%", "effort": "High" },
+    { "action": "Retire MaterialButton → @tipico/ui/Button (10 files)", "impact": "Quick win", "effort": "Low" }
+  ]
+}

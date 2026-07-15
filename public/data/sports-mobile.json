@@ -1,0 +1,36 @@
+{
+  "platform": "Sports Mobile",
+  "slug": "sports-mobile",
+  "subtitle": "Betting & Live",
+  "path": "packages/apps/sports-mobile/",
+  "repo": "rethink-monoverse",
+  "lastUpdated": "2026-07-06",
+  "kpiVersion": "v3.1",
+  "score": 88,
+  "kpis": {
+    "legacyMigration": { "score": 80, "detail": "401 @tipico/ui imports vs 100 @tipico/components (legacy). 100 imports to migrate." },
+    "colorTokenDensity": { "score": 95, "detail": "561 token color lines vs 23 hardcoded hex + 5 arbitrary color lines." },
+    "typographyCompliance": { "score": 90, "detail": "Some hardcoded font sizes and line heights remaining." },
+    "replaceableCustom": { "score": 97, "detail": "Few replaceable custom components." }
+  },
+  "dsBreadth": 60,
+  "trend": [
+    { "date": "2026-05-22", "score": 69, "kpiVersion": "v1" },
+    { "date": "2026-06-01", "score": 88, "kpiVersion": "v1" },
+    { "date": "2026-06-05", "score": 83, "kpiVersion": "v1" },
+    { "date": "2026-06-05", "score": 88, "kpiVersion": "v2" },
+    { "date": "2026-06-16", "score": 88, "kpiVersion": "v2" },
+    { "date": "2026-06-17", "score": 91, "kpiVersion": "v3.1" },
+    { "date": "2026-07-06", "score": 88, "kpiVersion": "v3.1" }
+  ],
+  "gap": {
+    "weakestKpi": "Legacy Migration",
+    "action": "Migrate 100 @tipico/components imports",
+    "impactEstimate": "88% → 93%"
+  },
+  "nextSteps": [
+    { "action": "Migrate 100 @tipico/components imports to @tipico/ui", "impact": "+5%", "effort": "High" },
+    { "action": "Replace 23 hardcoded hex + 5 arbitrary with Tailwind tokens", "impact": "+2%", "effort": "Medium" },
+    { "action": "Fix hardcoded typography values", "impact": "+2%", "effort": "Medium" }
+  ]
+}

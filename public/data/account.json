@@ -1,0 +1,35 @@
+{
+  "platform": "Account",
+  "slug": "account",
+  "subtitle": "Registration, KYC, Settings",
+  "path": "packages/apps/account/",
+  "repo": "rethink-monoverse",
+  "lastUpdated": "2026-07-06",
+  "kpiVersion": "v3.1",
+  "score": 78,
+  "kpis": {
+    "legacyMigration": { "score": 69, "detail": "264 @tipico/ui imports vs 116 @tipico/components (legacy). 116 imports to migrate." },
+    "colorTokenDensity": { "score": 98, "detail": "427 token color lines vs 7 hardcoded hex + 1 arbitrary color line." },
+    "typographyCompliance": { "score": 66, "detail": "98 files with Tailwind typography vs 42 hardcoded + 9 arbitrary values." },
+    "replaceableCustom": { "score": 95, "detail": "Few replaceable custom components remaining." }
+  },
+  "dsBreadth": 50,
+  "trend": [
+    { "date": "2026-05-22", "score": 67, "kpiVersion": "v1" },
+    { "date": "2026-06-01", "score": 87, "kpiVersion": "v1" },
+    { "date": "2026-06-05", "score": 80, "kpiVersion": "v1" },
+    { "date": "2026-06-05", "score": 87, "kpiVersion": "v2" },
+    { "date": "2026-06-16", "score": 86, "kpiVersion": "v2" },
+    { "date": "2026-06-17", "score": 83, "kpiVersion": "v3.1" },
+    { "date": "2026-07-06", "score": 78, "kpiVersion": "v3.1" }
+  ],
+  "gap": {
+    "weakestKpi": "Typography Token Compliance",
+    "action": "Replace 42 hardcoded + 9 arbitrary typography values with Tailwind utilities",
+    "impactEstimate": "78% → 86%"
+  },
+  "nextSteps": [
+    { "action": "Replace 42 hardcoded + 9 arbitrary typography values with Tailwind utilities", "impact": "+8%", "effort": "Medium" },
+    { "action": "Migrate 116 @tipico/components imports", "impact": "+10%", "effort": "High" }
+  ]
+}
