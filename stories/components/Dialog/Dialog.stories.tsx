@@ -29,7 +29,7 @@ type Story = StoryObj<typeof Dialog>;
 
 export const Default: Story = {
   render: function DialogDemo() {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     return (
       <div style={{ padding: "24px" }}>
         <Button id="open-dialog" variant="primary" autoWidth onClick={() => setIsOpen(true)}>
@@ -52,7 +52,7 @@ export const Default: Story = {
 
 export const BottomSheet: Story = {
   render: function BottomSheetDemo() {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     return (
       <div style={{ padding: "24px" }}>
         <Button id="open-bottom" variant="primary" autoWidth onClick={() => setIsOpen(true)}>
@@ -71,7 +71,7 @@ export const BottomSheet: Story = {
 
 export const NonCloseable: Story = {
   render: function NonCloseableDemo() {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     return (
       <div style={{ padding: "24px" }}>
         <Button id="open-locked" variant="warning" autoWidth onClick={() => setIsOpen(true)}>
@@ -91,7 +91,7 @@ export const NonCloseable: Story = {
 
 export const CenteredDialog: Story = {
   render: function CenteredDemo() {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     return (
       <div style={{ padding: "24px" }}>
         <Button id="open-center" variant="primary" autoWidth onClick={() => setIsOpen(true)}>

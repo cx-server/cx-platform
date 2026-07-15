@@ -24,6 +24,7 @@
     "@tipico/ui": "file:../rethink-monoverse/packages/libs/ui",
     "react": "19.2.6",
     "react-dom": "19.2.6",
+    "remark-gfm": "^4.0.1",
     "vite": "^8.1.4"
   },
   "devDependencies": {

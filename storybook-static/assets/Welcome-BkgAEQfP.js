@@ -1,4 +1,4 @@
-import{i as e}from"./preload-helper-BdFrVu1K.js";import{t}from"./iframe-CuNnu9lR.js";import{b as n,c as r,s as i}from"./blocks-CYwqkQf8.js";import{t as a}from"./mdx-react-shim-Bo1qpjQi.js";function o(e){let t={a:`a`,code:`code`,h1:`h1`,h2:`h2`,li:`li`,p:`p`,pre:`pre`,strong:`strong`,ul:`ul`,...n(),...e.components};return(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)(i,{title:`Introduction/Welcome`}),`
+import{i as e}from"./preload-helper-BdFrVu1K.js";import{t}from"./iframe-Bo1TOeN3.js";import{b as n,c as r,s as i}from"./blocks-3CAhBzOE.js";import{t as a}from"./mdx-react-shim-BzYNxt3O.js";function o(e){let t={a:`a`,code:`code`,h1:`h1`,h2:`h2`,li:`li`,p:`p`,pre:`pre`,strong:`strong`,table:`table`,tbody:`tbody`,td:`td`,th:`th`,thead:`thead`,tr:`tr`,ul:`ul`,...n(),...e.components};return(0,c.jsxs)(c.Fragment,{children:[(0,c.jsx)(i,{title:`Introduction/Welcome`}),`
 `,(0,c.jsx)(t.h1,{id:`tipico-design-system`,children:`Tipico Design System`}),`
 `,(0,c.jsx)(t.p,{children:`The shared component library for all Tipico frontend platforms — Games, Sports, Retail, and Account.`}),`
 `,(0,c.jsx)(t.h2,{id:`whats-inside`,children:`What's inside`}),`
@@ -18,14 +18,7 @@ import{i as e}from"./preload-helper-BdFrVu1K.js";import{t}from"./iframe-CuNnu9lR
 </Button>
 `})}),`
 `,(0,c.jsx)(t.h2,{id:`platforms-using-this-library`,children:`Platforms using this library`}),`
-`,(0,c.jsx)(t.p,{children:`| Platform | Score | Components used |
-|----------|-------|-----------------|
-| Cornucopia | 98% | 6 |
-| myTipico | 98% | 16 |
-| TipClub | 91% | 18 |
-| Sports Mobile | 88% | 30 |
-| Account | 78% | 20 |
-| Retail Terminal | 86% | 16 |`}),`
+`,(0,c.jsxs)(t.table,{children:[(0,c.jsx)(t.thead,{children:(0,c.jsxs)(t.tr,{children:[(0,c.jsx)(t.th,{children:`Platform`}),(0,c.jsx)(t.th,{children:`Score`}),(0,c.jsx)(t.th,{children:`Components used`})]})}),(0,c.jsxs)(t.tbody,{children:[(0,c.jsxs)(t.tr,{children:[(0,c.jsx)(t.td,{children:`Cornucopia`}),(0,c.jsx)(t.td,{children:`98%`}),(0,c.jsx)(t.td,{children:`6`})]}),(0,c.jsxs)(t.tr,{children:[(0,c.jsx)(t.td,{children:`myTipico`}),(0,c.jsx)(t.td,{children:`98%`}),(0,c.jsx)(t.td,{children:`16`})]}),(0,c.jsxs)(t.tr,{children:[(0,c.jsx)(t.td,{children:`TipClub`}),(0,c.jsx)(t.td,{children:`91%`}),(0,c.jsx)(t.td,{children:`18`})]}),(0,c.jsxs)(t.tr,{children:[(0,c.jsx)(t.td,{children:`Sports Mobile`}),(0,c.jsx)(t.td,{children:`88%`}),(0,c.jsx)(t.td,{children:`30`})]}),(0,c.jsxs)(t.tr,{children:[(0,c.jsx)(t.td,{children:`Account`}),(0,c.jsx)(t.td,{children:`78%`}),(0,c.jsx)(t.td,{children:`20`})]}),(0,c.jsxs)(t.tr,{children:[(0,c.jsx)(t.td,{children:`Retail Terminal`}),(0,c.jsx)(t.td,{children:`86%`}),(0,c.jsx)(t.td,{children:`16`})]})]})]}),`
 `,(0,c.jsx)(t.p,{children:(0,c.jsx)(t.a,{href:`https://cx-workspace.com/platforms/`,rel:`nofollow`,children:`View Platform Health →`})}),`
 `,(0,c.jsx)(t.h2,{id:`resources`,children:`Resources`}),`
 `,(0,c.jsxs)(t.ul,{children:[`
