@@ -20,16 +20,20 @@
     "url": "https://github.com/cx-server/cx-platform/issues"
   },
   "homepage": "https://github.com/cx-server/cx-platform#readme",
+  "dependencies": {
+    "@tipico/ui": "file:../rethink-monoverse/packages/libs/ui",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "vite": "^8.1.4"
+  },
   "devDependencies": {
-    "storybook": "^10.4.6",
-    "@storybook/html-vite": "^10.4.6",
     "@chromatic-com/storybook": "^5.2.1",
-    "@storybook/addon-vitest": "^10.4.6",
     "@storybook/addon-a11y": "^10.4.6",
     "@storybook/addon-docs": "^10.4.6",
-    "vitest": "^4.1.10",
-    "playwright": "^1.61.1",
-    "@vitest/browser-playwright": "^4.1.10",
-    "@vitest/coverage-v8": "^4.1.10"
+    "@storybook/react-vite": "^10.4.6",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "storybook": "^10.4.6",
+    "tailwindcss": "^3.4.17"
   }
 }

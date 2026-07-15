@@ -1,0 +1,43 @@
+{
+  "platform": "Sports Mobile",
+  "slug": "sports-mobile",
+  "subtitle": "Betting & Live",
+  "path": "packages/apps/sports-mobile/",
+  "repo": "rethink-monoverse",
+  "lastUpdated": "2026-07-06",
+  "kpiVersion": "v3.1",
+  "score": 88,
+  "kpis": {
+    "legacyMigration": { "score": 80, "detail": "401 @tipico/ui imports vs 100 @tipico/components (legacy). 100 imports to migrate." },
+    "colorTokenDensity": { "score": 95, "detail": "561 token color lines vs 23 hardcoded hex + 5 arbitrary color lines." },
+    "typographyCompliance": { "score": 90, "detail": "88 files using Tailwind typography, 10 hardcoded in CSS, 0 arbitrary." },
+    "replaceableCustom": { "score": 97, "detail": "3 replaceable components out of 404 total." }
+  },
+  "dsBreadth": 60,
+  "dsComponents": ["Alert", "AppBar", "Avatar", "Badge", "BottomMenu", "Button", "ContentHeader", "Dialog", "EmptyState", "Icon", "InlineScrollArrows", "Input", "Label", "Layout", "List", "Pill", "Preloader", "ProgressBar", "RollingNumbers", "RoundedIcon", "Skeleton", "Tab", "Tag", "Toast", "ActivityBar", "BonusLabel", "EventBackdrop", "EventHeader", "InlineMessage", "StatusLabel"],
+  "replaceableComponents": [
+    { "name": "SearchBar", "dsEquivalent": "Input (search variant)", "usageCount": 8, "notes": "Could use Input with search icon", "storyUrl": null },
+    { "name": "BackToTop", "dsEquivalent": "Button", "usageCount": 5, "notes": "Simple scroll-to-top button", "storyUrl": "https://ds.cx-workspace.com/?path=/docs/button--docs" },
+    { "name": "Avatar", "dsEquivalent": "DS candidate", "usageCount": 14, "notes": "Used across platforms — should be added to DS catalog", "storyUrl": null }
+  ],
+  "trend": [
+    { "date": "2026-05-22", "score": 69, "kpiVersion": "v1" },
+    { "date": "2026-06-01", "score": 88, "kpiVersion": "v1" },
+    { "date": "2026-06-05", "score": 83, "kpiVersion": "v1" },
+    { "date": "2026-06-05", "score": 88, "kpiVersion": "v2" },
+    { "date": "2026-06-16", "score": 88, "kpiVersion": "v2" },
+    { "date": "2026-06-17", "score": 91, "kpiVersion": "v3.1" },
+    { "date": "2026-07-06", "score": 88, "kpiVersion": "v3.1" }
+  ],
+  "gap": {
+    "weakestKpi": "Legacy Migration",
+    "action": "Migrate 100 @tipico/components imports to @tipico/ui",
+    "impactEstimate": "88% → 93%"
+  },
+  "nextSteps": [
+    { "action": "Migrate 100 legacy imports to @tipico/ui", "impact": "+5%", "effort": "Medium-High" },
+    { "action": "Fix 5 arbitrary color values", "impact": "+1%", "effort": "Low" },
+    { "action": "Fix 10 hardcoded typography values in CSS", "impact": "+2%", "effort": "Low" },
+    { "action": "Propose Avatar as new DS component", "impact": "Removes replaceable across platforms", "effort": "DS team" }
+  ]
+}

@@ -1,1 +1,0 @@
-import{j as e}from"./jsx-runtime-8P-18mTY.js";function a({children:o,className:i,...t}){const s=t.id||"app-right-col";return e.jsx("aside",{id:s,"data-testId":s,className:`w-fit lg:max-w-xs empty:hidden ${i??""}`,...t,children:o})}a.__docgenInfo={description:"",methods:[],displayName:"RightColumn",composes:["HTMLProps"]};export{a as R};

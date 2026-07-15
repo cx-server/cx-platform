@@ -1,1 +1,0 @@
-import{r as e}from"./index-Cs7sjTYM.js";const r=t=>e.createElement("svg",{id:"default",xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24",...t},e.createElement("path",{strokeWidth:1.5,stroke:"currentColor",strokeLinecap:"round",strokeLinejoin:"round",d:"M6 18 18 6M6 6l12 12"}));export{r as S};

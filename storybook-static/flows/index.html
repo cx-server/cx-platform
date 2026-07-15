@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="tipico-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flows — CX Workspace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: { inter: ['Inter', 'Inter Fallback', 'sans-serif'], mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'] },
+        extend: {
+          colors: { info: 'rgb(var(--signals-bg-info) / <alpha-value>)', interaction: 'rgb(var(--global-styling-branding-interaction) / <alpha-value>)', brand: 'rgb(var(--global-styling-branding-brand) / <alpha-value>)' },
+          backgroundColor: { surface: 'rgb(var(--bg-surface) / <alpha-value>)', card: 'rgb(var(--bg-card) / <alpha-value>)', code: 'rgb(var(--bg-code) / <alpha-value>)' },
+          textColor: { highlight: 'rgb(var(--text-highlight) / <alpha-value>)', standard: 'rgb(var(--text-standard) / <alpha-value>)', subtile: 'rgb(var(--text-subtile) / <alpha-value>)', interaction: 'rgb(var(--text-interaction) / <alpha-value>)' },
+          borderColor: { standard: 'rgb(var(--border-standard))', subtile: 'rgb(var(--border-subtile))' },
+          borderRadius: { DEFAULT: '8px', sm: '4px', md: '8px', lg: '12px', card: '12px' },
+        },
+      },
+    }
+  </script>
+  <style>
+    :root { --base-black: 0 0 0; --base-white: 255 255 255; --base-neutrals-25: 250 250 250; --base-neutrals-50: 245 246 246; --base-neutrals-100: 229 231 232; --base-neutrals-200: 205 210 211; --base-neutrals-300: 169 178 181; --base-neutrals-500: 100 111 117; --base-neutrals-700: 74 79 83; --base-neutrals-800: 51 53 56; --base-neutrals-900: 32 34 37; --base-neutrals-950: 18 20 20; }
+    [data-theme="tipico-dark"] { color-scheme: dark; --text-highlight: var(--base-neutrals-25); --text-standard: var(--base-neutrals-200); --text-subtile: var(--base-neutrals-300); --text-interaction: 95 192 227; --border-standard: 255 255 255 / 0.15; --border-subtile: 255 255 255 / 0.05; --bg-surface: var(--base-neutrals-950); --bg-card: var(--base-neutrals-900); --bg-code: var(--base-neutrals-900); --global-styling-branding-interaction: 95 192 227; --global-styling-branding-brand: 200 16 46; --signals-bg-info: 28 126 161; }
+    [data-theme="tipico-light"] { color-scheme: light; --text-highlight: var(--base-neutrals-950); --text-standard: var(--base-neutrals-700); --text-subtile: var(--base-neutrals-500); --text-interaction: 28 126 161; --border-standard: 18 20 20 / 0.15; --border-subtile: 18 20 20 / 0.05; --bg-surface: var(--base-neutrals-50); --bg-card: var(--base-white); --bg-code: var(--base-neutrals-100); --global-styling-branding-interaction: 28 126 161; --global-styling-branding-brand: 200 16 46; --signals-bg-info: 28 126 161; }
+    body { background-color: rgb(var(--bg-surface)); color: rgb(var(--text-standard)); }
+    code { background-color: rgb(var(--bg-code)); padding: 2px 6px; border-radius: 4px; font-size: 0.875em; }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-inter min-h-screen">
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-standard" style="background-color: rgb(var(--bg-surface) / 0.85);">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center"><span class="text-white font-bold text-sm">CX</span></div>
+        <span class="font-semibold text-lg text-highlight">CX Workspace</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <nav class="hidden md:flex items-center gap-6 text-sm text-subtile">
+          <a href="/flows/" class="text-highlight font-medium">Flows</a>
+          <a href="/onboarding/" class="hover:text-highlight transition-colors">Onboarding</a>
+          <a href="/platforms/" class="hover:text-highlight transition-colors">Health</a>
+          <a href="https://ds.cx-workspace.com/" class="hover:text-highlight transition-colors" target="_blank">UI Components</a>
+          <a href="https://github.com/cx-server/cx-workspace" class="hover:text-highlight transition-colors" target="_blank">GitHub</a>
+        </nav>
+        <button onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'tipico-light' ? 'tipico-dark' : 'tipico-light'" class="w-9 h-9 rounded-lg bg-card flex items-center justify-center" aria-label="Toggle theme">
+          <svg class="w-4 h-4 text-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.07-7.07-1.41 1.41M7.34 16.66l-1.41 1.41m12.73 0-1.41-1.41M7.34 7.34 5.93 5.93"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-16">
+    <div class="max-w-4xl mx-auto px-6 py-16 md:py-24">
+      <h1 class="text-3xl md:text-4xl font-bold text-highlight mb-4">Flows</h1>
+      <p class="text-lg text-subtile mb-12">AI-powered workflows you can trigger from the Kiro chat. Each flow connects multiple tools into a single automated process.</p>
+
+      <div class="space-y-4">
+
+        <!-- cx-rebuild -->
+        <a href="/flows/rebuild/" class="block p-6 rounded-card bg-card border border-subtile hover:border-standard transition-colors">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <code class="text-interaction font-semibold">cx-rebuild</code>
+                <span class="text-xs px-2 py-0.5 rounded-full border border-subtile text-subtile">Figma → DS Components</span>
+              </div>
+              <p class="text-sm text-standard">Rebuild a selected Figma frame using proper Design System components and tokens. Automatic variant matching and token binding.</p>
+              <div class="flex gap-2 mt-3">
+                <span class="text-xs px-2 py-0.5 rounded bg-code text-subtile">Figma</span>
+                <span class="text-xs px-2 py-0.5 rounded bg-code text-subtile">Design System</span>
+              </div>
+            </div>
+            <svg class="w-5 h-5 text-subtile flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- cx-copy -->
+        <a href="/flows/copy/" class="block p-6 rounded-card bg-card border border-subtile hover:border-standard transition-colors">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <code class="text-interaction font-semibold">cx-copy</code>
+                <span class="text-xs px-2 py-0.5 rounded-full border border-subtile text-subtile">Text → Style Guide → Ditto</span>
+              </div>
+              <p class="text-sm text-standard">Extract all text from a Figma frame, audit against the Ditto style guide, produce English translations, optionally push to Ditto with DE/TR variants.</p>
+              <div class="flex gap-2 mt-3">
+                <span class="text-xs px-2 py-0.5 rounded bg-code text-subtile">Figma</span>
+                <span class="text-xs px-2 py-0.5 rounded bg-code text-subtile">Ditto</span>
+              </div>
+            </div>
+            <svg class="w-5 h-5 text-subtile flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- cx-audit -->
+        <a href="/flows/audit/" class="block p-6 rounded-card bg-card border border-subtile hover:border-standard transition-colors">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <code class="text-interaction font-semibold">cx-audit</code>
+                <span class="text-xs px-2 py-0.5 rounded-full border border-subtile text-subtile">DS Adoption Check</span>
+              </div>
+              <p class="text-sm text-standard">Scan a Figma frame for Design System adoption gaps, auto-layout issues, and hardcoded values. Produces a prioritized report with fix suggestions.</p>
+              <div class="flex gap-2 mt-3">
+                <span class="text-xs px-2 py-0.5 rounded bg-code text-subtile">Figma</span>
+              </div>
+            </div>
+            <svg class="w-5 h-5 text-subtile flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- cx-project -->
+        <a href="/flows/project/" class="block p-6 rounded-card bg-card border border-subtile hover:border-standard transition-colors">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <code class="text-interaction font-semibold">cx-project</code>
+                <span class="text-xs px-2 py-0.5 rounded-full border border-subtile text-subtile">Figma ↔ Jira Sync</span>
+              </div>
+              <p class="text-sm text-standard">Connect a Figma design file to a Jira ticket. Manage phase transitions (Exploration → Review → Build-Ready), update covers and ticket descriptions automatically.</p>
+              <div class="flex gap-2 mt-3">
+                <span class="text-xs px-2 py-0.5 rounded bg-code text-subtile">Figma</span>
+                <span class="text-xs px-2 py-0.5 rounded bg-code text-subtile">Jira</span>
+              </div>
+            </div>
+            <svg class="w-5 h-5 text-subtile flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+        <!-- cx-setup -->
+        <a href="/onboarding/" class="block p-6 rounded-card bg-card border border-subtile hover:border-standard transition-colors">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <code class="text-interaction font-semibold">cx-setup</code>
+                <span class="text-xs px-2 py-0.5 rounded-full border border-subtile text-subtile">Onboarding</span>
+              </div>
+              <p class="text-sm text-standard">Interactive onboarding flow that walks you through connecting all MCP tools — Figma, Ditto, Atlassian, Recraft, and Bitbucket. Token management and credential setup.</p>
+              <div class="flex gap-2 mt-3">
+                <span class="text-xs px-2 py-0.5 rounded bg-code text-subtile">All MCPs</span>
+              </div>
+            </div>
+            <svg class="w-5 h-5 text-subtile flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- MCP Tools Section -->
+      <section class="mt-16">
+        <h2 class="text-xl font-semibold text-highlight mb-6">MCP Tools Used</h2>
+        <p class="text-standard mb-6">Each flow uses one or more MCP (Model Context Protocol) servers to connect to external tools:</p>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-card bg-card border border-subtile">
+            <h3 class="font-medium text-highlight mb-1">Figma Console</h3>
+            <p class="text-xs text-subtile mb-2">Read/modify designs, inspect tokens, screenshots, execute plugin code</p>
+            <code class="text-xs">figma-console-mcp</code>
+          </div>
+          <div class="p-4 rounded-card bg-card border border-subtile">
+            <h3 class="font-medium text-highlight mb-1">Atlassian Cloud</h3>
+            <p class="text-xs text-subtile mb-2">Jira tickets, Confluence pages, transitions, comments</p>
+            <code class="text-xs">mcp-atlassian</code>
+          </div>
+          <div class="p-4 rounded-card bg-card border border-subtile">
+            <h3 class="font-medium text-highlight mb-1">Ditto</h3>
+            <p class="text-xs text-subtile mb-2">Style guide rules, text search, copy validation</p>
+            <code class="text-xs">ditto-mcp</code>
+          </div>
+          <div class="p-4 rounded-card bg-card border border-subtile">
+            <h3 class="font-medium text-highlight mb-1">Bitbucket</h3>
+            <p class="text-xs text-subtile mb-2">Browse repos, review PRs, search code</p>
+            <code class="text-xs">bitbucket-mcp</code>
+          </div>
+          <div class="p-4 rounded-card bg-card border border-subtile">
+            <h3 class="font-medium text-highlight mb-1">Recraft</h3>
+            <p class="text-xs text-subtile mb-2">AI image generation, vectorization, background removal</p>
+            <code class="text-xs">recraft-mcp</code>
+          </div>
+          <div class="p-4 rounded-card bg-card border border-subtile">
+            <h3 class="font-medium text-highlight mb-1">Qualtrics</h3>
+            <p class="text-xs text-subtile mb-2">Survey creation, response analysis</p>
+            <code class="text-xs">qualtrics-mcp</code>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="border-t border-standard">
+    <div class="max-w-4xl mx-auto px-6 py-8 flex items-center justify-between text-sm text-subtile">
+      <span>CX Workspace</span>
+      <div class="flex items-center gap-4">
+        <a href="/" class="hover:text-highlight transition-colors">Home</a>
+        <a href="/flows/" class="hover:text-highlight transition-colors">Flows</a>
+        <a href="https://github.com/cx-server/cx-workspace" class="hover:text-highlight transition-colors">GitHub</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

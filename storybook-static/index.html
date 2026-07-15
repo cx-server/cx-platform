@@ -1,185 +1,347 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
+<html lang="en" data-theme="tipico-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CX Workspace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: {
+          inter: ['Inter', 'Inter Fallback', 'sans-serif'],
+        },
+        extend: {
+          colors: {
+            black: 'rgb(var(--base-black) / <alpha-value>)',
+            white: 'rgb(var(--base-white) / <alpha-value>)',
+            accent: 'rgb(var(--signals-bg-info) / <alpha-value>)',
+            interaction: 'rgb(var(--global-styling-branding-interaction) / <alpha-value>)',
+            brand: 'rgb(var(--global-styling-branding-brand) / <alpha-value>)',
+            primary: 'rgb(var(--global-styling-branding-primary) / <alpha-value>)',
+            secondary: 'rgb(var(--global-styling-branding-secondary) / <alpha-value>)',
+            tertiary: 'rgb(var(--global-styling-branding-tertiary) / <alpha-value>)',
+            positive: 'rgb(var(--signals-bg-positive) / <alpha-value>)',
+            negative: 'rgb(var(--signals-bg-negative) / <alpha-value>)',
+            warning: 'rgb(var(--signals-bg-warning) / <alpha-value>)',
+            info: 'rgb(var(--signals-bg-info) / <alpha-value>)',
+          },
+          backgroundColor: {
+            surface: 'rgb(var(--bg-surface) / <alpha-value>)',
+            card: 'rgb(var(--bg-card) / <alpha-value>)',
+            modal: 'rgb(var(--bg-modal) / <alpha-value>)',
+            input: 'rgb(var(--bg-input))',
+            'interaction-default': 'rgb(var(--bg-interaction-default) / <alpha-value>)',
+            'interaction-active': 'rgb(var(--bg-interaction-active) / <alpha-value>)',
+            'cta-primary': 'rgb(var(--bg-cta-primary) / <alpha-value>)',
+            'cta-secondary': 'rgb(var(--bg-cta-secondary) / <alpha-value>)',
+          },
+          textColor: {
+            highlight: 'rgb(var(--text-highlight) / <alpha-value>)',
+            standard: 'rgb(var(--text-standard) / <alpha-value>)',
+            subtile: 'rgb(var(--text-subtile) / <alpha-value>)',
+            interaction: 'rgb(var(--text-interaction) / <alpha-value>)',
+            'cta-primary': 'rgb(var(--branding-text-cta-primary) / <alpha-value>)',
+          },
+          borderColor: {
+            standard: 'rgb(var(--border-standard))',
+            subtile: 'rgb(var(--border-subtile))',
+            strong: 'rgb(var(--border-strong))',
+            highlight: 'rgb(var(--border-highlight))',
+          },
+          borderRadius: {
+            DEFAULT: 'var(--radius-md)',
+            sm: 'var(--radius-sm)',
+            md: 'var(--radius-md)',
+            lg: 'var(--radius-lg)',
+            xl: 'var(--radius-xl)',
+            card: 'var(--radius-card)',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    /* Primitives (shared across themes) */
+    :root {
+      --base-black: 0 0 0;
+      --base-white: 255 255 255;
 
-    <title>@storybook/core - Storybook</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+      --base-neutrals-25: 250 250 250;
+      --base-neutrals-50: 245 246 246;
+      --base-neutrals-100: 229 231 232;
+      --base-neutrals-200: 205 210 211;
+      --base-neutrals-300: 169 178 181;
+      --base-neutrals-400: 127 138 144;
+      --base-neutrals-500: 100 111 117;
+      --base-neutrals-600: 86 93 100;
+      --base-neutrals-700: 74 79 83;
+      --base-neutrals-800: 51 53 56;
+      --base-neutrals-900: 32 34 37;
+      --base-neutrals-950: 18 20 20;
+      --base-neutrals-975: 5 5 5;
 
-    
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-    
-    <style>
-      @font-face {
-        font-family: 'Nunito Sans';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url('./sb-common-assets/nunito-sans-regular.woff2') format('woff2');
+      --colors-haze-200: 183 230 240;
+      --colors-haze-300: 139 213 228;
+      --colors-red-500: 200 16 46;
+      --colors-strawberry-950: 60 10 20;
+
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --radius-card: 12px;
+    }
+
+    /* Dark theme */
+    [data-theme="tipico-dark"] {
+      color-scheme: dark;
+
+      --text-highlight: var(--base-neutrals-25);
+      --text-standard: var(--base-neutrals-200);
+      --text-subtile: var(--base-neutrals-300);
+      --text-interaction: 95 192 227;
+      --branding-text-cta-primary: var(--base-white);
+
+      --border-strong: 255 255 255 / 0.75;
+      --border-highlight: 255 255 255 / 0.4;
+      --border-standard: 255 255 255 / 0.15;
+      --border-subtile: 255 255 255 / 0.05;
+
+      --bg-surface: var(--base-neutrals-950);
+      --bg-card: var(--base-neutrals-900);
+      --bg-modal: var(--base-neutrals-900);
+      --bg-input: var(--base-neutrals-800);
+      --bg-interaction-default: var(--base-neutrals-975);
+      --bg-interaction-active: var(--base-neutrals-100);
+      --bg-cta-primary: var(--base-white);
+      --bg-cta-secondary: var(--base-neutrals-800);
+
+      --global-styling-branding-interaction: 95 192 227;
+      --global-styling-branding-brand: 200 16 46;
+      --global-styling-branding-primary: var(--base-white);
+      --global-styling-branding-secondary: var(--base-neutrals-800);
+      --global-styling-branding-tertiary: var(--base-neutrals-900);
+      --global-styling-signals-info-brighter: 151 214 237;
+
+      --signals-bg-info: 28 126 161;
+      --signals-bg-positive: 45 148 90;
+      --signals-bg-negative: 200 50 60;
+      --signals-bg-warning: 200 150 50;
+    }
+
+    /* Light theme */
+    [data-theme="tipico-light"] {
+      color-scheme: light;
+
+      --text-highlight: var(--base-neutrals-950);
+      --text-standard: var(--base-neutrals-700);
+      --text-subtile: var(--base-neutrals-500);
+      --text-interaction: 28 126 161;
+      --branding-text-cta-primary: var(--base-white);
+
+      --border-strong: 18 20 20 / 0.75;
+      --border-highlight: 18 20 20 / 0.4;
+      --border-standard: 18 20 20 / 0.15;
+      --border-subtile: 18 20 20 / 0.05;
+
+      --bg-surface: var(--base-neutrals-50);
+      --bg-card: var(--base-white);
+      --bg-modal: var(--base-white);
+      --bg-input: var(--base-neutrals-100);
+      --bg-interaction-default: var(--base-neutrals-975);
+      --bg-interaction-active: var(--base-neutrals-100);
+      --bg-cta-primary: var(--base-neutrals-950);
+      --bg-cta-secondary: var(--base-neutrals-100);
+
+      --global-styling-branding-interaction: 28 126 161;
+      --global-styling-branding-brand: 200 16 46;
+      --global-styling-branding-primary: var(--base-neutrals-950);
+      --global-styling-branding-secondary: var(--base-neutrals-100);
+      --global-styling-branding-tertiary: var(--base-neutrals-50);
+      --global-styling-signals-info-brighter: 28 126 161;
+
+      --signals-bg-info: 28 126 161;
+      --signals-bg-positive: 45 148 90;
+      --signals-bg-negative: 200 50 60;
+      --signals-bg-warning: 180 130 40;
+    }
+
+    body {
+      background-color: rgb(var(--bg-surface));
+      color: rgb(var(--text-standard));
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-2px);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-inter min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-standard" style="background-color: rgb(var(--bg-surface) / 0.85);">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center">
+          <span class="text-white font-bold text-sm">CX</span>
+        </div>
+        <span class="font-semibold text-lg text-highlight">CX Workspace</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <nav class="hidden md:flex items-center gap-6 text-sm text-subtile">
+          <a href="/flows/" class="hover:text-highlight transition-colors">Flows</a>
+          <a href="/onboarding/" class="hover:text-highlight transition-colors">Onboarding</a>
+          <a href="/platforms/" class="hover:text-highlight transition-colors">Health</a>
+          <a href="https://ds.cx-workspace.com/" class="hover:text-highlight transition-colors" target="_blank">UI Components</a>
+          <a href="https://github.com/cx-server/cx-workspace" class="hover:text-highlight transition-colors" target="_blank">GitHub</a>
+        </nav>
+        <button onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-card flex items-center justify-center hover:border hover:border-standard transition-all" aria-label="Toggle theme">
+          <svg id="icon-sun" class="w-4 h-4 text-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+          </svg>
+          <svg id="icon-moon" class="w-4 h-4 text-standard hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="pt-16">
+    <section class="max-w-6xl mx-auto px-6 py-24 md:py-32">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-card border border-standard text-interaction text-xs font-medium mb-6">
+          <span class="w-2 h-2 rounded-full bg-info animate-pulse"></span>
+          Design System Platform
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6 text-highlight">
+          One place for components, docs, and exploration.
+        </h1>
+        <p class="text-lg text-subtile leading-relaxed mb-8">
+          The CX Workspace brings together the Design System across all platforms — Games, Sports, Retail. Browse components, read guidelines, and share prototypes via link.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="https://ds.cx-workspace.com/" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium hover:opacity-90 transition-opacity" style="background-color: rgb(var(--bg-cta-primary)); color: rgb(var(--bg-surface));">
+            Open Storybook
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+          <a href="#tools" class="inline-flex items-center gap-2 px-5 py-2.5 border border-standard rounded-lg font-medium text-subtile hover:text-highlight hover:border-highlight transition-colors">
+            Explore Tools
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <section id="tools" class="max-w-6xl mx-auto px-6 pb-24">
+      <h2 class="text-2xl font-semibold mb-8 text-highlight">Tools</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <a href="https://ds.cx-workspace.com/" class="card-hover block p-6 rounded-card bg-card border border-subtile hover:border-standard transition-all">
+          <div class="w-10 h-10 rounded-lg bg-info/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-interaction" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+          </div>
+          <h3 class="font-semibold mb-1 text-highlight">Storybook</h3>
+          <p class="text-sm text-subtile">Components across all platforms with interactive examples and documentation.</p>
+        </a>
+
+        <div class="card-hover block p-6 rounded-card bg-card border border-subtile opacity-60">
+          <div class="w-10 h-10 rounded-lg bg-info/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-interaction" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <h3 class="font-semibold mb-1 text-highlight">Content Checker</h3>
+          <p class="text-sm text-subtile">Validate UI copy against style guide rules.</p>
+          <span class="inline-block mt-3 text-xs px-2 py-0.5 rounded-full border border-standard text-subtile">Planned</span>
+        </div>
+
+        <div class="card-hover block p-6 rounded-card bg-card border border-subtile opacity-60">
+          <div class="w-10 h-10 rounded-lg bg-info/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-interaction" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+          </div>
+          <h3 class="font-semibold mb-1 text-highlight">Explore</h3>
+          <p class="text-sm text-subtile">Share design prototypes via link for review and feedback.</p>
+          <span class="inline-block mt-3 text-xs px-2 py-0.5 rounded-full border border-standard text-subtile">Planned</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Platforms -->
+    <section id="platforms" class="max-w-6xl mx-auto px-6 pb-24">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-2xl font-semibold text-highlight">Platform Health</h2>
+        <a href="/platforms/" class="text-sm text-interaction hover:underline">View all →</a>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4" id="platform-cards">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-standard">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-subtile">
+      <span>CX Workspace — Design System Platform</span>
+      <div class="flex items-center gap-4">
+        <a href="/flows/" class="hover:text-highlight transition-colors">Flows</a>
+        <a href="/onboarding/" class="hover:text-highlight transition-colors">Onboarding</a>
+        <a href="https://github.com/cx-server/cx-workspace" class="hover:text-highlight transition-colors">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isLight = html.dataset.theme === 'tipico-light';
+      html.dataset.theme = isLight ? 'tipico-dark' : 'tipico-light';
+      document.getElementById('icon-sun').classList.toggle('hidden', isLight);
+      document.getElementById('icon-moon').classList.toggle('hidden', !isLight);
+    }
+
+    // Platform Health Cards
+    (async function() {
+      const platforms = [
+        { file: 'cornucopia' },
+        { file: 'mytipico' },
+        { file: 'tipclub' },
+        { file: 'sports-mobile' },
+        { file: 'retail' },
+        { file: 'account' },
+      ];
+
+      function scoreColor(score) {
+        if (score >= 75) return 'rgb(var(--signals-bg-positive))';
+        if (score >= 40) return 'rgb(var(--signals-bg-warning))';
+        return 'rgb(var(--signals-bg-negative))';
       }
 
-      @font-face {
-        font-family: 'Nunito Sans';
-        font-style: italic;
-        font-weight: 400;
-        font-display: swap;
-        src: url('./sb-common-assets/nunito-sans-italic.woff2') format('woff2');
+      const grid = document.getElementById('platform-cards');
+      if (!grid) return;
+
+      for (const p of platforms) {
+        try {
+          const res = await fetch(`/data/${p.file}.json`);
+          const data = await res.json();
+          grid.insertAdjacentHTML('beforeend', `
+            <a href="/platforms/${data.slug}.html" class="card-hover block p-5 rounded-card bg-card border border-subtile hover:border-standard transition-all">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-medium text-highlight">${data.platform}</h3>
+                <span class="text-lg font-bold" style="color: ${scoreColor(data.score)}">${data.score}%</span>
+              </div>
+              <p class="text-xs text-subtile">${data.subtitle}</p>
+            </a>
+          `);
+        } catch (e) {}
       }
-
-      @font-face {
-        font-family: 'Nunito Sans';
-        font-style: normal;
-        font-weight: 700;
-        font-display: swap;
-        src: url('./sb-common-assets/nunito-sans-bold.woff2') format('woff2');
-      }
-
-      @font-face {
-        font-family: 'Nunito Sans';
-        font-style: italic;
-        font-weight: 700;
-        font-display: swap;
-        src: url('./sb-common-assets/nunito-sans-bold-italic.woff2') format('woff2');
-      }
-    </style>
-
-    <link href="./sb-manager/runtime.js" rel="modulepreload" />
-
-    
-    <link href="./sb-addons/storybook-core-core-server-presets-0/common-manager-bundle.js" rel="modulepreload" />
-    
-    <link href="./sb-addons/essentials-controls-1/manager-bundle.js" rel="modulepreload" />
-    
-    <link href="./sb-addons/essentials-actions-2/manager-bundle.js" rel="modulepreload" />
-    
-    <link href="./sb-addons/essentials-backgrounds-3/manager-bundle.js" rel="modulepreload" />
-    
-    <link href="./sb-addons/essentials-viewport-4/manager-bundle.js" rel="modulepreload" />
-    
-    <link href="./sb-addons/essentials-toolbars-5/manager-bundle.js" rel="modulepreload" />
-    
-    <link href="./sb-addons/essentials-measure-6/manager-bundle.js" rel="modulepreload" />
-    
-    <link href="./sb-addons/essentials-outline-7/manager-bundle.js" rel="modulepreload" />
-    
-    <link href="./sb-addons/interactions-8/manager-bundle.js" rel="modulepreload" />
-    
-    <link href="./sb-addons/data-theme-switcher-9/manager-bundle.js" rel="modulepreload" />
-    
-    <link href="./sb-addons/a11y-10/manager-bundle.js" rel="modulepreload" />
-    
-    <link href="./sb-addons/storybook-11/manager-bundle.js" rel="modulepreload" />
-       
-
-    <style>
-      #storybook-root[hidden] {
-        display: none !important;
-      }
-    </style>
-
-    
-  </head>
-  <body>
-    <div id="root"></div>
-
-    
-    <script>
-      
-        
-          window['FEATURES'] = {
-  "argTypeTargetsV7": true,
-  "legacyDecoratorFileOrder": false,
-  "disallowImplicitActionsInRenderV8": true
-};
-        
-      
-        
-          window['REFS'] = {};
-        
-      
-        
-          window['LOGLEVEL'] = "info";
-        
-      
-        
-          window['DOCS_OPTIONS'] = {
-  "defaultName": "Documentation",
-  "autodocs": "tag"
-};
-        
-      
-        
-          window['CONFIG_TYPE'] = "PRODUCTION";
-        
-      
-        
-      
-        
-      
-        
-          window['TAGS_OPTIONS'] = {
-  "dev-only": {
-    "excludeFromDocsStories": true
-  },
-  "docs-only": {
-    "excludeFromSidebar": true
-  },
-  "test-only": {
-    "excludeFromSidebar": true,
-    "excludeFromDocsStories": true
-  }
-};
-        
-      
-        
-          window['STORYBOOK_RENDERER'] = "react";
-        
-      
-        
-          window['STORYBOOK_BUILDER'] = "@storybook/builder-vite";
-        
-      
-        
-          window['STORYBOOK_FRAMEWORK'] = "/Users/groenerk/rethink-monoverse/node_modules/@storybook/react-vite";
-        
-      
-    </script>
-    
-
-    <script type="module">
-      import './sb-manager/globals-runtime.js';
-      
-      
-        import './sb-addons/storybook-core-core-server-presets-0/common-manager-bundle.js';
-      
-        import './sb-addons/essentials-controls-1/manager-bundle.js';
-      
-        import './sb-addons/essentials-actions-2/manager-bundle.js';
-      
-        import './sb-addons/essentials-backgrounds-3/manager-bundle.js';
-      
-        import './sb-addons/essentials-viewport-4/manager-bundle.js';
-      
-        import './sb-addons/essentials-toolbars-5/manager-bundle.js';
-      
-        import './sb-addons/essentials-measure-6/manager-bundle.js';
-      
-        import './sb-addons/essentials-outline-7/manager-bundle.js';
-      
-        import './sb-addons/interactions-8/manager-bundle.js';
-      
-        import './sb-addons/data-theme-switcher-9/manager-bundle.js';
-      
-        import './sb-addons/a11y-10/manager-bundle.js';
-      
-        import './sb-addons/storybook-11/manager-bundle.js';
-      
-      
-      import './sb-manager/runtime.js';
-    </script>
-
-    
-    <link href="./sb-preview/runtime.js" rel="prefetch" as="script" />
-    
-  </body>
+    })();
+  </script>
+</body>
 </html>

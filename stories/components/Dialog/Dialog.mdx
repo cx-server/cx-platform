@@ -1,0 +1,144 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as DialogStories from './Dialog.stories';
+
+<Meta of={DialogStories} />
+
+# Dialog
+
+A modal overlay that focuses user attention on a specific task or decision. Blocks interaction with the page behind it until dismissed.
+
+## When to use
+
+| Use Dialog when... | Don't use Dialog when... |
+|---|---|
+| Requiring user confirmation before a destructive action | Showing a simple notification (use Toast) |
+| Collecting a small amount of input | Presenting a full page of content (use a page) |
+| Displaying important information that requires acknowledgment | Showing inline help or tips (use Tooltip or Alert) |
+| Interrupting the flow for a required decision | Filtering or sorting a list (use Dropdown) |
+
+## Positions
+
+<Canvas of={DialogStories.Default} />
+
+| Position | When to use |
+|---|---|
+| `default` | Standard modal — slides up from bottom on mobile, appears centered on desktop |
+| `bottom` | Bottom sheet pattern — selection lists, payment methods, filters |
+| `center` | Centered overlay — success confirmations, small decisions |
+
+## Behavior
+
+### Closeable (default)
+
+The user can dismiss the dialog by:
+- Clicking the X button in the header
+- Clicking the backdrop overlay
+- Pressing Escape (keyboard)
+
+### Non-closeable (`closeable={false}`)
+
+<Canvas of={DialogStories.NonCloseable} />
+
+Use when the user MUST take an action (session expired, mandatory acceptance). Remove the X button and disable backdrop-click-to-close.
+
+## Composition
+
+Dialog is composed of sub-components:
+
+```tsx
+<Dialog id="my-dialog" isOpen={isOpen} onCloseClick={handleClose}>
+  <DialogHeader title="Title" onCloseClick={handleClose} />
+  <DialogContent>
+    {/* Your content here */}
+  </DialogContent>
+</Dialog>
+```
+
+| Sub-component | Purpose |
+|---|---|
+| `DialogHeader` | Title bar with optional close button |
+| `DialogContent` | Scrollable content area with padding |
+
+## Props
+
+<ArgTypes of={DialogStories} />
+
+## Best practices
+
+### Do
+
+- Keep dialog content focused on one task
+- Provide a clear title that describes the purpose
+- Include a primary action button (confirm/submit/accept)
+- Use `position="bottom"` for mobile-first selection flows
+- Always provide a way to dismiss (unless the action is mandatory)
+
+### Don't
+
+- Don't nest dialogs inside dialogs
+- Don't use dialogs for simple yes/no that could be inline
+- Don't put long forms inside dialogs (use a dedicated page instead)
+- Don't auto-open dialogs on page load without user intent
+- Don't use `closeable={false}` unless truly mandatory (it frustrates users)
+
+## Accessibility
+
+- Renders with `role="dialog"` and `aria-modal="true"`
+- Focus is trapped inside the dialog when open
+- Previous focus is restored when dialog closes
+- Body scroll is locked while dialog is visible
+- Escape key closes the dialog (when closeable)
+
+## Code reference
+
+```tsx
+import { Dialog } from "@tipico/ui";
+import { DialogHeader } from "@tipico/ui/dist/components/Dialog/DialogHeader";
+import { DialogContent } from "@tipico/ui/dist/components/Dialog/DialogContent";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/Dialog/` |
+| Figma | [Dialog Component](https://www.figma.com/design/FazkRi1zigs8vJlcPzn8Xx/Tipico-Tailwind-DS?node-id=dialog) |
+| Replaces | AppDialog, Modal, ErrorModal, InfoModal, SuccessModal, GenericModal |
+
+## Migration guide
+
+If your platform uses a custom dialog (AppDialog, Modal variants), here's how to migrate:
+
+### Before (custom)
+
+```tsx
+import { AppDialog } from "common/components/AppDialog";
+
+<AppDialog title="Confirm" onClose={handleClose}>
+  <p>Are you sure?</p>
+</AppDialog>
+```
+
+### After (DS)
+
+```tsx
+import { Dialog } from "@tipico/ui";
+import { DialogHeader } from "@tipico/ui/dist/components/Dialog/DialogHeader";
+import { DialogContent } from "@tipico/ui/dist/components/Dialog/DialogContent";
+
+<Dialog id="confirm-dialog" isOpen={isOpen} onCloseClick={handleClose}>
+  <DialogHeader title="Confirm" onCloseClick={handleClose} />
+  <DialogContent>
+    <p>Are you sure?</p>
+  </DialogContent>
+</Dialog>
+```
+
+### Key differences
+
+| Custom | DS Dialog |
+|---|---|
+| `onClose` prop | `onCloseClick` prop |
+| `title` on root | `title` on `DialogHeader` |
+| Auto-visible | Controlled via `isOpen` |
+| No focus management | Auto focus trap + restore |
+| No scroll lock | Body scroll locked automatically |

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="tipico-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platform Health — CX Workspace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: { inter: ['Inter', 'Inter Fallback', 'sans-serif'], mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'] },
+        extend: {
+          colors: { info: 'rgb(var(--signals-bg-info) / <alpha-value>)', positive: 'rgb(var(--signals-bg-positive) / <alpha-value>)', negative: 'rgb(var(--signals-bg-negative) / <alpha-value>)', warning: 'rgb(var(--signals-bg-warning) / <alpha-value>)', interaction: 'rgb(var(--global-styling-branding-interaction) / <alpha-value>)', brand: 'rgb(var(--global-styling-branding-brand) / <alpha-value>)' },
+          backgroundColor: { surface: 'rgb(var(--bg-surface) / <alpha-value>)', card: 'rgb(var(--bg-card) / <alpha-value>)', code: 'rgb(var(--bg-code) / <alpha-value>)' },
+          textColor: { highlight: 'rgb(var(--text-highlight) / <alpha-value>)', standard: 'rgb(var(--text-standard) / <alpha-value>)', subtile: 'rgb(var(--text-subtile) / <alpha-value>)', interaction: 'rgb(var(--text-interaction) / <alpha-value>)' },
+          borderColor: { standard: 'rgb(var(--border-standard))', subtile: 'rgb(var(--border-subtile))' },
+          borderRadius: { DEFAULT: '8px', sm: '4px', md: '8px', lg: '12px', card: '12px' },
+        },
+      },
+    }
+  </script>
+  <style>
+    :root { --base-black: 0 0 0; --base-white: 255 255 255; --base-neutrals-25: 250 250 250; --base-neutrals-50: 245 246 246; --base-neutrals-100: 229 231 232; --base-neutrals-200: 205 210 211; --base-neutrals-300: 169 178 181; --base-neutrals-500: 100 111 117; --base-neutrals-700: 74 79 83; --base-neutrals-800: 51 53 56; --base-neutrals-900: 32 34 37; --base-neutrals-950: 18 20 20; }
+    [data-theme="tipico-dark"] { color-scheme: dark; --text-highlight: var(--base-neutrals-25); --text-standard: var(--base-neutrals-200); --text-subtile: var(--base-neutrals-300); --text-interaction: 95 192 227; --border-standard: 255 255 255 / 0.15; --border-subtile: 255 255 255 / 0.05; --bg-surface: var(--base-neutrals-950); --bg-card: var(--base-neutrals-900); --bg-code: var(--base-neutrals-900); --global-styling-branding-interaction: 95 192 227; --global-styling-branding-brand: 200 16 46; --signals-bg-info: 28 126 161; --signals-bg-positive: 45 148 90; --signals-bg-negative: 200 50 60; --signals-bg-warning: 200 150 50; }
+    [data-theme="tipico-light"] { color-scheme: light; --text-highlight: var(--base-neutrals-950); --text-standard: var(--base-neutrals-700); --text-subtile: var(--base-neutrals-500); --text-interaction: 28 126 161; --border-standard: 18 20 20 / 0.15; --border-subtile: 18 20 20 / 0.05; --bg-surface: var(--base-neutrals-50); --bg-card: var(--base-white); --bg-code: var(--base-neutrals-100); --global-styling-branding-interaction: 28 126 161; --global-styling-branding-brand: 200 16 46; --signals-bg-info: 28 126 161; --signals-bg-positive: 45 148 90; --signals-bg-negative: 200 50 60; --signals-bg-warning: 180 130 40; }
+    body { background-color: rgb(var(--bg-surface)); color: rgb(var(--text-standard)); }
+    .score-ring { position: relative; width: 72px; height: 72px; }
+    .score-ring svg { transform: rotate(-90deg); }
+    .score-ring .score-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.125rem; }
+    .card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgb(0 0 0 / 0.08); }
+    .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-inter min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-standard" style="background-color: rgb(var(--bg-surface) / 0.85);">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center"><span class="text-white font-bold text-sm">CX</span></div>
+        <span class="font-semibold text-lg text-highlight">CX Workspace</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <nav class="hidden md:flex items-center gap-6 text-sm text-subtile">
+          <a href="/flows/" class="hover:text-highlight transition-colors">Flows</a>
+          <a href="/onboarding/" class="hover:text-highlight transition-colors">Onboarding</a>
+          <a href="/platforms/" class="text-highlight font-medium">Health</a>
+          <a href="https://ds.cx-workspace.com/" class="hover:text-highlight transition-colors" target="_blank">UI Components</a>
+          <a href="https://github.com/cx-server/cx-workspace" class="hover:text-highlight transition-colors" target="_blank">GitHub</a>
+        </nav>
+        <button onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'tipico-light' ? 'tipico-dark' : 'tipico-light'" class="w-9 h-9 rounded-lg bg-card flex items-center justify-center" aria-label="Toggle theme">
+          <svg class="w-4 h-4 text-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.07-7.07-1.41 1.41M7.34 16.66l-1.41 1.41m12.73 0-1.41-1.41M7.34 7.34 5.93 5.93"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="pt-16">
+    <div class="max-w-6xl mx-auto px-6 py-16 md:py-24">
+
+      <!-- Header -->
+      <div class="mb-4">
+        <h1 class="text-3xl md:text-4xl font-bold text-highlight mb-3">Platform Health</h1>
+        <p class="text-lg text-subtile">Design System adoption across all frontend platforms. Automated code analysis, updated bi-weekly.</p>
+      </div>
+
+      <!-- Meta -->
+      <div class="flex flex-wrap items-center gap-4 mb-12 text-sm text-subtile">
+        <span id="meta-updated">Last scan: —</span>
+        <span class="text-standard">•</span>
+        <span>KPI Version: v3.1</span>
+        <span class="text-standard">•</span>
+        <span>Method: Static code analysis</span>
+      </div>
+
+      <!-- Score Cards Grid -->
+      <div id="platform-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Legend -->
+      <section class="mb-16">
+        <h2 class="text-xl font-semibold text-highlight mb-4">KPI Methodology</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-card bg-card border border-subtile">
+            <h3 class="font-medium text-highlight mb-1">Legacy Migration</h3>
+            <p class="text-xs text-subtile">DS imports / (DS + Legacy) × 100</p>
+          </div>
+          <div class="p-4 rounded-card bg-card border border-subtile">
+            <h3 class="font-medium text-highlight mb-1">Color Token Density</h3>
+            <p class="text-xs text-subtile">Token color lines / (Token + Hardcoded) × 100</p>
+          </div>
+          <div class="p-4 rounded-card bg-card border border-subtile">
+            <h3 class="font-medium text-highlight mb-1">Typography Compliance</h3>
+            <p class="text-xs text-subtile">Tailwind typo files / (Tailwind + Hardcoded) × 100</p>
+          </div>
+          <div class="p-4 rounded-card bg-card border border-subtile">
+            <h3 class="font-medium text-highlight mb-1">Replaceable Custom</h3>
+            <p class="text-xs text-subtile">100 − (Replaceable / (DS + Replaceable) × 100)</p>
+          </div>
+        </div>
+        <p class="text-xs text-subtile mt-3">Overall Score = Average of 4 KPIs. Thresholds: ≥75% green | 40–74% yellow | &lt;40% red</p>
+      </section>
+
+      <!-- Legacy Summary -->
+      <section class="mb-16">
+        <h2 class="text-xl font-semibold text-highlight mb-4">Legacy Inventory</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="p-4 rounded-card bg-card border border-subtile text-center">
+            <p class="text-2xl font-bold text-highlight">2,289</p>
+            <p class="text-xs text-subtile mt-1">DS Imports</p>
+          </div>
+          <div class="p-4 rounded-card bg-card border border-subtile text-center">
+            <p class="text-2xl font-bold text-highlight">776</p>
+            <p class="text-xs text-subtile mt-1">Legacy Imports</p>
+          </div>
+          <div class="p-4 rounded-card bg-card border border-subtile text-center">
+            <p class="text-2xl font-bold text-highlight">75%</p>
+            <p class="text-xs text-subtile mt-1">Migration Progress</p>
+          </div>
+          <div class="p-4 rounded-card bg-card border border-subtile text-center">
+            <p class="text-2xl font-bold text-highlight">162</p>
+            <p class="text-xs text-subtile mt-1">Decommissioned (excluded)</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-standard">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between text-sm text-subtile">
+      <span>CX Workspace</span>
+      <div class="flex items-center gap-4">
+        <a href="/" class="hover:text-highlight transition-colors">Home</a>
+        <a href="/flows/" class="hover:text-highlight transition-colors">Flows</a>
+        <a href="https://github.com/cx-server/cx-workspace" class="hover:text-highlight transition-colors">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const platforms = [
+      { file: 'cornucopia', label: 'Cornucopia' },
+      { file: 'mytipico', label: 'myTipico' },
+      { file: 'tipclub', label: 'TipClub' },
+      { file: 'sports-mobile', label: 'Sports Mobile' },
+      { file: 'retail', label: 'Retail Terminal' },
+      { file: 'account', label: 'Account' },
+    ];
+
+    function scoreColor(score) {
+      if (score >= 75) return 'rgb(var(--signals-bg-positive))';
+      if (score >= 40) return 'rgb(var(--signals-bg-warning))';
+      return 'rgb(var(--signals-bg-negative))';
+    }
+
+    function trendDelta(trend) {
+      if (trend.length < 2) return { delta: 0, text: '—' };
+      const last = trend[trend.length - 1].score;
+      const prev = trend[trend.length - 2].score;
+      const d = last - prev;
+      if (d > 0) return { delta: d, text: `↑ +${d}%` };
+      if (d < 0) return { delta: d, text: `↓ ${d}%` };
+      return { delta: 0, text: '→ stable' };
+    }
+
+    function createScoreRing(score) {
+      const circumference = 2 * Math.PI * 28;
+      const offset = circumference - (score / 100) * circumference;
+      const color = scoreColor(score);
+      return `
+        <div class="score-ring">
+          <svg width="72" height="72" viewBox="0 0 72 72">
+            <circle cx="36" cy="36" r="28" fill="none" stroke="rgb(var(--border-standard))" stroke-width="6"/>
+            <circle cx="36" cy="36" r="28" fill="none" stroke="${color}" stroke-width="6" stroke-linecap="round"
+              stroke-dasharray="${circumference}" stroke-dashoffset="${offset}"/>
+          </svg>
+          <span class="score-text text-highlight">${score}%</span>
+        </div>
+      `;
+    }
+
+    function createCard(data) {
+      const { delta, text: trendText } = trendDelta(data.trend);
+      const trendColor = delta > 0 ? 'text-positive' : delta < 0 ? 'text-negative' : 'text-subtile';
+      return `
+        <a href="/platforms/${data.slug}.html" class="card-hover block p-6 rounded-card bg-card border border-subtile">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="font-semibold text-highlight text-lg">${data.platform}</h3>
+              <p class="text-xs text-subtile">${data.subtitle}</p>
+            </div>
+            ${createScoreRing(data.score)}
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-xs ${trendColor} font-medium">${trendText}</span>
+            <span class="text-xs text-subtile">${data.lastUpdated}</span>
+          </div>
+          <div class="mt-3 pt-3 border-t border-subtile">
+            <p class="text-xs text-subtile"><span class="font-medium text-standard">Focus:</span> ${data.gap.weakestKpi}</p>
+          </div>
+        </a>
+      `;
+    }
+
+    async function loadDashboard() {
+      const grid = document.getElementById('platform-grid');
+      let latestDate = '';
+
+      for (const p of platforms) {
+        try {
+          const res = await fetch(`/data/${p.file}.json`);
+          const data = await res.json();
+          grid.insertAdjacentHTML('beforeend', createCard(data));
+          if (data.lastUpdated > latestDate) latestDate = data.lastUpdated;
+        } catch (e) {
+          grid.insertAdjacentHTML('beforeend', `
+            <div class="p-6 rounded-card bg-card border border-subtile opacity-50">
+              <h3 class="font-semibold text-highlight">${p.label}</h3>
+              <p class="text-xs text-subtile mt-2">Data not available</p>
+            </div>
+          `);
+        }
+      }
+
+      if (latestDate) {
+        document.getElementById('meta-updated').textContent = `Last scan: ${latestDate}`;
+      }
+    }
+
+    loadDashboard();
+  </script>
+</body>
+</html>

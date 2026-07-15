@@ -1,17 +1,22 @@
-
-
-/** @type { import('@storybook/html-vite').StorybookConfig } */
+/** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
-  "stories": [
+  stories: [
     "../stories/**/*.mdx",
-    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)"
+    "../stories/**/*.stories.@(js|jsx|ts|tsx)",
   ],
-  "addons": [
-    "@chromatic-com/storybook",
-    "@storybook/addon-vitest",
+  addons: [
+    "@storybook/addon-docs",
     "@storybook/addon-a11y",
-    "@storybook/addon-docs"
+    "@chromatic-com/storybook",
   ],
-  "framework": "@storybook/html-vite"
+  framework: "@storybook/react-vite",
+  viteFinal: async (config) => {
+    config.css = config.css || {};
+    config.css.lightningcss = undefined;
+    config.build = config.build || {};
+    config.build.cssMinify = false;
+    return config;
+  },
 };
+
 export default config;

@@ -1,0 +1,121 @@
+import { Meta, Story, Canvas, Controls, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+A clickable element that triggers an action. The most fundamental interactive component in the Design System.
+
+## When to use
+
+| Use Button when... | Don't use Button when... |
+|---|---|
+| Triggering an action (submit, confirm, delete) | Navigating to another page (use a link instead) |
+| A primary or secondary call-to-action is needed | The action is purely navigational |
+| Submitting a form | Toggling a state (use Toggle or Checkbox) |
+| Opening a dialog or modal | Showing supplementary info (use a tooltip trigger) |
+
+**Exception:** Use `variant="link"` when the action looks like navigation but triggers behavior (e.g. "Forgot password?" that opens a dialog).
+
+## Variants
+
+<Canvas of={ButtonStories.AllVariants} />
+
+| Variant | When to use |
+|---|---|
+| `primary` | Main action on the page. One per view. |
+| `secondary` | Supporting action next to a primary button. |
+| `outline` | Tertiary action, less visual weight. |
+| `link` | Inline action that looks like a text link. |
+| `brand` | Brand-colored CTA (Tipico red). Use sparingly. |
+| `success` | Confirming a positive outcome (e.g. "Deposit confirmed"). |
+| `negative` | Destructive action (delete, cancel bet). |
+| `warning` | Action with consequences (e.g. "Close account"). |
+| `info` | Informational action (e.g. "Learn more"). |
+| `icon` | Icon-only button with no text label. |
+
+## Sizes
+
+<Canvas of={ButtonStories.Sizes} />
+
+| Size | Height | Use case |
+|---|---|---|
+| `xs` | 32px | Compact UI, table actions, inline |
+| `sm` | 32px | Secondary actions, tight spaces |
+| `md` | 40px | Default. Most buttons. |
+| `lg` | 48px | Primary CTAs, mobile touch targets |
+
+## Props
+
+<ArgTypes of={ButtonStories} />
+
+## Best practices
+
+### Do
+
+- Always provide a descriptive label that explains the action ("Place Bet", not "OK")
+- Use `autoWidth` for inline buttons, full-width for form submissions
+- Only one `primary` button per view — additional actions use `secondary` or `outline`
+- Disable the button when the action is not available (with a reason visible to the user)
+
+### Don't
+
+- Don't use multiple `brand` buttons on one screen
+- Don't use `negative` for non-destructive actions
+- Don't rely only on color to communicate meaning (add an icon or label)
+- Don't make buttons smaller than `sm` on touch devices
+
+## Accessibility
+
+- Renders as a native `<button>` element (full keyboard support built-in)
+- When `href` is provided, renders as `<a>` with button styling
+- Use `id` prop for test identification (`data-testid` is set automatically)
+- Disabled buttons are still visible in the DOM — screen readers announce them as disabled
+- Color contrast meets WCAG AA for all variants against both light and dark backgrounds
+
+## Code reference
+
+```tsx
+import { Button } from "@tipico/ui";
+```
+
+| Property | Detail |
+|---|---|
+| Package | `@tipico/ui` |
+| Path | `packages/libs/ui/src/components/Button/` |
+| Figma | [Button Component](https://www.figma.com/design/FazkRi1zigs8vJlcPzn8Xx/Tipico-Tailwind-DS?node-id=button) |
+| Key | `be786d7e780c44c5d278ed3a4653cac177eae21e` |
+
+## Examples
+
+### Form submission
+
+```tsx
+<form onSubmit={handleSubmit}>
+  <Button id="submit-bet" variant="primary" size="lg">
+    Place Bet
+  </Button>
+</form>
+```
+
+### Action pair
+
+```tsx
+<div className="flex gap-2">
+  <Button id="cancel" variant="outline" autoWidth>
+    Cancel
+  </Button>
+  <Button id="confirm" variant="primary" autoWidth>
+    Confirm Deposit
+  </Button>
+</div>
+```
+
+### Destructive action
+
+```tsx
+<Button id="delete" variant="negative" autoWidth>
+  Delete Account
+</Button>
+```
