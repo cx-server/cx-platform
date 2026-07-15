@@ -1,4 +1,14 @@
+import { useEffect } from "react";
 import "./tipico-ui.css";
+
+function ThemeWrapper({ children }) {
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", "tipico-light");
+    document.body.setAttribute("data-theme", "tipico-light");
+  }, []);
+
+  return <div data-theme="tipico-light">{children}</div>;
+}
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
@@ -14,11 +24,11 @@ const preview = {
     },
   },
   decorators: [
-    (Story) => {
-      document.documentElement.setAttribute("data-theme", "tipico-light");
-      document.body.setAttribute("data-theme", "tipico-light");
-      return <Story />;
-    },
+    (Story) => (
+      <ThemeWrapper>
+        <Story />
+      </ThemeWrapper>
+    ),
   ],
 };
 

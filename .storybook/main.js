@@ -1,4 +1,5 @@
 import remarkGfm from "remark-gfm";
+import svgr from "vite-plugin-svgr";
 
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
@@ -26,6 +27,8 @@ const config = {
     config.publicDir = false;
     config.build = config.build || {};
     config.build.cssMinify = false;
+    config.plugins = config.plugins || [];
+    config.plugins.push(svgr());
     return config;
   },
 };
