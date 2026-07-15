@@ -1,0 +1,16 @@
+.dropdown-select {
+    @apply form-select;
+    @apply border border-standard bg-input rounded-inputs w-full px-3 py-2;
+    @apply disabled:cursor-not-allowed disabled:border-standard disabled:border-opacity-standard disabled:bg-surface disabled:text-subtile;
+    @apply focus:invalid:border-negative focus:invalid:text-negative;
+    @apply hover:border-highlight;
+    @apply focus:border-accent focus:ring-0 focus:ring-offset-0 outline-none;
+}
+
+.dropdown-field {
+    @apply flex flex-col gap-1 p-2 w-full;
+}
+
+.dropdown-field-title {
+    @apply text-sm text-standard;
+}
