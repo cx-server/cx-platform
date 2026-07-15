@@ -30,13 +30,13 @@
 </head>
 <body class="font-inter min-h-screen">
   <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-standard" style="background-color: rgb(var(--bg-surface) / 0.85);">
-    <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
       <a href="/" class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center"><span class="text-white font-bold text-sm">CX</span></div><span class="font-semibold text-lg text-highlight">CX Workspace</span></a>
       <nav class="hidden md:flex items-center gap-6 text-sm text-subtile">
         <a href="/flows/" class="text-highlight font-medium">Flows</a>
         <a href="/onboarding/" class="hover:text-highlight transition-colors">Onboarding</a>
-        <a href="https://ds.cx-workspace.com/" class="hover:text-highlight transition-colors">UI Components</a>
-        <a href="https://github.com/cx-server/cx-workspace" class="hover:text-highlight transition-colors">GitHub</a>
+        <a href="https://ds.cx-workspace.com/" class="hover:text-highlight transition-colors" target="_blank">UI Components</a>
+        <a href="https://github.com/cx-server/cx-workspace" class="hover:text-highlight transition-colors" target="_blank">GitHub</a>
       </nav>
       <button onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'tipico-light' ? 'tipico-dark' : 'tipico-light'" class="w-9 h-9 rounded-lg bg-card flex items-center justify-center" aria-label="Toggle theme">
         <svg class="w-4 h-4 text-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.07-7.07-1.41 1.41M7.34 16.66l-1.41 1.41m12.73 0-1.41-1.41M7.34 7.34 5.93 5.93"/></svg>
@@ -187,6 +187,7 @@
       <span>CX Workspace</span>
       <div class="flex items-center gap-4">
         <a href="/" class="hover:text-highlight transition-colors">Home</a>
+        <a href="/flows/" class="hover:text-highlight transition-colors">Flows</a>
         <a href="https://github.com/cx-server/cx-workspace" class="hover:text-highlight transition-colors">GitHub</a>
       </div>
     </div>
