@@ -22,6 +22,7 @@ jobs:
           mkdir -p /flows
           mkdir -p /platforms
           mkdir -p /data
+          mkdir -p /downloads
           rm -f /storybook/index.html
           mirror --reverse --only-newer --parallel=5 --verbose ./storybook-static /storybook
           put ./storybook-static/index.html -o /storybook/index.html
@@ -32,5 +33,6 @@ jobs:
           mirror --reverse --only-newer --verbose ./public/flows /flows
           mirror --reverse --verbose ./public/platforms /platforms
           mirror --reverse --verbose ./public/data /data
+          mirror --reverse --verbose ./public/downloads /downloads
           bye
           EOF
