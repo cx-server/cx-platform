@@ -16,10 +16,10 @@
   "dsBreadth": 50,
   "dsComponents": ["Alert", "AppBar", "Article", "Badge", "Button", "Chip", "Dialog", "Dropdown", "Icon", "Input", "InputBox", "List", "Page", "Pill", "Preloader", "RoundedIcon", "Section", "Skeleton", "StatusIcon", "Tab"],
   "replaceableComponents": [
-    { "name": "Header", "dsEquivalent": "AppBar", "usageCount": 113, "notes": "Custom header with back navigation — highest-impact replacement" },
-    { "name": "BackButton", "dsEquivalent": "Button (icon variant)", "usageCount": 18, "notes": "Simple arrow-back button" },
-    { "name": "TabsGeneric", "dsEquivalent": "Tab", "usageCount": 5, "notes": "Generic tab switcher" },
-    { "name": "CardToggle", "dsEquivalent": "Collapsible", "usageCount": 8, "notes": "Expandable/collapsible card" }
+    { "name": "Header", "dsEquivalent": "AppBar", "usageCount": 113, "notes": "Custom header with back navigation — highest-impact replacement", "storyUrl": null },
+    { "name": "BackButton", "dsEquivalent": "Button (icon variant)", "usageCount": 18, "notes": "Simple arrow-back button", "storyUrl": "https://ds.cx-workspace.com/?path=/docs/button--docs" },
+    { "name": "TabsGeneric", "dsEquivalent": "Tab", "usageCount": 5, "notes": "Generic tab switcher", "storyUrl": null },
+    { "name": "CardToggle", "dsEquivalent": "Collapsible", "usageCount": 8, "notes": "Expandable/collapsible card", "storyUrl": null }
   ],
   "trend": [
     { "date": "2026-05-22", "score": 67, "kpiVersion": "v1" },

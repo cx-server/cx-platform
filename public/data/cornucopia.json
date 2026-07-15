@@ -16,8 +16,8 @@
   "dsBreadth": 15,
   "dsComponents": ["Checkmark", "Dialog", "Input", "Label", "Pill", "Tab"],
   "replaceableComponents": [
-    { "name": "AmountInput", "dsEquivalent": "Input", "usageCount": 11, "notes": "Specialized numeric input for payment amounts" },
-    { "name": "ErrorResponseIcon", "dsEquivalent": "StatusIcon", "usageCount": 10, "notes": "Error state display icons (used in 2 variants)" }
+    { "name": "AmountInput", "dsEquivalent": "Input", "usageCount": 11, "notes": "Specialized numeric input for payment amounts", "storyUrl": null },
+    { "name": "ErrorResponseIcon", "dsEquivalent": "StatusIcon", "usageCount": 10, "notes": "Error state display icons (used in 2 variants)", "storyUrl": null }
   ],
   "trend": [
     { "date": "2026-05-22", "score": 82, "kpiVersion": "v1" },

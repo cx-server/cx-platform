@@ -255,28 +255,40 @@
       section.style.display = '';
       const breadth = data.dsBreadth || Math.round((data.dsComponents.length / 40) * 100);
       document.getElementById('ds-breadth-label').textContent = `Using ${data.dsComponents.length} of 40 available DS components (${breadth}% coverage)`;
-      document.getElementById('ds-components-list').innerHTML = data.dsComponents.map(c =>
-        `<span class="text-xs px-2.5 py-1 rounded-md bg-code text-standard">${c}</span>`
-      ).join('');
+
+      const storybookComponents = { 'Button': 'button--docs' };
+
+      document.getElementById('ds-components-list').innerHTML = data.dsComponents.map(c => {
+        const storyPath = storybookComponents[c];
+        if (storyPath) {
+          return `<a href="https://ds.cx-workspace.com/?path=/docs/${storyPath}" target="_blank" class="text-xs px-2.5 py-1 rounded-md bg-code text-interaction hover:underline">${c} ↗</a>`;
+        }
+        return `<span class="text-xs px-2.5 py-1 rounded-md bg-code text-standard">${c}</span>`;
+      }).join('');
     }
 
     function renderReplaceableComponents(components) {
       if (!components || components.length === 0) return;
       const section = document.getElementById('replaceable-section');
       section.style.display = '';
-      document.getElementById('replaceable-list').innerHTML = components.map(c => `
-        <div class="p-4 rounded-card bg-card border border-subtile">
-          <div class="flex items-start justify-between mb-2">
-            <div>
-              <span class="font-medium text-highlight">${c.name}</span>
-              <span class="text-xs text-subtile ml-2">→ replace with</span>
-              <span class="text-xs font-medium text-interaction ml-1">${c.dsEquivalent}</span>
+      document.getElementById('replaceable-list').innerHTML = components.map(c => {
+        const dsLabel = c.storyUrl
+          ? `<a href="${c.storyUrl}" target="_blank" class="text-xs font-medium text-interaction hover:underline">${c.dsEquivalent} ↗</a>`
+          : `<span class="text-xs font-medium text-interaction">${c.dsEquivalent}</span>`;
+        return `
+          <div class="p-4 rounded-card bg-card border border-subtile">
+            <div class="flex items-start justify-between mb-2">
+              <div>
+                <span class="font-medium text-highlight">${c.name}</span>
+                <span class="text-xs text-subtile ml-2">→ replace with</span>
+                ${dsLabel}
+              </div>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-code text-subtile whitespace-nowrap">${c.usageCount} files</span>
             </div>
-            <span class="text-xs px-2 py-0.5 rounded-full bg-code text-subtile whitespace-nowrap">${c.usageCount} files</span>
+            <p class="text-xs text-subtile">${c.notes}</p>
           </div>
-          <p class="text-xs text-subtile">${c.notes}</p>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
     async function loadDetail() {

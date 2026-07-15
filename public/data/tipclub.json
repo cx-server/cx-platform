@@ -16,9 +16,9 @@
   "dsBreadth": 45,
   "dsComponents": ["ActiveBar", "Alert", "AppBar", "Badge", "Button", "Dialog", "Icon", "Input", "Label", "List", "Overlay", "Pill", "Portal", "Preloader", "RoundedIcon", "Skeleton", "StatusIcon", "Tab"],
   "replaceableComponents": [
-    { "name": "OddsBoostInfoPopUp", "dsEquivalent": "Dialog", "usageCount": 4, "notes": "Info popup — can use Dialog directly" },
-    { "name": "FollowButton", "dsEquivalent": "Button", "usageCount": 23, "notes": "Toggle button with follow/unfollow state" },
-    { "name": "ProfileSetup (partial)", "dsEquivalent": "Dialog + Input", "usageCount": 21, "notes": "Setup wizard — partially replaceable" }
+    { "name": "OddsBoostInfoPopUp", "dsEquivalent": "Dialog", "usageCount": 4, "notes": "Info popup — can use Dialog directly", "storyUrl": null },
+    { "name": "FollowButton", "dsEquivalent": "Button", "usageCount": 23, "notes": "Toggle button with follow/unfollow state", "storyUrl": "https://ds.cx-workspace.com/?path=/docs/button--docs" },
+    { "name": "ProfileSetup (partial)", "dsEquivalent": "Dialog + Input", "usageCount": 21, "notes": "Setup wizard — partially replaceable", "storyUrl": null }
   ],
   "trend": [
     { "date": "2026-06-01", "score": 84, "kpiVersion": "v1" },

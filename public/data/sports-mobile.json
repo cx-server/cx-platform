@@ -16,9 +16,9 @@
   "dsBreadth": 60,
   "dsComponents": ["Alert", "AppBar", "Avatar", "Badge", "BottomMenu", "Button", "ContentHeader", "Dialog", "EmptyState", "Icon", "InlineScrollArrows", "Input", "Label", "Layout", "List", "Pill", "Preloader", "ProgressBar", "RollingNumbers", "RoundedIcon", "Skeleton", "Tab", "Tag", "Toast", "ActivityBar", "BonusLabel", "EventBackdrop", "EventHeader", "InlineMessage", "StatusLabel"],
   "replaceableComponents": [
-    { "name": "SearchBar", "dsEquivalent": "Input (search variant)", "usageCount": 8, "notes": "Could use Input with search icon" },
-    { "name": "BackToTop", "dsEquivalent": "Button", "usageCount": 5, "notes": "Simple scroll-to-top button" },
-    { "name": "Avatar", "dsEquivalent": "DS candidate", "usageCount": 14, "notes": "Used across platforms — should be added to DS catalog" }
+    { "name": "SearchBar", "dsEquivalent": "Input (search variant)", "usageCount": 8, "notes": "Could use Input with search icon", "storyUrl": null },
+    { "name": "BackToTop", "dsEquivalent": "Button", "usageCount": 5, "notes": "Simple scroll-to-top button", "storyUrl": "https://ds.cx-workspace.com/?path=/docs/button--docs" },
+    { "name": "Avatar", "dsEquivalent": "DS candidate", "usageCount": 14, "notes": "Used across platforms — should be added to DS catalog", "storyUrl": null }
   ],
   "trend": [
     { "date": "2026-05-22", "score": 69, "kpiVersion": "v1" },

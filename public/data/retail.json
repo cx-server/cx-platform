@@ -16,14 +16,14 @@
   "dsBreadth": null,
   "dsComponents": ["Button", "Pill", "Dialog", "Input", "Icon", "Odds", "Preloader", "List", "ScrollContainer", "Article", "Toast", "RoundedIcon", "Alert", "Tab", "Numpad", "InputBox"],
   "replaceableComponents": [
-    { "name": "AppDialog", "dsEquivalent": "Dialog", "usageCount": 20, "notes": "Largest duplicate — used for confirmations, errors, info" },
-    { "name": "Modal (Error/Info/Success/Generic)", "dsEquivalent": "Dialog", "usageCount": 15, "notes": "4 modal variants all replaceable with Dialog" },
-    { "name": "MaterialButton", "dsEquivalent": "Button", "usageCount": 10, "notes": "Wraps MUI Button + Redux — trivial swap" },
-    { "name": "Tabs", "dsEquivalent": "Tab", "usageCount": 6, "notes": "MUI-based tab component" },
-    { "name": "CircularLoading", "dsEquivalent": "Preloader", "usageCount": 3, "notes": "MUI spinner" },
-    { "name": "AppSwitch", "dsEquivalent": "Toggle", "usageCount": 2, "notes": "MUI Switch wrapper" },
-    { "name": "AppInput", "dsEquivalent": "InputBox", "usageCount": 4, "notes": "MUI-styled text input" },
-    { "name": "Checkbox", "dsEquivalent": "Checkmark", "usageCount": 3, "notes": "Custom SVG checkbox" }
+    { "name": "AppDialog", "dsEquivalent": "Dialog", "usageCount": 20, "notes": "Largest duplicate — used for confirmations, errors, info", "storyUrl": null },
+    { "name": "Modal (Error/Info/Success/Generic)", "dsEquivalent": "Dialog", "usageCount": 15, "notes": "4 modal variants all replaceable with Dialog", "storyUrl": null },
+    { "name": "MaterialButton", "dsEquivalent": "Button", "usageCount": 10, "notes": "Wraps MUI Button + Redux — trivial swap", "storyUrl": "https://ds.cx-workspace.com/?path=/docs/button--docs" },
+    { "name": "Tabs", "dsEquivalent": "Tab", "usageCount": 6, "notes": "MUI-based tab component", "storyUrl": null },
+    { "name": "CircularLoading", "dsEquivalent": "Preloader", "usageCount": 3, "notes": "MUI spinner", "storyUrl": null },
+    { "name": "AppSwitch", "dsEquivalent": "Toggle", "usageCount": 2, "notes": "MUI Switch wrapper", "storyUrl": null },
+    { "name": "AppInput", "dsEquivalent": "InputBox", "usageCount": 4, "notes": "MUI-styled text input", "storyUrl": null },
+    { "name": "Checkbox", "dsEquivalent": "Checkmark", "usageCount": 3, "notes": "Custom SVG checkbox", "storyUrl": null }
   ],
   "trend": [
     { "date": "2026-06-01", "score": 86, "kpiVersion": "v1" }
