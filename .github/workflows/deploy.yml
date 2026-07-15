@@ -30,7 +30,7 @@ jobs:
           put public/index.html -o /index.html
           mirror --reverse --only-newer --verbose ./public/onboarding /onboarding
           mirror --reverse --only-newer --verbose ./public/flows /flows
-          mirror --reverse --only-newer --verbose ./public/platforms /platforms
-          mirror --reverse --only-newer --verbose ./public/data /data
+          mirror --reverse --verbose ./public/platforms /platforms
+          mirror --reverse --verbose ./public/data /data
           bye
           EOF
