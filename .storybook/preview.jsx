@@ -14,11 +14,11 @@ const preview = {
     },
   },
   decorators: [
-    (Story) => (
-      <div data-theme="tipico-light">
-        <Story />
-      </div>
-    ),
+    (Story) => {
+      document.documentElement.setAttribute("data-theme", "tipico-light");
+      document.body.setAttribute("data-theme", "tipico-light");
+      return <Story />;
+    },
   ],
 };
 
