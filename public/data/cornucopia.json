@@ -10,10 +10,15 @@
   "kpis": {
     "legacyMigration": { "score": 100, "detail": "75 @tipico/ui imports, 0 @tipico/components. Fully migrated." },
     "colorTokenDensity": { "score": 100, "detail": "583 token color lines, 0 hardcoded hex, 0 arbitrary." },
-    "typographyCompliance": { "score": 95, "detail": "5 arbitrary typography values remaining." },
-    "replaceableCustom": { "score": 96, "detail": "Minimal custom code, mostly domain-specific." }
+    "typographyCompliance": { "score": 95, "detail": "96 files using Tailwind typography utilities, 0 hardcoded, 5 arbitrary values." },
+    "replaceableCustom": { "score": 96, "detail": "3 replaceable components out of 78 total." }
   },
   "dsBreadth": 15,
+  "dsComponents": ["Checkmark", "Dialog", "Input", "Label", "Pill", "Tab"],
+  "replaceableComponents": [
+    { "name": "AmountInput", "dsEquivalent": "Input", "usageCount": 11, "notes": "Specialized numeric input for payment amounts" },
+    { "name": "ErrorResponseIcon", "dsEquivalent": "StatusIcon", "usageCount": 10, "notes": "Error state display icons (used in 2 variants)" }
+  ],
   "trend": [
     { "date": "2026-05-22", "score": 82, "kpiVersion": "v1" },
     { "date": "2026-06-01", "score": 90, "kpiVersion": "v1" },
@@ -25,10 +30,12 @@
   ],
   "gap": {
     "weakestKpi": "Typography Token Compliance",
-    "action": "Fix 5 arbitrary typography values",
+    "action": "Fix 5 arbitrary typography values (e.g. text-[14px]) — use Tailwind scale instead",
     "impactEstimate": "98% → 99%"
   },
   "nextSteps": [
-    { "action": "Fix 5 arbitrary typography values with Tailwind utilities", "impact": "+1%", "effort": "Low" }
+    { "action": "Fix 5 arbitrary typography values with Tailwind utilities", "impact": "+1%", "effort": "Low" },
+    { "action": "Replace AmountInput with extended DS Input component", "impact": "+1%", "effort": "Low" },
+    { "action": "Replace ErrorResponseIcon with DS StatusIcon", "impact": "+1%", "effort": "Low" }
   ]
 }

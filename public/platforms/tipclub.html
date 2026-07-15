@@ -90,9 +90,27 @@
       <!-- KPI Bars -->
       <section class="mb-12">
         <h2 class="text-xl font-semibold text-highlight mb-4">KPI Breakdown</h2>
-        <div class="space-y-4" id="kpi-section">
-          <!-- Populated by JS -->
+        <div class="p-6 rounded-card bg-card border border-subtile">
+          <div class="space-y-6" id="kpi-section">
+            <!-- Populated by JS -->
+          </div>
         </div>
+      </section>
+
+      <!-- DS Components Used -->
+      <section class="mb-12" id="ds-breadth-section" style="display:none">
+        <h2 class="text-xl font-semibold text-highlight mb-4">Design System Components Used</h2>
+        <div class="p-6 rounded-card bg-card border border-subtile">
+          <p class="text-sm text-subtile mb-3" id="ds-breadth-label"></p>
+          <div class="flex flex-wrap gap-2" id="ds-components-list"></div>
+        </div>
+      </section>
+
+      <!-- Replaceable Components -->
+      <section class="mb-12" id="replaceable-section" style="display:none">
+        <h2 class="text-xl font-semibold text-highlight mb-4">Components That Can Use the Design System</h2>
+        <p class="text-sm text-subtile mb-4">These custom-built components have an equivalent in the Design System library and can be replaced to improve consistency and reduce maintenance.</p>
+        <div class="space-y-3" id="replaceable-list"></div>
       </section>
 
       <!-- Trend Chart -->
@@ -231,6 +249,36 @@
       `).join('');
     }
 
+    function renderDsBreadth(data) {
+      if (!data.dsComponents || data.dsComponents.length === 0) return;
+      const section = document.getElementById('ds-breadth-section');
+      section.style.display = '';
+      const breadth = data.dsBreadth || Math.round((data.dsComponents.length / 40) * 100);
+      document.getElementById('ds-breadth-label').textContent = `Using ${data.dsComponents.length} of 40 available DS components (${breadth}% coverage)`;
+      document.getElementById('ds-components-list').innerHTML = data.dsComponents.map(c =>
+        `<span class="text-xs px-2.5 py-1 rounded-md bg-code text-standard">${c}</span>`
+      ).join('');
+    }
+
+    function renderReplaceableComponents(components) {
+      if (!components || components.length === 0) return;
+      const section = document.getElementById('replaceable-section');
+      section.style.display = '';
+      document.getElementById('replaceable-list').innerHTML = components.map(c => `
+        <div class="p-4 rounded-card bg-card border border-subtile">
+          <div class="flex items-start justify-between mb-2">
+            <div>
+              <span class="font-medium text-highlight">${c.name}</span>
+              <span class="text-xs text-subtile ml-2">→ replace with</span>
+              <span class="text-xs font-medium text-interaction ml-1">${c.dsEquivalent}</span>
+            </div>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-code text-subtile whitespace-nowrap">${c.usageCount} files</span>
+          </div>
+          <p class="text-xs text-subtile">${c.notes}</p>
+        </div>
+      `).join('');
+    }
+
     async function loadDetail() {
       const slug = getSlug();
       if (!slug) {
@@ -274,6 +322,12 @@
 
         // Next Steps
         renderNextSteps(data.nextSteps);
+
+        // DS Breadth
+        renderDsBreadth(data);
+
+        // Replaceable Components
+        renderReplaceableComponents(data.replaceableComponents);
 
       } catch (e) {
         document.getElementById('page-title').textContent = 'Platform not found';

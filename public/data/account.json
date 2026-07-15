@@ -10,10 +10,17 @@
   "kpis": {
     "legacyMigration": { "score": 69, "detail": "264 @tipico/ui imports vs 116 @tipico/components (legacy). 116 imports to migrate." },
     "colorTokenDensity": { "score": 98, "detail": "427 token color lines vs 7 hardcoded hex + 1 arbitrary color line." },
-    "typographyCompliance": { "score": 66, "detail": "98 files with Tailwind typography vs 42 hardcoded + 9 arbitrary values." },
-    "replaceableCustom": { "score": 95, "detail": "Few replaceable custom components remaining." }
+    "typographyCompliance": { "score": 66, "detail": "98 files using Tailwind typography vs 42 hardcoded + 9 arbitrary values." },
+    "replaceableCustom": { "score": 95, "detail": "4 replaceable components out of 268 total." }
   },
   "dsBreadth": 50,
+  "dsComponents": ["Alert", "AppBar", "Article", "Badge", "Button", "Chip", "Dialog", "Dropdown", "Icon", "Input", "InputBox", "List", "Page", "Pill", "Preloader", "RoundedIcon", "Section", "Skeleton", "StatusIcon", "Tab"],
+  "replaceableComponents": [
+    { "name": "Header", "dsEquivalent": "AppBar", "usageCount": 113, "notes": "Custom header with back navigation — highest-impact replacement" },
+    { "name": "BackButton", "dsEquivalent": "Button (icon variant)", "usageCount": 18, "notes": "Simple arrow-back button" },
+    { "name": "TabsGeneric", "dsEquivalent": "Tab", "usageCount": 5, "notes": "Generic tab switcher" },
+    { "name": "CardToggle", "dsEquivalent": "Collapsible", "usageCount": 8, "notes": "Expandable/collapsible card" }
+  ],
   "trend": [
     { "date": "2026-05-22", "score": 67, "kpiVersion": "v1" },
     { "date": "2026-06-01", "score": 87, "kpiVersion": "v1" },
@@ -29,7 +36,9 @@
     "impactEstimate": "78% → 86%"
   },
   "nextSteps": [
-    { "action": "Replace 42 hardcoded + 9 arbitrary typography values with Tailwind utilities", "impact": "+8%", "effort": "Medium" },
-    { "action": "Migrate 116 @tipico/components imports", "impact": "+10%", "effort": "High" }
+    { "action": "Migrate 116 legacy imports to @tipico/ui", "impact": "+10%", "effort": "High" },
+    { "action": "Replace 42 hardcoded + 9 arbitrary typography values", "impact": "+8%", "effort": "Medium" },
+    { "action": "Replace Header component with DS AppBar (113 files)", "impact": "+1%", "effort": "Medium" },
+    { "action": "Fix 7 hardcoded + 1 arbitrary color values", "impact": "Negligible", "effort": "Low" }
   ]
 }

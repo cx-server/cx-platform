@@ -10,21 +10,33 @@
   "kpis": {
     "legacyMigration": { "score": 100, "detail": "195 @tipico/ui imports, 0 @tipico/components (legacy). Fully migrated to DS." },
     "colorTokenDensity": { "score": 100, "detail": "190 files with Tailwind color classes, 0 hardcoded hex in CSS/SCSS source." },
-    "typographyCompliance": { "score": null, "detail": "Not yet measured (v1 KPIs)." },
-    "replaceableCustom": { "score": 81, "detail": "45 custom components vs 195 DS imports. 8 replaceable with DS equivalents." }
+    "typographyCompliance": { "score": null, "detail": "Not yet measured — will be added in next scan with v3.1 methodology." },
+    "replaceableCustom": { "score": 81, "detail": "8 replaceable custom components out of 45 custom + 195 DS imports." }
   },
   "dsBreadth": null,
+  "dsComponents": ["Button", "Pill", "Dialog", "Input", "Icon", "Odds", "Preloader", "List", "ScrollContainer", "Article", "Toast", "RoundedIcon", "Alert", "Tab", "Numpad", "InputBox"],
+  "replaceableComponents": [
+    { "name": "AppDialog", "dsEquivalent": "Dialog", "usageCount": 20, "notes": "Largest duplicate — used for confirmations, errors, info" },
+    { "name": "Modal (Error/Info/Success/Generic)", "dsEquivalent": "Dialog", "usageCount": 15, "notes": "4 modal variants all replaceable with Dialog" },
+    { "name": "MaterialButton", "dsEquivalent": "Button", "usageCount": 10, "notes": "Wraps MUI Button + Redux — trivial swap" },
+    { "name": "Tabs", "dsEquivalent": "Tab", "usageCount": 6, "notes": "MUI-based tab component" },
+    { "name": "CircularLoading", "dsEquivalent": "Preloader", "usageCount": 3, "notes": "MUI spinner" },
+    { "name": "AppSwitch", "dsEquivalent": "Toggle", "usageCount": 2, "notes": "MUI Switch wrapper" },
+    { "name": "AppInput", "dsEquivalent": "InputBox", "usageCount": 4, "notes": "MUI-styled text input" },
+    { "name": "Checkbox", "dsEquivalent": "Checkmark", "usageCount": 3, "notes": "Custom SVG checkbox" }
+  ],
   "trend": [
     { "date": "2026-06-01", "score": 86, "kpiVersion": "v1" }
   ],
   "gap": {
     "weakestKpi": "Legacy-Free (MUI)",
-    "action": "Eliminate 215 @mui/* imports (makeStyles migration to Tailwind)",
+    "action": "Eliminate 215 @mui/* imports — migrate makeStyles to Tailwind (83 files)",
     "impactEstimate": "86% → ~92%"
   },
   "nextSteps": [
-    { "action": "Migrate AppDialog + Modal → @tipico/ui/Dialog (35 files)", "impact": "High", "effort": "Medium" },
-    { "action": "Eliminate makeStyles (195 instances, ~83 files)", "impact": "Legacy-Free 64% → ~90%", "effort": "High" },
-    { "action": "Retire MaterialButton → @tipico/ui/Button (10 files)", "impact": "Quick win", "effort": "Low" }
+    { "action": "Migrate AppDialog + Modal → DS Dialog (35 files)", "impact": "High", "effort": "Medium" },
+    { "action": "Eliminate makeStyles (~83 files, 195 instances)", "impact": "Legacy-Free 64% → ~90%", "effort": "High" },
+    { "action": "Replace MaterialButton → DS Button (10 files)", "impact": "Quick win", "effort": "Low" },
+    { "action": "Replace Tabs/CircularLoading/AppSwitch/AppInput/Checkbox", "impact": "Removes 5 custom components", "effort": "Low-Medium" }
   ]
 }
