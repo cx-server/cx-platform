@@ -1,0 +1,19 @@
+import{i as e,s as t}from"./preload-helper-BdFrVu1K.js";import{P as n,t as r}from"./iframe-iU2omdTy.js";var i,a,o,s=e((()=>{i=r(),a=t(n(),1),o=({children:e,id:t})=>{let n=a.Children.toArray(e).filter(Boolean);return(0,i.jsx)(`div`,{id:t,"data-testid":t,className:`inline-flex items-center`,children:n.map((e,t)=>(0,i.jsxs)(`div`,{className:`flex flex-row justify-center items-center`,children:[t>0&&(0,i.jsx)(`span`,{"data-testid":`active-bar-separator`,className:`mx-1 w-px bg-border-standard h-3 ${n[t-1]?.props?.barHiddenClassName??``}`}),e]},e.key))})}})),c,l,u,d=e((()=>{c=r(),l=t(n(),1),u=({icon:e,itemTitle:t,id:n,className:r,iconClassName:i=``,titleClassName:a=``,onClick:o})=>{let s=`size-5 text-interaction flex justify-center items-center ${i}`,u=`text-sm font-normal text-interaction ${a}`,d=(0,l.useCallback)(e=>{o?.(e)},[o]),f=(0,l.useMemo)(()=>{if(!t)return null;if(typeof t==`string`)return(0,c.jsx)(`span`,{className:u,children:t});if((0,l.isValidElement)(t)){let e=t;return(0,l.cloneElement)(e,{className:`${e.props.className??``} ${u}`.trim()})}return null},[t,u]);return(0,c.jsxs)(`div`,{id:n,"data-testid":n,onClick:d,className:`flex py-1 pr-2 pl-2 first:pl-0 items-center gap-2 cursor-pointer ${r??``}`,children:[e?(0,c.jsx)(`span`,{className:s,children:e}):null,f]})}})),f=e((()=>{s(),d()}));function p(){return(0,m.jsx)(`svg`,{width:`16`,height:`16`,viewBox:`0 0 16 16`,fill:`currentColor`,children:(0,m.jsx)(`path`,{d:`M8 1l2.1 4.3 4.7.7-3.4 3.3.8 4.7L8 11.8 3.8 14l.8-4.7L1.2 6l4.7-.7z`})})}var m,h,g,_,v,y;e((()=>{f(),m=r(),h={title:`Components/ActiveBar`,component:o,tags:[],parameters:{docs:{description:{component:`Horizontal bar with clickable items separated by vertical dividers. Used for inline action groups.`}}}},g={render:()=>(0,m.jsxs)(o,{id:`active-bar-default`,children:[(0,m.jsx)(u,{id:`item-1`,itemTitle:`Action 1`}),(0,m.jsx)(u,{id:`item-2`,itemTitle:`Action 2`}),(0,m.jsx)(u,{id:`item-3`,itemTitle:`Action 3`})]})},_={render:()=>(0,m.jsxs)(o,{id:`active-bar-icons`,children:[(0,m.jsx)(u,{id:`item-1`,icon:(0,m.jsx)(p,{}),itemTitle:`Favorites`}),(0,m.jsx)(u,{id:`item-2`,icon:(0,m.jsx)(p,{}),itemTitle:`Recent`}),(0,m.jsx)(u,{id:`item-3`,icon:(0,m.jsx)(p,{}),itemTitle:`Popular`})]})},v={render:()=>(0,m.jsxs)(o,{id:`active-bar-icon-only`,children:[(0,m.jsx)(u,{id:`item-1`,icon:(0,m.jsx)(p,{})}),(0,m.jsx)(u,{id:`item-2`,icon:(0,m.jsx)(p,{})}),(0,m.jsx)(u,{id:`item-3`,icon:(0,m.jsx)(p,{})})]})},g.parameters={...g.parameters,docs:{...g.parameters?.docs,source:{originalSource:`{
+  render: () => <ActiveBar id="active-bar-default">
+      <ActiveBarItem id="item-1" itemTitle="Action 1" />
+      <ActiveBarItem id="item-2" itemTitle="Action 2" />
+      <ActiveBarItem id="item-3" itemTitle="Action 3" />
+    </ActiveBar>
+}`,...g.parameters?.docs?.source}}},_.parameters={..._.parameters,docs:{..._.parameters?.docs,source:{originalSource:`{
+  render: () => <ActiveBar id="active-bar-icons">
+      <ActiveBarItem id="item-1" icon={<StarIcon />} itemTitle="Favorites" />
+      <ActiveBarItem id="item-2" icon={<StarIcon />} itemTitle="Recent" />
+      <ActiveBarItem id="item-3" icon={<StarIcon />} itemTitle="Popular" />
+    </ActiveBar>
+}`,..._.parameters?.docs?.source}}},v.parameters={...v.parameters,docs:{...v.parameters?.docs,source:{originalSource:`{
+  render: () => <ActiveBar id="active-bar-icon-only">
+      <ActiveBarItem id="item-1" icon={<StarIcon />} />
+      <ActiveBarItem id="item-2" icon={<StarIcon />} />
+      <ActiveBarItem id="item-3" icon={<StarIcon />} />
+    </ActiveBar>
+}`,...v.parameters?.docs?.source}}},y=[`Default`,`WithIcons`,`IconOnly`]}))();export{g as Default,v as IconOnly,_ as WithIcons,y as __namedExportsOrder,h as default};

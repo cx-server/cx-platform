@@ -1,0 +1,1 @@
+import{i as e}from"./preload-helper-BdFrVu1K.js";import{t}from"./iframe-iU2omdTy.js";function n({children:e,id:t,className:n,noHeaderContentGap:i,...a}){return(0,r.jsx)(`article`,{id:t,"data-testid":t,className:`article ${i?`article-no-gap`:`article-gap`} ${n??``}`,...a,children:e})}var r,i=e((()=>{r=t()}));export{i as n,n as t};
