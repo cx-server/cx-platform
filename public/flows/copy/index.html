@@ -56,7 +56,7 @@
         <ol class="space-y-4 text-standard">
           <li class="flex gap-3">
             <span class="flex-shrink-0 w-6 h-6 rounded-full bg-info/10 flex items-center justify-center text-interaction text-xs font-semibold">1</span>
-            <div><strong class="text-highlight">Extract</strong> — Traverses the frame, collects all text nodes with their content and parent context.</div>
+            <div><strong class="text-highlight">Extract</strong> — Traverses the frame, collects all text nodes with their content and parent context. Skips placeholders and shared shell elements.</div>
           </li>
           <li class="flex gap-3">
             <span class="flex-shrink-0 w-6 h-6 rounded-full bg-info/10 flex items-center justify-center text-interaction text-xs font-semibold">2</span>
@@ -68,7 +68,7 @@
           </li>
           <li class="flex gap-3">
             <span class="flex-shrink-0 w-6 h-6 rounded-full bg-info/10 flex items-center justify-center text-interaction text-xs font-semibold">4</span>
-            <div><strong class="text-highlight">Search existing text</strong> — Checks Ditto for approved copy that could be reused.</div>
+            <div><strong class="text-highlight">Search existing text</strong> — Checks Ditto for approved copy that could be reused. Deduplicates identical text across frames.</div>
           </li>
           <li class="flex gap-3">
             <span class="flex-shrink-0 w-6 h-6 rounded-full bg-info/10 flex items-center justify-center text-interaction text-xs font-semibold">5</span>
@@ -76,13 +76,32 @@
           </li>
           <li class="flex gap-3">
             <span class="flex-shrink-0 w-6 h-6 rounded-full bg-info/10 flex items-center justify-center text-interaction text-xs font-semibold">6</span>
-            <div><strong class="text-highlight">Apply</strong> — Replace text in-place, or duplicate the frame with English text. Preserves hyperlinks.</div>
+            <div><strong class="text-highlight">Apply in Figma</strong> — Corrections are applied in the Figma frame first (in-place or duplicate). This ensures text matches exactly when linking later.</div>
           </li>
           <li class="flex gap-3">
             <span class="flex-shrink-0 w-6 h-6 rounded-full bg-info/10 flex items-center justify-center text-interaction text-xs font-semibold">7</span>
-            <div><strong class="text-highlight">Push to Ditto</strong> — Creates text items in Ditto (EN base), generates DE + TR variants, applies semantic tags.</div>
+            <div><strong class="text-highlight">Push to Ditto</strong> — Creates text items in Ditto (EN base, status: Review), generates DE + TR variants (status: WIP), applies semantic tags (Header, CTA, Label, Description).</div>
+          </li>
+          <li class="flex gap-3">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-info/10 flex items-center justify-center text-interaction text-xs font-semibold">8</span>
+            <div><strong class="text-highlight">Link in Ditto Plugin</strong> — Close Bridge, open Ditto Plugin. Accept linking suggestions (auto-matched by identical text). For variants: select items → choose variant → "Add to each".</div>
           </li>
         </ol>
+      </section>
+
+      <section class="mb-10">
+        <h2 class="text-xl font-semibold text-highlight mb-4">Plugin constraint</h2>
+        <p class="text-sm text-standard mb-3">The Figma Desktop Bridge and the Ditto Plugin cannot run simultaneously — only one plugin can be active at a time.</p>
+        <div class="grid grid-cols-2 gap-3 text-sm">
+          <div class="p-3 rounded-md bg-card border border-subtile">
+            <p class="font-medium text-highlight mb-1">Bridge ON</p>
+            <p class="text-subtile">Steps 1–7: Agent reads and edits Figma</p>
+          </div>
+          <div class="p-3 rounded-md bg-card border border-subtile">
+            <p class="font-medium text-highlight mb-1">Ditto Plugin ON</p>
+            <p class="text-subtile">Step 8: User links text items</p>
+          </div>
+        </div>
       </section>
 
       <section class="mb-10">
@@ -129,11 +148,19 @@
           </li>
           <li class="flex items-start gap-2">
             <svg class="w-4 h-4 text-interaction flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span>DITTO_API_TOKEN set</span>
+            <span>Correct Figma file confirmed (asks if multiple are open)</span>
           </li>
           <li class="flex items-start gap-2">
             <svg class="w-4 h-4 text-interaction flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-            <span>A frame with text content selected</span>
+            <span>A frame or section with text content selected</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-interaction flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span>Ditto project selected (creates one if needed)</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-interaction flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span>DITTO_API_TOKEN set</span>
           </li>
         </ul>
       </section>
