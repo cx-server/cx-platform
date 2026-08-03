@@ -248,14 +248,16 @@ function DefaultDemo({
 }) {
     const [showAmount, setShowAmount] = useState(false);
     const [confettiActive, setConfettiActive] = useState(false);
+    const [key, setKey] = useState(0);
 
     const handleClick = useCallback(() => {
         setShowAmount(false);
         setConfettiActive(false);
+        setKey(k => k + 1);
         setTimeout(() => {
             setShowAmount(true);
             setConfettiActive(true);
-        }, 50);
+        }, 100);
     }, []);
 
     return (
@@ -265,6 +267,7 @@ function DefaultDemo({
             </Button>
             <PhoneFrame>
                 <CoinConfetti
+                    key={`confetti-${key}-${mode}`}
                     id="coin-confetti-demo"
                     trigger={confettiActive}
                     mode={mode}
@@ -277,35 +280,6 @@ function DefaultDemo({
                     style={{height: "100%", borderRadius: "12px", overflow: "hidden", background: "rgb(var(--bg-dialog, var(--bg-card)))", border: "1px solid rgb(var(--border-subtile))"}}
                 >
                     <WinOverlay amount={34.6} balance={108.4} animate={showAmount} />
-                </CoinConfetti>
-            </PhoneFrame>
-        </div>
-    );
-}
-
-function ShotDemo() {
-    const [active, setActive] = useState(false);
-    const handleClick = useCallback(() => {
-        setActive(false);
-        setTimeout(() => setActive(true), 50);
-    }, []);
-
-    return (
-        <div style={{display: "flex", flexDirection: "column", gap: "16px", alignItems: "center"}}>
-            <Button id="shot-trigger" variant="primary" size="md" onClick={handleClick}>
-                Confetti Cannon
-            </Button>
-            <PhoneFrame>
-                <CoinConfetti
-                    id="shot"
-                    trigger={active}
-                    mode="shot"
-                    intensity="heavy"
-                    opacity={0.8}
-                    blur={true}
-                    style={{height: "100%", borderRadius: "12px", overflow: "hidden", background: "rgb(var(--bg-dialog, var(--bg-card)))", border: "1px solid rgb(var(--border-subtile))"}}
-                >
-                    <WinOverlay amount={500.0} balance={630.0} />
                 </CoinConfetti>
             </PhoneFrame>
         </div>
@@ -325,10 +299,6 @@ export const Default: Story = {
             colors={args.colors as unknown as string[] | undefined}
         />
     )
-};
-
-export const ShotMode: Story = {
-    render: () => <ShotDemo />
 };
 
 export const HowToUse: Story = {
