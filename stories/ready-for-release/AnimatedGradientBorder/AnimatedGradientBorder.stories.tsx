@@ -4,50 +4,75 @@ import { AnimatedGradientBorder } from "./AnimatedGradientBorder";
 const meta: Meta<typeof AnimatedGradientBorder> = {
   title: "Ready for Release/AnimatedGradientBorder",
   component: AnimatedGradientBorder,
-  tags: [],
+  tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component:
+          "Animated conic-gradient border using the background-origin technique. A transparent border reveals an animated conic-gradient underneath, while the content area is masked with a solid background. The highlight travels around the border smoothly.",
+      },
+    },
+  },
   argTypes: {
     color: {
       control: "select",
-      options: ["info", "positive", "negative", "warning", "brand", "interaction"],
+      options: ["info", "positive", "negative", "warning", "brand"],
+      description: "Gradient highlight color from design system tokens.",
     },
     speed: {
       control: "select",
       options: ["slow", "normal", "fast"],
+      description: "Animation speed: slow (6s), normal (4s), fast (2s).",
     },
     borderWidth: {
       control: "select",
-      options: [1, 2],
+      options: [1, 2, 3],
+      description: "Border thickness in pixels.",
+    },
+    radius: {
+      control: { type: "range", min: 0, max: 24, step: 2 },
+      description: "Border radius in pixels.",
+    },
+    bg: {
+      control: "select",
+      options: ["card", "surface", "white", "input"],
+      description: "Background fill — must match the surface the component sits on.",
     },
   },
   args: {
-    id: "agb-demo",
-    color: "interaction",
+    id: "animated-border-demo",
+    color: "info",
     speed: "normal",
     borderWidth: 2,
+    radius: 12,
+    bg: "card",
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof AnimatedGradientBorder>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => (
-    <AnimatedGradientBorder {...args}>
-      <div className="bg-card rounded-card p-6">
-        <p className="text-highlight font-semibold mb-2">Featured Content</p>
-        <p className="text-standard text-sm">This card has an animated gradient border that draws attention.</p>
+  args: {
+    id: "default-animated-border",
+    className: "w-72",
+    children: (
+      <div className="p-6">
+        <h3 className="font-semibold text-lg mb-1 text-standard">Animated Border</h3>
+        <p className="text-sm text-subtile">The highlight travels around the border continuously.</p>
       </div>
-    </AnimatedGradientBorder>
-  ),
+    ),
+  },
 };
 
 export const AllColors: Story = {
   render: () => (
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px" }}>
-      {(["info", "positive", "negative", "warning", "brand", "interaction"] as const).map((color) => (
-        <AnimatedGradientBorder key={color} id={`agb-${color}`} color={color} speed="normal" borderWidth={2}>
-          <div className="bg-card rounded-card p-4">
-            <p className="text-highlight font-medium text-sm">{color}</p>
+    <div className="flex flex-wrap gap-4">
+      {(["info", "positive", "negative", "warning", "brand"] as const).map((color) => (
+        <AnimatedGradientBorder key={color} id={`border-${color}`} color={color} className="w-44">
+          <div className="p-4 text-center">
+            <p className="text-sm font-medium text-standard capitalize">{color}</p>
           </div>
         </AnimatedGradientBorder>
       ))}
@@ -55,13 +80,13 @@ export const AllColors: Story = {
   ),
 };
 
-export const Speeds: Story = {
+export const AllSpeeds: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: "16px" }}>
+    <div className="flex gap-4">
       {(["slow", "normal", "fast"] as const).map((speed) => (
-        <AnimatedGradientBorder key={speed} id={`agb-${speed}`} color="interaction" speed={speed} borderWidth={2}>
-          <div className="bg-card rounded-card p-4">
-            <p className="text-highlight font-medium text-sm">{speed}</p>
+        <AnimatedGradientBorder key={speed} id={`border-${speed}`} color="info" speed={speed}>
+          <div className="p-4 text-center">
+            <p className="text-sm font-medium text-standard capitalize">{speed}</p>
           </div>
         </AnimatedGradientBorder>
       ))}
@@ -69,15 +94,57 @@ export const Speeds: Story = {
   ),
 };
 
-export const OddsCard: Story = {
+export const ThickBorder: Story = {
+  args: {
+    id: "thick-border",
+    color: "brand",
+    borderWidth: 3,
+    speed: "fast",
+    radius: 16,
+    className: "w-72",
+    children: (
+      <div className="p-6">
+        <h3 className="font-semibold text-lg mb-1 text-standard">3px Border</h3>
+        <p className="text-sm text-subtile">Thicker border for prominent highlights.</p>
+      </div>
+    ),
+  },
+};
+
+export const OnSurface: Story = {
+  parameters: {
+    backgrounds: { default: "Tipico Surface" },
+  },
+  args: {
+    id: "surface-border",
+    color: "positive",
+    bg: "surface",
+    className: "w-72",
+    children: (
+      <div className="p-6">
+        <h3 className="font-semibold text-lg mb-1 text-standard">On Surface</h3>
+        <p className="text-sm text-subtile">Uses bg="surface" to match the page background.</p>
+      </div>
+    ),
+  },
+};
+
+export const PromotionCard: Story = {
   render: () => (
-    <div style={{ width: "120px" }}>
-      <AnimatedGradientBorder id="odds-boosted" color="positive" speed="fast" borderWidth={2} rounded="rounded-odds">
-        <div className="bg-card rounded-odds p-3 text-center">
-          <p className="text-positive font-bold text-lg">2.50</p>
-          <p className="text-subtile text-xs">Boosted</p>
+    <AnimatedGradientBorder id="promo-card" color="brand" speed="normal" borderWidth={2} radius={16} className="w-80">
+      <div className="p-6">
+        <div className="flex justify-between items-center mb-4">
+          <div>
+            <div className="text-2xl font-bold text-standard mb-0.5">17,479</div>
+            <div className="text-sm text-subtile">Monthly visits</div>
+          </div>
+          <span className="text-xs font-medium text-[rgb(var(--signals-bg-positive))] bg-[rgb(var(--signals-bg-positive)/0.1)] px-2 py-1 rounded-full">
+            +48%
+          </span>
         </div>
-      </AnimatedGradientBorder>
-    </div>
+        <div className="h-px bg-[rgb(var(--border-standard))] my-3" />
+        <p className="text-xs text-subtile">Updated 2 hours ago</p>
+      </div>
+    </AnimatedGradientBorder>
   ),
 };
