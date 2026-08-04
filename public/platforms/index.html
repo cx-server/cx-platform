@@ -147,7 +147,7 @@
       const { delta, text: trendText } = trendDelta(data.trend);
       const trendColor = delta > 0 ? 'text-positive' : delta < 0 ? 'text-negative' : 'text-subtile';
       return `
-        <a href="/platforms/${data.slug}.html" class="card-hover block p-6 rounded-card bg-card border border-subtile">
+        <a href="/platforms/${data.slug}.html" class="card-hover block p-6 rounded-card bg-card border border-subtile hover:border-standard transition-all">
           <div class="flex items-start justify-between mb-4">
             <div>
               <h3 class="font-semibold text-highlight text-lg">${data.platform}</h3>
