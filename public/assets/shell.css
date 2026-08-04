@@ -97,3 +97,12 @@ body {
 /* Mobile menu */
 .mobile-menu { display: none; }
 .mobile-menu.open { display: flex; }
+
+/* Images with white backgrounds — wrap in themed card */
+.blend-bg {
+  background: rgb(var(--bg-card));
+  border-radius: 12px;
+  padding: 6px;
+  border: 1px solid rgb(var(--border-subtile));
+  object-fit: cover;
+}

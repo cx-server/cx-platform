@@ -47,7 +47,13 @@
     }
     .hero-float { animation: float 4s ease-in-out infinite; }
 
-    /* Animated gradient border (DS component — CSS-only version for static pages) */
+    /* Images with white backgrounds — card container in dark mode */
+    .img-card {
+      background: rgb(var(--bg-card));
+      border-radius: 12px;
+      padding: 8px;
+      border: 1px solid rgb(var(--border-subtile));
+    }
     .ds-gradient-border {
       position: relative;
       border-radius: 12px;
@@ -140,7 +146,7 @@
           </div>
         </div>
         <div class="flex-shrink-0">
-          <img src="/assets/hero-brain.png" alt="Design System Brain — connected tools" class="hero-float w-72 md:w-80 lg:w-96 drop-shadow-xl" />
+          <img src="/assets/hero-collab.png" alt="AI Team Collaboration" class="w-full max-w-lg drop-shadow-xl" />
         </div>
       </div>
     </section>
@@ -154,6 +160,52 @@
         <a href="/platforms/" class="text-sm text-interaction hover:underline">View all &rarr;</a>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4" id="platform-cards"></div>
+    </section>
+
+    <div class="section-divider max-w-6xl mx-auto"></div>
+
+    <!-- AI Team Overview -->
+    <section class="max-w-6xl mx-auto px-6 py-20">
+      <div class="flex flex-col md:flex-row items-center gap-10">
+        <div class="flex-1 flex justify-center">
+          <img src="/assets/hero-brain.png" alt="Design System Brain" class="hero-float w-64 md:w-72 lg:w-80 drop-shadow-xl">
+        </div>
+        <div class="flex-1">
+          <h2 class="text-2xl font-semibold text-highlight mb-4">The A(I)-Team</h2>
+          <p class="text-subtile leading-relaxed mb-6">A dynamic design system with code-based foundation. Six AI-powered tools work together to automate design, copy, and code workflows across all platforms.</p>
+          <div class="grid grid-cols-3 gap-3">
+            <div class="flex flex-col items-center gap-1 p-3 rounded-card bg-card border border-subtile">
+              <img src="/assets/char-kiro.jpg" alt="Kiro" class="blend-bg w-10 h-10 rounded-full object-cover">
+              <span class="text-xs font-medium text-highlight">Kiro</span>
+              <span class="text-xs text-subtile">Connector</span>
+            </div>
+            <div class="flex flex-col items-center gap-1 p-3 rounded-card bg-card border border-subtile">
+              <img src="/assets/char-figma.jpg" alt="Figma" class="blend-bg w-10 h-10 rounded-full object-cover">
+              <span class="text-xs font-medium text-highlight">Figma</span>
+              <span class="text-xs text-subtile">Design</span>
+            </div>
+            <div class="flex flex-col items-center gap-1 p-3 rounded-card bg-card border border-subtile">
+              <img src="/assets/char-code.jpg" alt="Code" class="blend-bg w-10 h-10 rounded-full object-cover">
+              <span class="text-xs font-medium text-highlight">Code</span>
+              <span class="text-xs text-subtile">Access</span>
+            </div>
+            <div class="flex flex-col items-center gap-1 p-3 rounded-card bg-card border border-subtile">
+              <img src="/assets/char-ditto.jpg" alt="Ditto" class="blend-bg w-10 h-10 rounded-full object-cover">
+              <span class="text-xs font-medium text-highlight">Ditto</span>
+              <span class="text-xs text-subtile">Copy</span>
+            </div>
+            <div class="flex flex-col items-center gap-1 p-3 rounded-card bg-card border border-subtile">
+              <img src="/assets/char-recraft.jpg" alt="Recraft" class="blend-bg w-10 h-10 rounded-full object-cover">
+              <span class="text-xs font-medium text-highlight">Recraft</span>
+              <span class="text-xs text-subtile">Icons</span>
+            </div>
+            <div class="flex flex-col items-center gap-1 p-3 rounded-card bg-card border border-subtile">
+              <img src="/assets/char-atlassian.jpg" alt="Atlassian" class="blend-bg w-10 h-10 rounded-full object-cover">
+              <span class="text-xs font-medium text-highlight">Atlassian</span>
+              <span class="text-xs text-subtile">Planning</span>
+            </div>
+          </div>
+      </div>
     </section>
 
     <div class="section-divider max-w-6xl mx-auto"></div>
