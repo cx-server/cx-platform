@@ -58,7 +58,7 @@
           <div class="nav-pill" id="nav-pill"></div>
           ${navLink('/flows/', 'Flows')}
           ${navLink('/onboarding/', 'Onboarding')}
-          ${navLink('/platforms/', 'Health')}
+          ${navLink('/platforms/', 'Healthchecks')}
           ${navLink('/changelog/', 'Changelog', false, '●')}
           ${navLink('https://ds.cx-workspace.com/', 'Components', true)}
           ${navLink('https://github.com/cx-server/cx-workspace', 'GitHub', true)}
@@ -83,7 +83,7 @@
     <div class="mobile-menu md:hidden flex-col border-t border-standard bg-card px-6 py-4 gap-3" id="mobile-menu">
       <a href="/flows/" class="text-sm text-standard py-2">Flows</a>
       <a href="/onboarding/" class="text-sm text-standard py-2">Onboarding</a>
-      <a href="/platforms/" class="text-sm text-standard py-2">Health</a>
+      <a href="/platforms/" class="text-sm text-standard py-2">Healthchecks</a>
       <a href="/changelog/" class="text-sm text-standard py-2">Changelog</a>
       <a href="https://ds.cx-workspace.com/" class="text-sm text-standard py-2" target="_blank">Components</a>
       <a href="https://github.com/cx-server/cx-workspace" class="text-sm text-standard py-2" target="_blank">GitHub</a>
@@ -102,7 +102,7 @@
       </div>
       <div class="flex items-center gap-6">
         <a href="/flows/" class="hover:text-highlight transition-colors">Flows</a>
-        <a href="/platforms/" class="hover:text-highlight transition-colors">Health</a>
+        <a href="/platforms/" class="hover:text-highlight transition-colors">Healthchecks</a>
         <a href="https://ds.cx-workspace.com/" class="hover:text-highlight transition-colors" target="_blank">Components</a>
         <a href="https://github.com/cx-server/cx-workspace" class="hover:text-highlight transition-colors" target="_blank">GitHub</a>
       </div>

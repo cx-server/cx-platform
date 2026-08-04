@@ -141,7 +141,7 @@
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
             <a href="/platforms/" class="inline-flex items-center gap-2 px-6 py-3 border border-standard rounded-card font-medium text-subtile hover:text-highlight hover:border-strong transition-colors text-sm">
-              Platform Health
+              Healthchecks
             </a>
           </div>
         </div>
@@ -153,10 +153,10 @@
 
     <div class="section-divider max-w-6xl mx-auto"></div>
 
-    <!-- Platform Health -->
+    <!-- Healthchecks -->
     <section id="platforms" class="max-w-6xl mx-auto px-6 py-20">
       <div class="flex items-center justify-between mb-8">
-        <h2 class="text-2xl font-semibold text-highlight">Platform Health</h2>
+        <h2 class="text-2xl font-semibold text-highlight">Healthchecks</h2>
         <a href="/platforms/" class="text-sm text-interaction hover:underline">View all &rarr;</a>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4" id="platform-cards"></div>
@@ -259,7 +259,7 @@
       requestAnimationFrame(spin);
     })();
 
-    // Platform Health Cards
+    // Healthcheck Cards
     (async function() {
       const platforms = [
         { file: 'cornucopia' }, { file: 'mytipico' }, { file: 'tipclub' },
