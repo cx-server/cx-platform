@@ -4,13 +4,13 @@
   "subtitle": "New Payments",
   "path": "packages/micro-fes/payments-deposit/ + payments-withdrawal/",
   "repo": "rethink-monoverse",
-  "lastUpdated": "2026-07-06",
+  "lastUpdated": "2026-08-04",
   "kpiVersion": "v3.1",
   "score": 98,
   "kpis": {
     "legacyMigration": { "score": 100, "detail": "75 @tipico/ui imports, 0 @tipico/components. Fully migrated." },
-    "colorTokenDensity": { "score": 100, "detail": "583 token color lines, 0 hardcoded hex, 0 arbitrary." },
-    "typographyCompliance": { "score": 95, "detail": "96 files using Tailwind typography utilities, 0 hardcoded, 5 arbitrary values." },
+    "colorTokenDensity": { "score": 100, "detail": "548 token color lines, 4 hardcoded hex (Worldpay iframe — excluded), 0 arbitrary." },
+    "typographyCompliance": { "score": 95, "detail": "95 files using Tailwind typography utilities, 0 hardcoded, 5 arbitrary values." },
     "replaceableCustom": { "score": 96, "detail": "3 replaceable components out of 78 total." }
   },
   "dsBreadth": 15,
@@ -26,7 +26,8 @@
     { "date": "2026-06-05", "score": 99, "kpiVersion": "v2" },
     { "date": "2026-06-16", "score": 99, "kpiVersion": "v2" },
     { "date": "2026-06-17", "score": 99, "kpiVersion": "v3.1" },
-    { "date": "2026-07-06", "score": 98, "kpiVersion": "v3.1" }
+    { "date": "2026-07-06", "score": 98, "kpiVersion": "v3.1" },
+    { "date": "2026-08-04", "score": 98, "kpiVersion": "v3.1" }
   ],
   "gap": {
     "weakestKpi": "Typography Token Compliance",

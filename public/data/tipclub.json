@@ -4,14 +4,14 @@
   "subtitle": "BetWall & Social",
   "path": "packages/mods/betwall-common/",
   "repo": "rethink-monoverse",
-  "lastUpdated": "2026-07-06",
+  "lastUpdated": "2026-08-04",
   "kpiVersion": "v3.1",
-  "score": 91,
+  "score": 94,
   "kpis": {
-    "legacyMigration": { "score": 81, "detail": "496 @tipico/ui imports vs 116 @tipico/components (legacy). 116 imports to migrate." },
-    "colorTokenDensity": { "score": 97, "detail": "1194 token color lines vs 29 hardcoded hex + 3 arbitrary color lines." },
-    "typographyCompliance": { "score": 96, "detail": "247 files using Tailwind typography, 6 hardcoded + 5 arbitrary values." },
-    "replaceableCustom": { "score": 97, "detail": "3 replaceable components out of 499 total." }
+    "legacyMigration": { "score": 83, "detail": "493 @tipico/ui imports vs 103 @tipico/components (legacy). 103 imports to migrate." },
+    "colorTokenDensity": { "score": 97, "detail": "1123 token color lines vs 30 hardcoded hex + 7 arbitrary color lines." },
+    "typographyCompliance": { "score": 98, "detail": "242 files using Tailwind typography, 2 hardcoded + 3 arbitrary values." },
+    "replaceableCustom": { "score": 97, "detail": "3 replaceable components out of 500 total." }
   },
   "dsBreadth": 45,
   "dsComponents": ["ActiveBar", "Alert", "AppBar", "Badge", "Button", "Dialog", "Icon", "Input", "Label", "List", "Overlay", "Pill", "Portal", "Preloader", "RoundedIcon", "Skeleton", "StatusIcon", "Tab"],
@@ -26,17 +26,18 @@
     { "date": "2026-06-05", "score": 90, "kpiVersion": "v2" },
     { "date": "2026-06-16", "score": 90, "kpiVersion": "v2" },
     { "date": "2026-06-17", "score": 93, "kpiVersion": "v3.1" },
-    { "date": "2026-07-06", "score": 91, "kpiVersion": "v3.1" }
+    { "date": "2026-07-06", "score": 91, "kpiVersion": "v3.1" },
+    { "date": "2026-08-04", "score": 94, "kpiVersion": "v3.1" }
   ],
   "gap": {
     "weakestKpi": "Legacy Migration",
-    "action": "Migrate 116 @tipico/components imports to @tipico/ui",
-    "impactEstimate": "91% → 97%"
+    "action": "Migrate 103 @tipico/components imports to @tipico/ui",
+    "impactEstimate": "94% → 99%"
   },
   "nextSteps": [
-    { "action": "Migrate 116 legacy imports to @tipico/ui", "impact": "+6%", "effort": "High" },
-    { "action": "Fix 29 hardcoded hex + 3 arbitrary color values", "impact": "+1%", "effort": "Medium" },
-    { "action": "Fix 6 hardcoded + 5 arbitrary typography values", "impact": "+1%", "effort": "Low" },
+    { "action": "Migrate 103 legacy imports to @tipico/ui", "impact": "+4%", "effort": "High" },
+    { "action": "Fix 30 hardcoded hex + 7 arbitrary color values", "impact": "+1%", "effort": "Medium" },
+    { "action": "Fix 2 hardcoded + 3 arbitrary typography values", "impact": "Negligible", "effort": "Low" },
     { "action": "Replace OddsBoostInfoPopUp with DS Dialog", "impact": "+1%", "effort": "Low" }
   ]
 }

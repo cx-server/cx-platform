@@ -4,13 +4,13 @@
   "subtitle": "Promotions & Loyalty",
   "path": "packages/apps/sports-mobile/app/src/pages/MyTipico/",
   "repo": "rethink-monoverse",
-  "lastUpdated": "2026-07-06",
+  "lastUpdated": "2026-08-04",
   "kpiVersion": "v3.1",
-  "score": 98,
+  "score": 99,
   "kpis": {
-    "legacyMigration": { "score": 97, "detail": "209 @tipico/ui imports vs 6 @tipico/components (legacy). 6 imports to migrate." },
-    "colorTokenDensity": { "score": 98, "detail": "320 token color lines vs 2 hardcoded hex + 5 arbitrary color lines." },
-    "typographyCompliance": { "score": 100, "detail": "53 files using Tailwind typography — zero hardcoded, zero arbitrary." },
+    "legacyMigration": { "score": 97, "detail": "194 @tipico/ui imports vs 7 @tipico/components (legacy). 7 imports to migrate." },
+    "colorTokenDensity": { "score": 99, "detail": "282 token color lines vs 1 hardcoded hex + 1 arbitrary color line." },
+    "typographyCompliance": { "score": 100, "detail": "46 files using Tailwind typography — zero hardcoded, zero arbitrary." },
     "replaceableCustom": { "score": 100, "detail": "No replaceable custom components. All custom code is domain-specific." }
   },
   "dsBreadth": 35,
@@ -23,15 +23,16 @@
     { "date": "2026-06-05", "score": 97, "kpiVersion": "v2" },
     { "date": "2026-06-16", "score": 98, "kpiVersion": "v2" },
     { "date": "2026-06-17", "score": 99, "kpiVersion": "v3.1" },
-    { "date": "2026-07-06", "score": 98, "kpiVersion": "v3.1" }
+    { "date": "2026-07-06", "score": 98, "kpiVersion": "v3.1" },
+    { "date": "2026-08-04", "score": 99, "kpiVersion": "v3.1" }
   ],
   "gap": {
     "weakestKpi": "Legacy Migration",
-    "action": "Migrate last 6 @tipico/components imports + fix 7 arbitrary color values",
-    "impactEstimate": "98% → 100%"
+    "action": "Migrate last 7 @tipico/components imports + fix 1 hardcoded + 1 arbitrary color value",
+    "impactEstimate": "99% → 100%"
   },
   "nextSteps": [
-    { "action": "Migrate last 6 legacy imports to @tipico/ui", "impact": "+1%", "effort": "Low" },
-    { "action": "Fix 2 hardcoded hex + 5 arbitrary color values", "impact": "+1%", "effort": "Low" }
+    { "action": "Migrate last 7 legacy imports to @tipico/ui", "impact": "+1%", "effort": "Low" },
+    { "action": "Fix 1 hardcoded hex + 1 arbitrary color value", "impact": "Negligible", "effort": "Low" }
   ]
 }

@@ -4,14 +4,14 @@
   "subtitle": "Registration, KYC, Settings",
   "path": "packages/apps/account/",
   "repo": "rethink-monoverse",
-  "lastUpdated": "2026-07-06",
+  "lastUpdated": "2026-08-04",
   "kpiVersion": "v3.1",
-  "score": 78,
+  "score": 83,
   "kpis": {
-    "legacyMigration": { "score": 69, "detail": "264 @tipico/ui imports vs 116 @tipico/components (legacy). 116 imports to migrate." },
-    "colorTokenDensity": { "score": 98, "detail": "427 token color lines vs 7 hardcoded hex + 1 arbitrary color line." },
-    "typographyCompliance": { "score": 66, "detail": "98 files using Tailwind typography vs 42 hardcoded + 9 arbitrary values." },
-    "replaceableCustom": { "score": 95, "detail": "4 replaceable components out of 268 total." }
+    "legacyMigration": { "score": 71, "detail": "262 @tipico/ui imports vs 109 @tipico/components (legacy). 109 imports to migrate." },
+    "colorTokenDensity": { "score": 98, "detail": "378 token color lines vs 7 hardcoded hex + 1 arbitrary color line." },
+    "typographyCompliance": { "score": 67, "detail": "95 files using Tailwind typography vs 44 hardcoded + 2 arbitrary values." },
+    "replaceableCustom": { "score": 95, "detail": "4 replaceable components out of 270 total." }
   },
   "dsBreadth": 50,
   "dsComponents": ["Alert", "AppBar", "Article", "Badge", "Button", "Chip", "Dialog", "Dropdown", "Icon", "Input", "InputBox", "List", "Page", "Pill", "Preloader", "RoundedIcon", "Section", "Skeleton", "StatusIcon", "Tab"],
@@ -28,17 +28,18 @@
     { "date": "2026-06-05", "score": 87, "kpiVersion": "v2" },
     { "date": "2026-06-16", "score": 86, "kpiVersion": "v2" },
     { "date": "2026-06-17", "score": 83, "kpiVersion": "v3.1" },
-    { "date": "2026-07-06", "score": 78, "kpiVersion": "v3.1" }
+    { "date": "2026-07-06", "score": 78, "kpiVersion": "v3.1" },
+    { "date": "2026-08-04", "score": 83, "kpiVersion": "v3.1" }
   ],
   "gap": {
     "weakestKpi": "Typography Token Compliance",
-    "action": "Replace 42 hardcoded + 9 arbitrary typography values with Tailwind utilities",
-    "impactEstimate": "78% → 86%"
+    "action": "Replace 44 hardcoded + 2 arbitrary typography values with Tailwind utilities",
+    "impactEstimate": "83% → 91%"
   },
   "nextSteps": [
-    { "action": "Migrate 116 legacy imports to @tipico/ui", "impact": "+10%", "effort": "High" },
-    { "action": "Replace 42 hardcoded + 9 arbitrary typography values", "impact": "+8%", "effort": "Medium" },
-    { "action": "Replace Header component with DS AppBar (113 files)", "impact": "+1%", "effort": "Medium" },
+    { "action": "Migrate 109 legacy imports to @tipico/ui", "impact": "+7%", "effort": "High" },
+    { "action": "Replace 44 hardcoded + 2 arbitrary typography values", "impact": "+8%", "effort": "Medium" },
+    { "action": "Replace Header component with DS AppBar (65 files)", "impact": "+1%", "effort": "Medium" },
     { "action": "Fix 7 hardcoded + 1 arbitrary color values", "impact": "Negligible", "effort": "Low" }
   ]
 }
