@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="tipico-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog — CX Workspace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: { inter: ['Inter', 'Inter Fallback', 'sans-serif'] },
+        extend: {
+          colors: {
+            interaction: 'rgb(var(--global-styling-branding-interaction) / <alpha-value>)',
+            brand: 'rgb(var(--global-styling-branding-brand) / <alpha-value>)',
+            positive: 'rgb(var(--signals-bg-positive) / <alpha-value>)',
+            negative: 'rgb(var(--signals-bg-negative) / <alpha-value>)',
+            warning: 'rgb(var(--signals-bg-warning) / <alpha-value>)',
+            info: 'rgb(var(--signals-bg-info) / <alpha-value>)',
+          },
+          backgroundColor: {
+            surface: 'rgb(var(--bg-surface) / <alpha-value>)',
+            card: 'rgb(var(--bg-card) / <alpha-value>)',
+          },
+          textColor: {
+            highlight: 'rgb(var(--text-highlight) / <alpha-value>)',
+            standard: 'rgb(var(--text-standard) / <alpha-value>)',
+            subtile: 'rgb(var(--text-subtile) / <alpha-value>)',
+            interaction: 'rgb(var(--text-interaction) / <alpha-value>)',
+          },
+          borderColor: {
+            standard: 'rgb(var(--border-standard))',
+            subtile: 'rgb(var(--border-subtile))',
+          },
+          borderRadius: { card: '12px' },
+        },
+      },
+    }
+  </script>
+  <link rel="stylesheet" href="/assets/shell.css">
+  <style>
+    .ds-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+    .ds-pill-added { background: rgb(var(--signals-bg-positive) / 0.1); color: rgb(var(--signals-bg-positive)); }
+    .ds-pill-changed { background: rgb(var(--signals-bg-info) / 0.1); color: rgb(var(--signals-bg-info)); }
+    .ds-pill-fixed { background: rgb(var(--signals-bg-warning) / 0.1); color: rgb(var(--signals-bg-warning)); }
+    .ds-pill-removed { background: rgb(var(--signals-bg-negative) / 0.1); color: rgb(var(--signals-bg-negative)); }
+    .timeline-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgb(var(--global-styling-branding-interaction));
+      border: 2px solid rgb(var(--bg-surface));
+      box-shadow: 0 0 0 2px rgb(var(--border-standard));
+    }
+    .timeline-line {
+      width: 2px;
+      background: rgb(var(--border-standard));
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-inter min-h-screen">
+
+  <main>
+    <div class="max-w-4xl mx-auto px-6 py-16 md:py-24">
+      <h1 class="text-3xl font-bold text-highlight mb-2">Changelog</h1>
+      <p class="text-subtile mb-12">Updates to the CX Workspace — tools, steering, and platform config.</p>
+
+      <div class="relative" id="changelog-timeline">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </main>
+
+  <script src="/assets/shell.js" defer></script>
+  <script>
+    (async function() {
+      const res = await fetch('/data/changelog.json');
+      const releases = await res.json();
+      const container = document.getElementById('changelog-timeline');
+
+      const pillClass = { added: 'ds-pill-added', changed: 'ds-pill-changed', fixed: 'ds-pill-fixed', removed: 'ds-pill-removed' };
+      const pillLabel = { added: 'Added', changed: 'Changed', fixed: 'Fixed', removed: 'Removed' };
+
+      releases.forEach((release, i) => {
+        const isLast = i === releases.length - 1;
+        container.insertAdjacentHTML('beforeend', `
+          <div class="flex gap-6 ${isLast ? '' : 'pb-12'}">
+            <!-- Timeline -->
+            <div class="flex flex-col items-center">
+              <div class="timeline-dot mt-1.5"></div>
+              ${isLast ? '' : '<div class="timeline-line flex-1 mt-2"></div>'}
+            </div>
+            <!-- Content -->
+            <div class="flex-1 -mt-0.5">
+              <div class="flex items-center gap-3 mb-1">
+                <span class="text-xs font-mono px-2 py-0.5 rounded border border-subtile text-subtile">v${release.version}</span>
+                <span class="text-xs text-subtile">${release.date}</span>
+              </div>
+              <h2 class="text-lg font-semibold text-highlight mb-3">${release.title}</h2>
+              <div class="space-y-2">
+                ${release.entries.map(e => `
+                  <div class="flex items-start gap-2">
+                    <span class="ds-pill ${pillClass[e.type]} mt-0.5">${pillLabel[e.type]}</span>
+                    <span class="text-sm text-standard">${e.text}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        `);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+[
+  {
+    "version": "1.3.1",
+    "date": "2026-08-03",
+    "title": "MCP Config Cleanup",
+    "entries": [
+      { "type": "added", "text": "Mobbin MCP server added to cx-workspace" },
+      { "type": "changed", "text": "Ditto switched to native HTTP transport (no more npx mcp-remote)" },
+      { "type": "fixed", "text": "Ditto broken by monoverse config override — removed duplicate" },
+      { "type": "added", "text": "Auto version bump workflow on GitHub Actions" }
+    ]
+  },
+  {
+    "version": "1.3.0",
+    "date": "2026-07-28",
+    "title": "Platform & Steering Updates",
+    "entries": [
+      { "type": "added", "text": "cx-rebuild steering overhaul — hard rules, token binding, text styles" },
+      { "type": "changed", "text": "Design system steering enriched with component keys and token scale" },
+      { "type": "added", "text": "Account platform steering" },
+      { "type": "added", "text": "Git check and troubleshooting in cx-setup" }
+    ]
+  }
+]

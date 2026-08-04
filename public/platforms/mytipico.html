@@ -20,43 +20,17 @@
     }
   </script>
   <style>
-    :root { --base-black: 0 0 0; --base-white: 255 255 255; --base-neutrals-25: 250 250 250; --base-neutrals-50: 245 246 246; --base-neutrals-100: 229 231 232; --base-neutrals-200: 205 210 211; --base-neutrals-300: 169 178 181; --base-neutrals-500: 100 111 117; --base-neutrals-700: 74 79 83; --base-neutrals-800: 51 53 56; --base-neutrals-900: 32 34 37; --base-neutrals-950: 18 20 20; }
-    [data-theme="tipico-dark"] { color-scheme: dark; --text-highlight: var(--base-neutrals-25); --text-standard: var(--base-neutrals-200); --text-subtile: var(--base-neutrals-300); --text-interaction: 95 192 227; --border-standard: 255 255 255 / 0.15; --border-subtile: 255 255 255 / 0.05; --bg-surface: var(--base-neutrals-950); --bg-card: var(--base-neutrals-900); --bg-code: var(--base-neutrals-900); --global-styling-branding-interaction: 95 192 227; --global-styling-branding-brand: 200 16 46; --signals-bg-info: 28 126 161; --signals-bg-positive: 45 148 90; --signals-bg-negative: 200 50 60; --signals-bg-warning: 200 150 50; }
-    [data-theme="tipico-light"] { color-scheme: light; --text-highlight: var(--base-neutrals-950); --text-standard: var(--base-neutrals-700); --text-subtile: var(--base-neutrals-500); --text-interaction: 28 126 161; --border-standard: 18 20 20 / 0.15; --border-subtile: 18 20 20 / 0.05; --bg-surface: var(--base-neutrals-50); --bg-card: var(--base-white); --bg-code: var(--base-neutrals-100); --global-styling-branding-interaction: 28 126 161; --global-styling-branding-brand: 200 16 46; --signals-bg-info: 28 126 161; --signals-bg-positive: 45 148 90; --signals-bg-negative: 200 50 60; --signals-bg-warning: 180 130 40; }
-    body { background-color: rgb(var(--bg-surface)); color: rgb(var(--text-standard)); }
     .kpi-bar { height: 8px; border-radius: 4px; background: rgb(var(--border-standard)); overflow: hidden; }
     .kpi-bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
     .trend-chart { position: relative; height: 120px; }
     .trend-chart svg { width: 100%; height: 100%; }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/shell.css">
 </head>
 <body class="font-inter min-h-screen">
-
-  <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-standard" style="background-color: rgb(var(--bg-surface) / 0.85);">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-lg bg-brand flex items-center justify-center"><span class="text-white font-bold text-sm">CX</span></div>
-        <span class="font-semibold text-lg text-highlight">CX Workspace</span>
-      </a>
-      <div class="flex items-center gap-4">
-        <nav class="hidden md:flex items-center gap-6 text-sm text-subtile">
-          <a href="/flows/" class="hover:text-highlight transition-colors">Flows</a>
-          <a href="/onboarding/" class="hover:text-highlight transition-colors">Onboarding</a>
-          <a href="/platforms/" class="text-highlight font-medium">Health</a>
-          <a href="https://ds.cx-workspace.com/" class="hover:text-highlight transition-colors" target="_blank">UI Components</a>
-          <a href="https://github.com/cx-server/cx-workspace" class="hover:text-highlight transition-colors" target="_blank">GitHub</a>
-        </nav>
-        <button onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'tipico-light' ? 'tipico-dark' : 'tipico-light'" class="w-9 h-9 rounded-lg bg-card flex items-center justify-center" aria-label="Toggle theme">
-          <svg class="w-4 h-4 text-standard" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.07-7.07-1.41 1.41M7.34 16.66l-1.41 1.41m12.73 0-1.41-1.41M7.34 7.34 5.93 5.93"/></svg>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <!-- Content -->
-  <main class="pt-16">
+<!-- Content -->
+  <main>
     <div class="max-w-4xl mx-auto px-6 py-16 md:py-24">
 
       <!-- Breadcrumb -->
@@ -89,7 +63,7 @@
 
       <!-- KPI Bars -->
       <section class="mb-12">
-        <h2 class="text-xl font-semibold text-highlight mb-4">KPI Breakdown</h2>
+        <h2 class="text-2xl font-semibold text-highlight mb-4">KPI Breakdown</h2>
         <div class="p-6 rounded-card bg-card border border-subtile">
           <div class="space-y-6" id="kpi-section">
             <!-- Populated by JS -->
@@ -99,7 +73,7 @@
 
       <!-- DS Components Used -->
       <section class="mb-12" id="ds-breadth-section" style="display:none">
-        <h2 class="text-xl font-semibold text-highlight mb-4">Design System Components Used</h2>
+        <h2 class="text-2xl font-semibold text-highlight mb-4">Design System Components Used</h2>
         <div class="p-6 rounded-card bg-card border border-subtile">
           <p class="text-sm text-subtile mb-3" id="ds-breadth-label"></p>
           <div class="flex flex-wrap gap-2" id="ds-components-list"></div>
@@ -108,14 +82,14 @@
 
       <!-- Replaceable Components -->
       <section class="mb-12" id="replaceable-section" style="display:none">
-        <h2 class="text-xl font-semibold text-highlight mb-4">Components That Can Use the Design System</h2>
+        <h2 class="text-2xl font-semibold text-highlight mb-4">Components That Can Use the Design System</h2>
         <p class="text-sm text-subtile mb-4">These custom-built components have an equivalent in the Design System library and can be replaced to improve consistency and reduce maintenance.</p>
         <div class="space-y-3" id="replaceable-list"></div>
       </section>
 
       <!-- Trend Chart -->
       <section class="mb-12">
-        <h2 class="text-xl font-semibold text-highlight mb-4">Score History</h2>
+        <h2 class="text-2xl font-semibold text-highlight mb-4">Score History</h2>
         <div class="p-6 rounded-card bg-card border border-subtile">
           <div class="trend-chart" id="trend-chart"></div>
           <div class="flex justify-between text-xs text-subtile mt-2" id="trend-labels"></div>
@@ -124,7 +98,7 @@
 
       <!-- Gap & Next Steps -->
       <section class="mb-12">
-        <h2 class="text-xl font-semibold text-highlight mb-4">Where to Focus</h2>
+        <h2 class="text-2xl font-semibold text-highlight mb-4">Where to Focus</h2>
         <div class="p-5 rounded-card bg-card border border-subtile mb-4" id="gap-card">
           <!-- Populated by JS -->
         </div>
@@ -135,20 +109,7 @@
 
     </div>
   </main>
-
-  <!-- Footer -->
-  <footer class="border-t border-standard">
-    <div class="max-w-4xl mx-auto px-6 py-8 flex items-center justify-between text-sm text-subtile">
-      <span>CX Workspace</span>
-      <div class="flex items-center gap-4">
-        <a href="/" class="hover:text-highlight transition-colors">Home</a>
-        <a href="/platforms/" class="hover:text-highlight transition-colors">Health</a>
-        <a href="https://github.com/cx-server/cx-workspace" class="hover:text-highlight transition-colors">GitHub</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
+<script>
     function getSlug() {
       const path = window.location.pathname;
       const match = path.match(/\/platforms\/(.+)\.html/);
@@ -349,5 +310,6 @@
 
     loadDetail();
   </script>
+  <script src="/assets/shell.js" defer></script>
 </body>
 </html>
