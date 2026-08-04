@@ -20,6 +20,10 @@
 
 [data-theme="tipico-light"] {
   color-scheme: light;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-card: 12px;
   --text-highlight: var(--base-neutrals-950);
   --text-standard: var(--base-neutrals-700);
   --text-subtile: var(--base-neutrals-500);
@@ -43,6 +47,10 @@
 
 [data-theme="tipico-dark"] {
   color-scheme: dark;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-card: 12px;
   --text-highlight: var(--base-neutrals-25);
   --text-standard: var(--base-neutrals-200);
   --text-subtile: var(--base-neutrals-300);
