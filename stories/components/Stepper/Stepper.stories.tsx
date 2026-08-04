@@ -74,15 +74,29 @@ export const WithErrors: Story = {
 };
 
 export const AllStatuses: Story = {
+  render: function AllStatusesDemo(args) {
+    const style = args.indicatorStyle || "text";
+    const items = [
+      { number: "1", headline: "Resolved", description: "Step completed", status: "resolved" as const, style },
+      { number: "2", headline: "Active", description: "Currently in progress", status: "active" as const, style },
+      { number: "3", headline: "Warning", description: "Needs attention", status: "warning" as const, style },
+      { number: "4", headline: "Error", description: "Failed validation", status: "error" as const, style },
+      { number: "5", headline: "Pending", description: "Waiting for action", status: "pending" as const, style },
+      { number: "6", headline: "Default", description: "Not started", status: "default" as const, style },
+    ];
+    return <Stepper id="stepper-all" items={items} showConnector={args.showConnector} />;
+  },
   args: {
     id: "stepper-all",
-    items: [
-      { number: "1", headline: "Resolved", status: "resolved", style: "text" },
-      { number: "2", headline: "Active", status: "active", style: "text" },
-      { number: "3", headline: "Warning", status: "warning", style: "text" },
-      { number: "4", headline: "Error", status: "error", style: "text" },
-      { number: "5", headline: "Pending", status: "pending", style: "text" },
-      { number: "6", headline: "Default", status: "default", style: "text" },
-    ],
+    showConnector: true,
+    indicatorStyle: "text",
+  },
+  argTypes: {
+    indicatorStyle: {
+      control: "select",
+      options: ["text", "point", "icon"],
+      description: "Indicator style for all steps",
+      name: "Indicator Style",
+    },
   },
 };
