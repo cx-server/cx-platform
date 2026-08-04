@@ -34,5 +34,7 @@ jobs:
           mirror --reverse --verbose ./public/platforms /platforms
           mirror --reverse --verbose ./public/data /data
           mirror --reverse --verbose ./public/downloads /downloads
+          mirror --reverse --only-newer --verbose ./public/assets /assets
+          mirror --reverse --only-newer --verbose ./public/changelog /changelog
           bye
           EOF
