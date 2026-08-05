@@ -284,6 +284,35 @@
         return `<span class="ds-pill ds-pill-info">stable</span>`;
       }
 
+      function miniSparkline(trend) {
+        if (!trend || trend.length < 3) return '';
+        const data = trend.slice(-8);
+        const scores = data.map(t => t.score);
+        const min = Math.min(...scores) - 2;
+        const max = Math.max(...scores) + 2;
+        const range = max - min || 1;
+        const w = 64, h = 22, pad = 2;
+        const stepX = (w - pad * 2) / (scores.length - 1);
+        const points = scores.map((s, i) => ({
+          x: pad + i * stepX,
+          y: h - pad - ((s - min) / range) * (h - pad * 2)
+        }));
+        const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ');
+        const areaD = pathD + ` L ${points[points.length-1].x.toFixed(1)} ${h - pad} L ${points[0].x.toFixed(1)} ${h - pad} Z`;
+        let len = 0;
+        for (let i = 1; i < points.length; i++) {
+          const dx = points[i].x - points[i-1].x;
+          const dy = points[i].y - points[i-1].y;
+          len += Math.sqrt(dx*dx + dy*dy);
+        }
+        const uid = scores.join('');
+        return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" style="overflow:visible;flex-shrink:0">
+          <defs><linearGradient id="sg${uid}" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="rgb(var(--global-styling-branding-interaction))" stop-opacity="0.2"/><stop offset="100%" stop-color="rgb(var(--global-styling-branding-interaction))" stop-opacity="0"/></linearGradient></defs>
+          <path class="sparkline-area" d="${areaD}" fill="url(#sg${uid})"/>
+          <path class="sparkline-line" d="${pathD}" fill="none" stroke="rgb(var(--global-styling-branding-interaction))" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="--spark-length:${Math.ceil(len)}"/>
+        </svg>`;
+      }
+
       const grid = document.getElementById('platform-cards');
       if (!grid) return;
 
@@ -292,13 +321,17 @@
           const res = await fetch(`/data/${p.file}.json`);
           const data = await res.json();
           const pill = trendPill(data.trend);
+          const spark = miniSparkline(data.trend);
           grid.insertAdjacentHTML('beforeend', `
             <a href="/platforms/${data.slug}.html" class="card-glow animate-card block p-5 rounded-card bg-card border border-subtile hover:border-standard transition-all">
               <div class="flex items-center justify-between mb-3">
                 <h3 class="font-medium text-highlight">${data.platform}</h3>
                 <span class="text-xl font-bold" style="color: ${scoreColor(data.score)}" data-counter="${data.score}" data-suffix="%">0%</span>
               </div>
-              <p class="text-xs text-subtile mb-3">${data.subtitle}</p>
+              <div class="flex items-center justify-between mb-3">
+                <p class="text-xs text-subtile">${data.subtitle}</p>
+                ${spark}
+              </div>
               <div class="flex gap-1 mb-3">
                 ${Object.entries(data.kpis || {}).map(([k, v]) => `
                   <div class="ds-progress flex-1"><div class="ds-progress-fill" style="width:${v.score}%; background:${scoreColor(v.score)}"></div></div>

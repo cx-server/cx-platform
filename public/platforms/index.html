@@ -132,8 +132,10 @@
       const circumference = 2 * Math.PI * 28;
       const offset = circumference - (score / 100) * circumference;
       const color = scoreColor(score);
+      // Extract raw channel values for the glow CSS variable
+      const glowVar = score >= 75 ? 'var(--signals-bg-positive)' : score >= 40 ? 'var(--signals-bg-warning)' : 'var(--signals-bg-negative)';
       return `
-        <div class="score-ring">
+        <div class="score-ring" style="--ring-glow-color: rgb(${glowVar} / 0.4)">
           <svg width="72" height="72" viewBox="0 0 72 72">
             <circle cx="36" cy="36" r="28" fill="none" stroke="rgb(var(--border-standard))" stroke-width="6"/>
             <circle cx="36" cy="36" r="28" fill="none" stroke="${color}" stroke-width="6" stroke-linecap="round"
@@ -145,9 +147,53 @@
       `;
     }
 
+    function createSparkline(trend) {
+      if (!trend || trend.length < 3) return '';
+      // Use last 8 data points max
+      const data = trend.slice(-8);
+      const scores = data.map(t => t.score);
+      const min = Math.min(...scores) - 2;
+      const max = Math.max(...scores) + 2;
+      const range = max - min || 1;
+
+      const w = 80, h = 28, pad = 2;
+      const stepX = (w - pad * 2) / (scores.length - 1);
+
+      const points = scores.map((s, i) => {
+        const x = pad + i * stepX;
+        const y = h - pad - ((s - min) / range) * (h - pad * 2);
+        return { x, y };
+      });
+
+      const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ');
+      const areaD = pathD + ` L ${points[points.length-1].x.toFixed(1)} ${h - pad} L ${points[0].x.toFixed(1)} ${h - pad} Z`;
+
+      // Calculate line length
+      let lineLength = 0;
+      for (let i = 1; i < points.length; i++) {
+        const dx = points[i].x - points[i-1].x;
+        const dy = points[i].y - points[i-1].y;
+        lineLength += Math.sqrt(dx * dx + dy * dy);
+      }
+
+      return `
+        <svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" class="flex-shrink-0" style="overflow:visible">
+          <defs>
+            <linearGradient id="sparkGrad-${scores.join('')}" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="rgb(var(--global-styling-branding-interaction))" stop-opacity="0.2"/>
+              <stop offset="100%" stop-color="rgb(var(--global-styling-branding-interaction))" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path class="sparkline-area" d="${areaD}" fill="url(#sparkGrad-${scores.join('')})"/>
+          <path class="sparkline-line" d="${pathD}" fill="none" stroke="rgb(var(--global-styling-branding-interaction))" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="--spark-length:${Math.ceil(lineLength)}"/>
+        </svg>
+      `;
+    }
+
     function createCard(data) {
       const { delta, text: trendText } = trendDelta(data.trend);
       const trendColor = delta > 0 ? 'text-positive' : delta < 0 ? 'text-negative' : 'text-subtile';
+      const sparkline = createSparkline(data.trend);
       return `
         <a href="/platforms/${data.slug}.html" class="card-glow animate-card block p-6 rounded-card bg-card border border-subtile hover:border-standard transition-all">
           <div class="flex items-start justify-between mb-4">
@@ -157,11 +203,11 @@
             </div>
             ${createScoreRing(data.score)}
           </div>
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-between mb-3">
             <span class="text-xs ${trendColor} font-medium">${trendText}</span>
-            <span class="text-xs text-subtile">${data.lastUpdated}</span>
+            ${sparkline}
           </div>
-          <div class="mt-3 pt-3 border-t border-subtile">
+          <div class="pt-3 border-t border-subtile">
             <p class="text-xs text-subtile"><span class="font-medium text-standard">Focus:</span> ${data.gap.weakestKpi}</p>
           </div>
         </a>
