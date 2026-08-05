@@ -21,10 +21,11 @@
   </script>
   <style>
     .kpi-bar { height: 8px; border-radius: 4px; background: rgb(var(--border-standard)); overflow: hidden; }
-    .kpi-bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
-    .trend-chart { position: relative; height: 120px; }
+    .kpi-bar-fill { height: 100%; border-radius: 4px; }
+    .trend-chart { position: relative; height: 160px; }
     .trend-chart svg { width: 100%; height: 100%; }
   </style>
+  <link rel="stylesheet" href="/assets/animations.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/shell.css">
 </head>
@@ -51,9 +52,9 @@
       </div>
 
       <!-- Overall Score -->
-      <div class="flex items-center gap-6 p-6 rounded-card bg-card border border-subtile mb-8" id="score-hero">
+      <div class="flex items-center gap-6 p-6 rounded-card bg-card border border-subtile mb-8 card-glow" id="score-hero">
         <div class="text-center">
-          <p class="text-5xl font-bold text-highlight" id="score-value">—</p>
+          <p class="text-5xl font-bold text-highlight" id="score-value" data-counter="0" data-suffix="%">—</p>
           <p class="text-xs text-subtile mt-1">Overall</p>
         </div>
         <div class="flex-1" id="score-trend-mini">
@@ -136,7 +137,7 @@
       return `
         <div class="flex items-center justify-between mb-1">
           <span class="text-sm font-medium text-standard">${label}</span>
-          <span class="text-sm font-semibold" style="color: ${scoreColor(score)}">${score}%</span>
+          <span class="text-sm font-semibold" data-counter="${score}" data-suffix="%" style="color: ${scoreColor(score)}">0%</span>
         </div>
         <div class="kpi-bar"><div class="kpi-bar-fill" style="width: ${score}%; background: ${scoreColor(score)};"></div></div>
         <p class="text-xs text-subtile mt-1">${detail}</p>
@@ -155,24 +156,56 @@
       const range = max - min || 1;
 
       const width = 600;
-      const height = 120;
-      const padding = 12;
+      const height = 160;
+      const padding = 16;
       const stepX = (width - padding * 2) / (scores.length - 1);
 
-      let pathD = '';
-      let dots = '';
       const points = scores.map((s, i) => {
         const x = padding + i * stepX;
         const y = height - padding - ((s - min) / range) * (height - padding * 2);
         return { x, y, score: s, date: trend[i].date };
       });
 
-      pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
-      dots = points.map(p => `<circle cx="${p.x}" cy="${p.y}" r="4" fill="${scoreColor(p.score)}" stroke="rgb(var(--bg-card))" stroke-width="2"/>`).join('');
+      const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+
+      // Area fill path (close at bottom)
+      const areaD = pathD + ` L ${points[points.length - 1].x} ${height - padding} L ${points[0].x} ${height - padding} Z`;
+
+      // Calculate line length for stroke-dashoffset animation
+      let lineLength = 0;
+      for (let i = 1; i < points.length; i++) {
+        const dx = points[i].x - points[i - 1].x;
+        const dy = points[i].y - points[i - 1].y;
+        lineLength += Math.sqrt(dx * dx + dy * dy);
+      }
+
+      // Dots with staggered animation delays
+      const dots = points.map((p, i) => {
+        const delay = 0.3 + (i / points.length) * 1.5;
+        return `<circle class="trend-dot trend-dot-animated" cx="${p.x}" cy="${p.y}" r="4" fill="rgb(var(--global-styling-branding-interaction))" stroke="rgb(var(--bg-card))" stroke-width="2.5" data-score="${p.score}" data-date="${p.date}" style="animation-delay:${delay.toFixed(2)}s"/>`;
+      }).join('');
+
+      // Hover line (vertical dashed)
+      const hoverLine = `<line class="trend-hover-line" x1="0" y1="${padding}" x2="0" y2="${height - padding}"/>`;
+
+      // Grid lines (subtle horizontal)
+      const gridLines = [0.25, 0.5, 0.75].map(pct => {
+        const y = padding + (1 - pct) * (height - padding * 2);
+        return `<line x1="${padding}" y1="${y}" x2="${width - padding}" y2="${y}" stroke="rgb(var(--border-subtile))" stroke-width="0.5"/>`;
+      }).join('');
 
       document.getElementById('trend-chart').innerHTML = `
         <svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="none">
-          <path d="${pathD}" fill="none" stroke="rgb(var(--global-styling-branding-interaction))" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="rgb(var(--global-styling-branding-interaction))" stop-opacity="0.15"/>
+              <stop offset="100%" stop-color="rgb(var(--global-styling-branding-interaction))" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          ${gridLines}
+          <path class="trend-area-animated" d="${areaD}" fill="url(#areaGradient)"/>
+          <path class="trend-line-animated" d="${pathD}" fill="none" stroke="rgb(var(--global-styling-branding-interaction))" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="--line-length:${Math.ceil(lineLength)}"/>
+          ${hoverLine}
           ${dots}
         </svg>
       `;
@@ -272,8 +305,11 @@
         document.getElementById('meta-updated').textContent = `Updated: ${data.lastUpdated}`;
 
         // Score
-        document.getElementById('score-value').textContent = `${data.score}%`;
-        document.getElementById('score-value').style.color = scoreColor(data.score);
+        const scoreEl = document.getElementById('score-value');
+        scoreEl.dataset.counter = data.score;
+        scoreEl.dataset.suffix = '%';
+        scoreEl.textContent = '0%';
+        scoreEl.style.color = scoreColor(data.score);
 
         // KPIs
         const kpiLabels = {
@@ -311,5 +347,6 @@
     loadDetail();
   </script>
   <script src="/assets/shell.js" defer></script>
+  <script src="/assets/animations.js" defer></script>
 </body>
 </html>

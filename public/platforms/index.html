@@ -28,6 +28,7 @@
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/shell.css">
+  <link rel="stylesheet" href="/assets/animations.css">
 </head>
 <body class="font-inter min-h-screen">
 <!-- Content -->
@@ -136,9 +137,10 @@
           <svg width="72" height="72" viewBox="0 0 72 72">
             <circle cx="36" cy="36" r="28" fill="none" stroke="rgb(var(--border-standard))" stroke-width="6"/>
             <circle cx="36" cy="36" r="28" fill="none" stroke="${color}" stroke-width="6" stroke-linecap="round"
-              stroke-dasharray="${circumference}" stroke-dashoffset="${offset}"/>
+              stroke-dasharray="${circumference}" stroke-dashoffset="${offset}"
+              class="score-ring-animated" style="--ring-circumference:${circumference}"/>
           </svg>
-          <span class="score-text text-highlight">${score}%</span>
+          <span class="score-text text-highlight" data-counter="${score}" data-suffix="%">0%</span>
         </div>
       `;
     }
@@ -147,7 +149,7 @@
       const { delta, text: trendText } = trendDelta(data.trend);
       const trendColor = delta > 0 ? 'text-positive' : delta < 0 ? 'text-negative' : 'text-subtile';
       return `
-        <a href="/platforms/${data.slug}.html" class="card-hover block p-6 rounded-card bg-card border border-subtile hover:border-standard transition-all">
+        <a href="/platforms/${data.slug}.html" class="card-glow animate-card block p-6 rounded-card bg-card border border-subtile hover:border-standard transition-all">
           <div class="flex items-start justify-between mb-4">
             <div>
               <h3 class="font-semibold text-highlight text-lg">${data.platform}</h3>
@@ -194,5 +196,6 @@
     loadDashboard();
   </script>
   <script src="/assets/shell.js" defer></script>
+  <script src="/assets/animations.js" defer></script>
 </body>
 </html>

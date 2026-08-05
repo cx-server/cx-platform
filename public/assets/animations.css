@@ -1,0 +1,173 @@
+/* CX Platform — Animations & Micro-Interactions
+ * Inspired by Cruip Artifact dashboard aesthetics.
+ * Include on every page: <link rel="stylesheet" href="/assets/animations.css">
+ */
+
+/* ─── Page entrance ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+main {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+/* ─── Staggered card entrance ─── */
+@keyframes cardReveal {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-card {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.animate-card.visible {
+  animation: cardReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── KPI Bar Animation ─── */
+@keyframes barGrow {
+  from { width: 0%; }
+}
+
+.kpi-bar-fill {
+  animation: barGrow 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.kpi-bar-fill.paused {
+  animation-play-state: paused;
+}
+
+/* ─── Score Ring Animation ─── */
+@keyframes ringDraw {
+  from { stroke-dashoffset: var(--ring-circumference); }
+}
+
+.score-ring-animated {
+  animation: ringDraw 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── Trend Line Draw Animation ─── */
+@keyframes lineDrawIn {
+  to { stroke-dashoffset: 0; }
+}
+
+.trend-line-animated {
+  stroke-dashoffset: var(--line-length);
+  stroke-dasharray: var(--line-length);
+  animation: lineDrawIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.3s;
+}
+
+/* ─── Trend Area Fade In ─── */
+@keyframes areaFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.trend-area-animated {
+  opacity: 0;
+  animation: areaFadeIn 0.8s ease forwards;
+  animation-delay: 1.2s;
+}
+
+/* ─── Trend Dots Pop In ─── */
+@keyframes dotPop {
+  from { r: 0; opacity: 0; }
+  to { r: 4; opacity: 1; }
+}
+
+.trend-dot-animated {
+  opacity: 0;
+  animation: dotPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ─── Counter Animation (handled via JS, this is for the pulse effect) ─── */
+@keyframes counterPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.counter-done {
+  animation: counterPulse 0.3s ease;
+}
+
+/* ─── Enhanced Card Hover ─── */
+.card-glow {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 13px;
+  opacity: 0;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgb(var(--signals-bg-info) / 0.06) 0%,
+    transparent 40%
+  );
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.card-glow:hover {
+  transform: translateY(-3px) scale(1.005);
+  box-shadow:
+    0 8px 30px rgb(0 0 0 / 0.08),
+    0 0 0 1px rgb(var(--border-standard)),
+    0 0 40px rgb(var(--signals-bg-info) / 0.04);
+}
+
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+.card-glow > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Tooltip ─── */
+.chart-tooltip {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: rgb(var(--bg-card));
+  border: 1px solid rgb(var(--border-standard));
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.chart-tooltip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Glow line on chart hover ─── */
+.trend-hover-line {
+  stroke: rgb(var(--border-standard));
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.trend-hover-line.visible {
+  opacity: 1;
+}
