@@ -16,21 +16,68 @@ Placeholder shown when a view has no data or content to display, guiding users t
 
 ## Variants
 
+### Default (text only)
+
+<Canvas of={EmptyStateStories.Default} />
+
+### With icon
+
+The `icon` prop accepts any `ReactElement`. The component automatically scales it to 72×72px.
+
+<Canvas of={EmptyStateStories.WithIcon} />
+
+### With action
+
+Pass children (e.g. a Button) to provide a call-to-action below the description.
+
 <Canvas of={EmptyStateStories.WithAction} />
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `id` | `string` | required | Unique identifier (used for `id` and `data-testid`) |
+| `title` | `ReactNode` | — | Heading text (rendered as `ArticleHeader`) |
+| `description` | `ReactNode` | — | Body text (rendered as `ArticleContent`) |
+| `icon` | `ReactElement` | — | Icon element, automatically sized to 72×72px |
+| `children` | `ReactNode` | — | Additional content below description (CTAs, links) |
+| `className` | `string` | — | Additional classes on the outer container |
+| `articleClassName` | `string` | — | Additional classes on the inner Article wrapper |
+
+## Internal structure
+
+```
+div.empty-state (flex col, items-center, justify-center)
+├── Icon (72×72px, cloned with size class)
+└── Article (text-center)
+    ├── ArticleHeader (text-highlight, text-lg, font-medium)
+    ├── ArticleContent (text-standard, text-base, font-normal)
+    └── {children}
+```
+
+## Typography tokens
+
+| Element | Classes |
+|---|---|
+| Title | `text-highlight text-lg font-medium` |
+| Description | `text-standard text-base font-normal` |
 
 ## Best practices
 
 ### Do
-- Include an illustration or icon to make the empty view feel intentional
-- Provide a clear call-to-action when the user can resolve the empty state themselves
+- Include an icon to make the empty view feel intentional
+- Provide a clear CTA when the user can resolve the empty state themselves
+- Use specific messages — "No bet history" not "No data"
 
 ### Don't
-- Leave views completely blank — always explain why nothing is shown
-- Use generic messages like "No data" — be specific about what's missing
+- Leave views completely blank
+- Use generic messages like "No data" or "Nothing here"
+- Stack multiple EmptyStates on one page
 
 ## Accessibility
-- The empty state container uses a heading to structure the message for screen readers
-- Action buttons follow standard Button accessibility patterns
+- Uses Article/ArticleHeader for semantic structure
+- Icon is decorative (no alt text needed)
+- CTA buttons follow standard Button accessibility patterns
 
 ## Code reference
 
@@ -42,3 +89,4 @@ import { EmptyState } from "@tipico/ui/EmptyState";
 |---|---|
 | Package | `@tipico/ui` |
 | Path | `packages/libs/ui/src/components/EmptyState/` |
+| Exports | `EmptyState` |
