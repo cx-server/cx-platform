@@ -30,7 +30,7 @@ const meta: Meta<typeof EmptyState> = {
   },
   decorators: [
     (Story) => (
-      <div className="w-72 mx-auto">
+      <div className="w-72 mx-auto text-center">
         <Story />
       </div>
     ),
@@ -63,7 +63,9 @@ export const WithAction: Story = {
       description="Try adjusting your filters or search terms."
       icon={<BetMatrixIcon />}
     >
-      <Button id="reset-btn" variant="outline" autoWidth style={{ marginTop: "16px" }}>Reset Filters</Button>
+      <div style={{ marginTop: "16px", display: "flex", justifyContent: "center" }}>
+        <Button id="reset-btn" variant="outline" autoWidth>Reset Filters</Button>
+      </div>
     </EmptyState>
   ),
 };
