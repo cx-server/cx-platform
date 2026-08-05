@@ -18,6 +18,10 @@ const ChevronRightIcon = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
+/**
+ * Interactive list render — handles selection state when clickable.
+ * Same pattern as monoverse's useListRender.
+ */
 const useListRender = (args: ComponentProps<typeof List>) => {
   const [selected, setSelected] = useState<string | null>(null);
   return (
@@ -93,6 +97,7 @@ export const NoHoverList: Story = {
       </ListItem>
     )),
   },
+  render: useListRender,
 };
 
 export const ListWithHeader: Story = {
@@ -114,6 +119,7 @@ export const ListWithHeader: Story = {
       )),
     ],
   },
+  render: useListRender,
 };
 
 export const ItemsBorderList: Story = {
@@ -217,6 +223,7 @@ export const ChipList: Story = {
       </ListItem>,
     ],
   },
+  render: useListRender,
 };
 
 const getChainStatus = (index: number) => {
