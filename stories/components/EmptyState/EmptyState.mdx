@@ -1,4 +1,4 @@
-import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, ArgTypes } from '@storybook/addon-docs/blocks';
 import * as EmptyStateStories from './EmptyState.stories';
 
 <Meta of={EmptyStateStories} />
@@ -14,35 +14,27 @@ Placeholder shown when a view has no data or content to display, guiding users t
 | A list, table, or section has zero items to show | Data is still loading — use Skeleton instead |
 | You want to guide the user to create their first item | An error occurred — use Alert for error messaging |
 
-## Variants
+## Props
 
-### Default (text only)
+<ArgTypes of={EmptyStateStories} />
 
-<Canvas of={EmptyStateStories.Default} />
+## Stories
 
-### With icon
+### Default Empty State
 
-The `icon` prop accepts any `ReactElement`. The component automatically scales it to 72×72px.
+<Canvas of={EmptyStateStories.DefaultEmptyState} />
 
-<Canvas of={EmptyStateStories.WithIcon} />
+### Empty State With Icon
 
-### With action
+The `icon` prop accepts any `ReactElement`. The component automatically sizes it to `72×72px`.
+
+<Canvas of={EmptyStateStories.EmptyStateWithIcon} />
+
+### With Action
 
 Pass children (e.g. a Button) to provide a call-to-action below the description.
 
 <Canvas of={EmptyStateStories.WithAction} />
-
-## Props
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `id` | `string` | required | Unique identifier (used for `id` and `data-testid`) |
-| `title` | `ReactNode` | — | Heading text (rendered as `ArticleHeader`) |
-| `description` | `ReactNode` | — | Body text (rendered as `ArticleContent`) |
-| `icon` | `ReactElement` | — | Icon element, automatically sized to 72×72px |
-| `children` | `ReactNode` | — | Additional content below description (CTAs, links) |
-| `className` | `string` | — | Additional classes on the outer container |
-| `articleClassName` | `string` | — | Additional classes on the inner Article wrapper |
 
 ## Internal structure
 
@@ -75,7 +67,7 @@ div.empty-state (flex col, items-center, justify-center)
 - Stack multiple EmptyStates on one page
 
 ## Accessibility
-- Uses Article/ArticleHeader for semantic structure
+- Uses Article/ArticleHeader for semantic heading structure
 - Icon is decorative (no alt text needed)
 - CTA buttons follow standard Button accessibility patterns
 

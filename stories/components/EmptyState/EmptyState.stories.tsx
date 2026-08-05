@@ -2,61 +2,56 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { EmptyState } from "@tipico/ui/EmptyState";
 import { Button } from "@tipico/ui/Button";
 
-// Placeholder icon matching the 72px sizing from the component
-const PlaceholderIcon = () => (
-  <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="36" cy="36" r="28" stroke="currentColor" strokeWidth="2" opacity="0.2" />
-    <path d="M28 32L36 24L44 32" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M36 24V44" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-    <path d="M24 44H48" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-  </svg>
-);
-
-const BetIcon = () => (
-  <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="16" y="20" width="40" height="32" rx="4" stroke="currentColor" strokeWidth="2" opacity="0.3" />
-    <circle cx="28" cy="36" r="4" stroke="currentColor" strokeWidth="2" />
-    <circle cx="44" cy="36" r="4" stroke="currentColor" strokeWidth="2" />
-    <path d="M32 36H40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeDasharray="2 2" />
+/**
+ * BetMatrixIcon — same SVG used in the monoverse source stories.
+ * In the real codebase this is imported via `?react` SVG loader.
+ */
+const BetMatrixIcon = () => (
+  <svg id="default" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" fillRule="evenodd" clipRule="evenodd" d="M4.00143 4.0163C3.99651 4.02929 3.99466 7.63007 3.9973 12.018L4.00213 19.9961H19.9961V4.00216L12.0032 3.99742C5.61886 3.99362 4.00861 3.99742 4.00143 4.0163ZM5.57887 18.4194H18.4194V5.57889H5.57887V18.4194ZM7.42941 9.35551H9.35548V7.42943H7.42941V9.35551ZM11.0361 9.35551H12.9622V7.42943H11.0361V9.35551ZM14.6427 9.35551H16.5688V7.42943H14.6427V9.35551ZM7.42941 12.9622H9.35548V11.0361H7.42941V12.9622ZM11.0361 12.9622H12.9622V11.0361H11.0361V12.9622ZM14.6427 12.9622H16.5688V11.0361H14.6427V12.9622ZM7.42941 16.5688H9.35548V14.6428H7.42941V16.5688ZM11.0361 16.5688H12.9622V14.6428H11.0361V16.5688ZM14.6427 16.5688H16.5688V14.6428H14.6427V16.5688Z" />
   </svg>
 );
 
 const meta: Meta<typeof EmptyState> = {
   title: "Components/EmptyState",
   component: EmptyState,
-  tags: [],
   argTypes: {
-    icon: {
-      options: ["None", "Upload", "Bet"],
-      mapping: {
-        None: undefined,
-        Upload: <PlaceholderIcon />,
-        Bet: <BetIcon />,
-      },
-      control: "select",
+    children: {},
+    className: {
+      control: { type: "text" },
     },
-    articleClassName: { control: "text" },
+    icon: {
+      options: ["None", "Icon"],
+      mapping: {
+        None: null,
+        Icon: <BetMatrixIcon />,
+      },
+    },
   },
-  args: { id: "empty-demo" },
-  decorators: [(Story) => <div style={{ maxWidth: "400px", margin: "0 auto", padding: "40px" }}><Story /></div>],
+  decorators: [
+    (Story) => (
+      <div className="w-72 mx-auto">
+        <Story />
+      </div>
+    ),
+  ],
+  tags: ["autodocs"],
 };
 export default meta;
-type Story = StoryObj<typeof EmptyState>;
+type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const DefaultEmptyState: Story = {
   args: {
-    id: "empty-default",
-    title: "No bets yet",
-    description: "Place your first bet to see it here.",
+    id: "empty-state",
+    title: "Your betslip is empty",
+    description: "Below are some suggestions from our most popular categories to get started:",
   },
 };
 
-export const WithIcon: Story = {
+export const EmptyStateWithIcon: Story = {
   args: {
-    id: "empty-icon",
-    title: "Your betslip is empty",
-    description: "Below are some suggestions from our most popular categories to get started.",
-    icon: <BetIcon />,
+    ...DefaultEmptyState.args,
+    icon: <BetMatrixIcon />,
   },
 };
 
@@ -66,28 +61,9 @@ export const WithAction: Story = {
       id="empty-action"
       title="No results"
       description="Try adjusting your filters or search terms."
-      icon={<PlaceholderIcon />}
+      icon={<BetMatrixIcon />}
     >
       <Button id="reset-btn" variant="outline" autoWidth style={{ marginTop: "16px" }}>Reset Filters</Button>
     </EmptyState>
   ),
-};
-
-export const NoBetsHistory: Story = {
-  args: {
-    id: "empty-bets",
-    title: "No bet history",
-    description: "Your settled bets will appear here once they're resolved.",
-    icon: <BetIcon />,
-  },
-};
-
-export const CustomStyling: Story = {
-  args: {
-    id: "empty-custom",
-    title: "Nothing here",
-    description: "This uses a custom articleClassName for extra spacing.",
-    icon: <PlaceholderIcon />,
-    articleClassName: "mt-4",
-  },
 };
