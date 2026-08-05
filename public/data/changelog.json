@@ -1,5 +1,20 @@
 [
   {
+    "version": "1.4.0",
+    "date": "2026-08-05",
+    "title": "cx-copy Optimization & Ditto Integration",
+    "entries": [
+      { "type": "added", "text": "cx-copy: three selection modes — single text (quick check), frame (full audit), section (multi-screen)" },
+      { "type": "added", "text": "cx-copy: section mode auto-renames duplicate frames before audit" },
+      { "type": "added", "text": "cx-copy: project blocks created in Ditto for structured content organization" },
+      { "type": "added", "text": "cx-copy: library components support for shared text across projects" },
+      { "type": "changed", "text": "cx-copy: comment replies are now user-controlled — drafts shown for approval, never auto-posted" },
+      { "type": "changed", "text": "cx-copy: variant IDs fetched programmatically via list_variants (no more guessing)" },
+      { "type": "added", "text": "Ditto MCP: 18 tools auto-approved (up from 2) — full project management from chat" },
+      { "type": "fixed", "text": "Ditto MCP: connection fixed — monoverse config override removed" }
+    ]
+  },
+  {
     "version": "1.3.1",
     "date": "2026-08-03",
     "title": "MCP Config Cleanup",
