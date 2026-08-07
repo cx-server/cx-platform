@@ -4,21 +4,17 @@
   "subtitle": "New Payments",
   "path": "packages/micro-fes/payments-deposit/ + payments-withdrawal/",
   "repo": "rethink-monoverse",
-  "lastUpdated": "2026-08-04",
-  "kpiVersion": "v3.1",
-  "score": 98,
+  "lastUpdated": "2026-08-06",
+  "kpiVersion": "v4",
+  "score": 97,
   "kpis": {
-    "legacyMigration": { "score": 100, "detail": "75 @tipico/ui imports, 0 @tipico/components. Fully migrated." },
-    "colorTokenDensity": { "score": 100, "detail": "548 token color lines, 4 hardcoded hex (Worldpay iframe — excluded), 0 arbitrary." },
-    "typographyCompliance": { "score": 95, "detail": "95 files using Tailwind typography utilities, 0 hardcoded, 5 arbitrary values." },
-    "replaceableCustom": { "score": 96, "detail": "3 replaceable components out of 78 total." }
+    "legacyMigration": { "score": 100, "detail": "0 SCSS module files. Fully Tailwind from the start." },
+    "colorTokenDensity": { "score": 97, "detail": "4 hardcoded hex (Worldpay iframe theming — external API, intentional exception)." },
+    "typographyCompliance": { "score": 95, "detail": "5 arbitrary text-[11.5px] values. Should be text-xs." },
+    "dsComponentAdoption": { "score": 96, "detail": "64 @tipico/ui imports + 206 @tipico/payments-platform imports (DS-equivalent layer). Platform uses shared button/nav components." }
   },
   "dsBreadth": 15,
-  "dsComponents": ["Checkmark", "Dialog", "Input", "Label", "Pill", "Tab"],
-  "replaceableComponents": [
-    { "name": "AmountInput", "dsEquivalent": "Input", "usageCount": 11, "notes": "Specialized numeric input for payment amounts", "storyUrl": null },
-    { "name": "ErrorResponseIcon", "dsEquivalent": "StatusIcon", "usageCount": 10, "notes": "Error state display icons (used in 2 variants)", "storyUrl": null }
-  ],
+  "dsComponents": ["Dialog", "Input", "Label", "Pill", "Tab", "Icons"],
   "trend": [
     { "date": "2026-05-22", "score": 82, "kpiVersion": "v1" },
     { "date": "2026-06-01", "score": 90, "kpiVersion": "v1" },
@@ -27,16 +23,16 @@
     { "date": "2026-06-16", "score": 99, "kpiVersion": "v2" },
     { "date": "2026-06-17", "score": 99, "kpiVersion": "v3.1" },
     { "date": "2026-07-06", "score": 98, "kpiVersion": "v3.1" },
-    { "date": "2026-08-04", "score": 98, "kpiVersion": "v3.1" }
+    { "date": "2026-08-04", "score": 98, "kpiVersion": "v3.1" },
+    { "date": "2026-08-06", "score": 97, "kpiVersion": "v4" }
   ],
   "gap": {
-    "weakestKpi": "Typography Token Compliance",
-    "action": "Fix 5 arbitrary typography values (e.g. text-[14px]) — use Tailwind scale instead",
-    "impactEstimate": "98% → 99%"
+    "weakestKpi": "Typography Compliance",
+    "action": "Replace 5× text-[11.5px] with text-xs",
+    "impactEstimate": "97% → 99%"
   },
   "nextSteps": [
-    { "action": "Fix 5 arbitrary typography values with Tailwind utilities", "impact": "+1%", "effort": "Low" },
-    { "action": "Replace AmountInput with extended DS Input component", "impact": "+1%", "effort": "Low" },
-    { "action": "Replace ErrorResponseIcon with DS StatusIcon", "impact": "+1%", "effort": "Low" }
+    { "action": "Replace 5× text-[11.5px] with text-xs", "impact": "+2%", "effort": "Low (15 min)" },
+    { "action": "Document Worldpay iframe exception formally", "impact": "Clarity", "effort": "Low" }
   ]
 }
