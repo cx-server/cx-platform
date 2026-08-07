@@ -4,18 +4,17 @@
   "subtitle": "Promotions & Loyalty",
   "path": "packages/apps/sports-mobile/app/src/pages/MyTipico/",
   "repo": "rethink-monoverse",
-  "lastUpdated": "2026-08-04",
-  "kpiVersion": "v3.1",
+  "lastUpdated": "2026-08-06",
+  "kpiVersion": "v4",
   "score": 99,
   "kpis": {
-    "legacyMigration": { "score": 97, "detail": "194 @tipico/ui imports vs 7 @tipico/components (legacy). 7 imports to migrate." },
-    "colorTokenDensity": { "score": 99, "detail": "282 token color lines vs 1 hardcoded hex + 1 arbitrary color line." },
-    "typographyCompliance": { "score": 100, "detail": "46 files using Tailwind typography — zero hardcoded, zero arbitrary." },
-    "replaceableCustom": { "score": 100, "detail": "No replaceable custom components. All custom code is domain-specific." }
+    "legacyMigration": { "score": 100, "detail": "0 SCSS module files. Fully migrated to Tailwind." },
+    "colorTokenDensity": { "score": 98, "detail": "1 hardcoded hex (outline-[#c9982e] gold accent). Near-perfect." },
+    "typographyCompliance": { "score": 100, "detail": "Zero hardcoded typography. All using Tailwind text utilities." },
+    "dsComponentAdoption": { "score": 98, "detail": "58 files import @tipico/ui. 1 native <button> (KeyAccountContact)." }
   },
   "dsBreadth": 35,
   "dsComponents": ["Alert", "Button", "Dialog", "Icon", "InlineScrollArrows", "Input", "Label", "List", "Pill", "Preloader", "ProgressBar", "RoundedIcon", "Skeleton", "Toast", "BonusLabel", "StatusLabel"],
-  "replaceableComponents": [],
   "trend": [
     { "date": "2026-05-22", "score": 96, "kpiVersion": "v1" },
     { "date": "2026-06-01", "score": 94, "kpiVersion": "v1" },
@@ -24,15 +23,16 @@
     { "date": "2026-06-16", "score": 98, "kpiVersion": "v2" },
     { "date": "2026-06-17", "score": 99, "kpiVersion": "v3.1" },
     { "date": "2026-07-06", "score": 98, "kpiVersion": "v3.1" },
-    { "date": "2026-08-04", "score": 99, "kpiVersion": "v3.1" }
+    { "date": "2026-08-04", "score": 99, "kpiVersion": "v3.1" },
+    { "date": "2026-08-06", "score": 99, "kpiVersion": "v4" }
   ],
   "gap": {
-    "weakestKpi": "Legacy Migration",
-    "action": "Migrate last 7 @tipico/components imports + fix 1 hardcoded + 1 arbitrary color value",
+    "weakestKpi": "Color Token Density",
+    "action": "Replace 1 hardcoded gold hex with semantic token or CSS variable",
     "impactEstimate": "99% → 100%"
   },
   "nextSteps": [
-    { "action": "Migrate last 7 legacy imports to @tipico/ui", "impact": "+1%", "effort": "Low" },
-    { "action": "Fix 1 hardcoded hex + 1 arbitrary color value", "impact": "Negligible", "effort": "Low" }
+    { "action": "Replace native <button> in KeyAccountContact with DS Button", "impact": "Adoption → 100%", "effort": "Low" },
+    { "action": "Add gold/premium semantic token for #c9982e", "impact": "Color → 100%", "effort": "DS decision" }
   ]
 }

@@ -4,22 +4,17 @@
   "subtitle": "BetWall & Social",
   "path": "packages/mods/betwall-common/",
   "repo": "rethink-monoverse",
-  "lastUpdated": "2026-08-04",
-  "kpiVersion": "v3.1",
-  "score": 94,
+  "lastUpdated": "2026-08-06",
+  "kpiVersion": "v4",
+  "score": 85,
   "kpis": {
-    "legacyMigration": { "score": 83, "detail": "493 @tipico/ui imports vs 103 @tipico/components (legacy). 103 imports to migrate." },
-    "colorTokenDensity": { "score": 97, "detail": "1123 token color lines vs 30 hardcoded hex + 7 arbitrary color lines." },
-    "typographyCompliance": { "score": 98, "detail": "242 files using Tailwind typography, 2 hardcoded + 3 arbitrary values." },
-    "replaceableCustom": { "score": 97, "detail": "3 replaceable components out of 500 total." }
+    "legacyMigration": { "score": 86, "detail": "85 SCSS module files remaining. 531 files using Tailwind." },
+    "colorTokenDensity": { "score": 89, "detail": "~30 hardcoded color instances (club jersey/rank colors dominate). Many are intentional domain data." },
+    "typographyCompliance": { "score": 93, "detail": "2 raw pixel font-sizes (7px, 12px). 26 transitional DS SCSS variables (acceptable)." },
+    "dsComponentAdoption": { "score": 69, "detail": "234 files import @tipico/ui. 103 legacy @tipico/components imports + 8 native <button> elements." }
   },
   "dsBreadth": 45,
   "dsComponents": ["ActiveBar", "Alert", "AppBar", "Badge", "Button", "Dialog", "Icon", "Input", "Label", "List", "Overlay", "Pill", "Portal", "Preloader", "RoundedIcon", "Skeleton", "StatusIcon", "Tab"],
-  "replaceableComponents": [
-    { "name": "OddsBoostInfoPopUp", "dsEquivalent": "Dialog", "usageCount": 4, "notes": "Info popup — can use Dialog directly", "storyUrl": null },
-    { "name": "FollowButton", "dsEquivalent": "Button", "usageCount": 23, "notes": "Toggle button with follow/unfollow state", "storyUrl": "https://ds.cx-workspace.com/?path=/docs/button--docs" },
-    { "name": "ProfileSetup (partial)", "dsEquivalent": "Dialog + Input", "usageCount": 21, "notes": "Setup wizard — partially replaceable", "storyUrl": null }
-  ],
   "trend": [
     { "date": "2026-06-01", "score": 84, "kpiVersion": "v1" },
     { "date": "2026-06-05", "score": 84, "kpiVersion": "v1" },
@@ -27,17 +22,18 @@
     { "date": "2026-06-16", "score": 90, "kpiVersion": "v2" },
     { "date": "2026-06-17", "score": 93, "kpiVersion": "v3.1" },
     { "date": "2026-07-06", "score": 91, "kpiVersion": "v3.1" },
-    { "date": "2026-08-04", "score": 94, "kpiVersion": "v3.1" }
+    { "date": "2026-08-04", "score": 94, "kpiVersion": "v3.1" },
+    { "date": "2026-08-06", "score": 85, "kpiVersion": "v4" }
   ],
   "gap": {
-    "weakestKpi": "Legacy Migration",
-    "action": "Migrate 103 @tipico/components imports to @tipico/ui",
-    "impactEstimate": "94% → 99%"
+    "weakestKpi": "DS Component Adoption",
+    "action": "Migrate 103 @tipico/components imports to @tipico/ui + replace 8 native buttons",
+    "impactEstimate": "85% → 95%"
   },
   "nextSteps": [
-    { "action": "Migrate 103 legacy imports to @tipico/ui", "impact": "+4%", "effort": "High" },
-    { "action": "Fix 30 hardcoded hex + 7 arbitrary color values", "impact": "+1%", "effort": "Medium" },
-    { "action": "Fix 2 hardcoded + 3 arbitrary typography values", "impact": "Negligible", "effort": "Low" },
-    { "action": "Replace OddsBoostInfoPopUp with DS Dialog", "impact": "+1%", "effort": "Low" }
+    { "action": "Migrate 103 @tipico/components imports to @tipico/ui", "impact": "+8%", "effort": "High" },
+    { "action": "Replace 8 native <button> with DS Button", "impact": "+2%", "effort": "Low" },
+    { "action": "Decide on club jersey/rank colors: exception vs CSS vars", "impact": "Color clarity", "effort": "Team decision" },
+    { "action": "Migrate 85 SCSS modules to Tailwind", "impact": "+4%", "effort": "High" }
   ]
 }

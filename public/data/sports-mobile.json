@@ -4,22 +4,17 @@
   "subtitle": "Betting & Live",
   "path": "packages/apps/sports-mobile/",
   "repo": "rethink-monoverse",
-  "lastUpdated": "2026-08-04",
-  "kpiVersion": "v3.1",
-  "score": 91,
+  "lastUpdated": "2026-08-06",
+  "kpiVersion": "v4",
+  "score": 88,
   "kpis": {
-    "legacyMigration": { "score": 80, "detail": "391 @tipico/ui imports vs 101 @tipico/components (legacy). 101 imports to migrate." },
-    "colorTokenDensity": { "score": 96, "detail": "522 token color lines vs 21 hardcoded hex + 1 arbitrary color line." },
-    "typographyCompliance": { "score": 91, "detail": "80 files using Tailwind typography, 8 hardcoded in CSS, 0 arbitrary." },
-    "replaceableCustom": { "score": 97, "detail": "3 replaceable components out of 387 total." }
+    "legacyMigration": { "score": 90, "detail": "22 SCSS module files remaining (mostly in containers/). 198 files using Tailwind." },
+    "colorTokenDensity": { "score": 85, "detail": "24 hardcoded color instances. 20 are league brand colors in TournamentWidget (exception candidate)." },
+    "typographyCompliance": { "score": 78, "detail": "5 raw pixel font-size values. 18 transitional DS SCSS variables (acceptable)." },
+    "dsComponentAdoption": { "score": 99, "detail": "139 files import @tipico/ui. Only 2 native <button> elements found." }
   },
   "dsBreadth": 60,
   "dsComponents": ["Alert", "AppBar", "Avatar", "Badge", "BottomMenu", "Button", "ContentHeader", "Dialog", "EmptyState", "Icon", "InlineScrollArrows", "Input", "Label", "Layout", "List", "Pill", "Preloader", "ProgressBar", "RollingNumbers", "RoundedIcon", "Skeleton", "Tab", "Tag", "Toast", "ActivityBar", "BonusLabel", "EventBackdrop", "EventHeader", "InlineMessage", "StatusLabel"],
-  "replaceableComponents": [
-    { "name": "SearchBar", "dsEquivalent": "Input (search variant)", "usageCount": 8, "notes": "Could use Input with search icon", "storyUrl": null },
-    { "name": "BackToTop", "dsEquivalent": "Button", "usageCount": 5, "notes": "Simple scroll-to-top button", "storyUrl": "https://ds.cx-workspace.com/?path=/docs/button--docs" },
-    { "name": "Avatar", "dsEquivalent": "DS candidate", "usageCount": 14, "notes": "Used across platforms — should be added to DS catalog", "storyUrl": null }
-  ],
   "trend": [
     { "date": "2026-05-22", "score": 69, "kpiVersion": "v1" },
     { "date": "2026-06-01", "score": 88, "kpiVersion": "v1" },
@@ -28,17 +23,18 @@
     { "date": "2026-06-16", "score": 88, "kpiVersion": "v2" },
     { "date": "2026-06-17", "score": 91, "kpiVersion": "v3.1" },
     { "date": "2026-07-06", "score": 88, "kpiVersion": "v3.1" },
-    { "date": "2026-08-04", "score": 91, "kpiVersion": "v3.1" }
+    { "date": "2026-08-04", "score": 91, "kpiVersion": "v3.1" },
+    { "date": "2026-08-06", "score": 88, "kpiVersion": "v4" }
   ],
   "gap": {
-    "weakestKpi": "Legacy Migration",
-    "action": "Migrate 101 @tipico/components imports to @tipico/ui",
-    "impactEstimate": "91% → 96%"
+    "weakestKpi": "Typography Compliance",
+    "action": "Replace 5 raw px font-sizes with Tailwind text utilities + decide on TournamentWidget colors",
+    "impactEstimate": "88% → 92%"
   },
   "nextSteps": [
-    { "action": "Migrate 101 legacy imports to @tipico/ui", "impact": "+5%", "effort": "Medium-High" },
-    { "action": "Fix 8 hardcoded typography values in SCSS", "impact": "+2%", "effort": "Low" },
-    { "action": "Fix 21 hardcoded hex values in SCSS/TSX", "impact": "+1%", "effort": "Medium" },
-    { "action": "Propose Avatar as new DS component", "impact": "Removes replaceable across platforms", "effort": "DS team" }
+    { "action": "Fix 5 raw px font-sizes (Header, Competitions, LostBetRecommendations, BlockedCountry)", "impact": "+2%", "effort": "Low" },
+    { "action": "Decide on TournamentWidget league colors: exception vs CSS vars", "impact": "Color clarity", "effort": "Team decision" },
+    { "action": "Replace 2 native <button> with DS Button", "impact": "+1%", "effort": "Low" },
+    { "action": "Migrate 22 SCSS modules (priority: containers/)", "impact": "+3%", "effort": "Medium" }
   ]
 }

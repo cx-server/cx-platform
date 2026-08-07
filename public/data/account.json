@@ -4,23 +4,17 @@
   "subtitle": "Registration, KYC, Settings",
   "path": "packages/apps/account/",
   "repo": "rethink-monoverse",
-  "lastUpdated": "2026-08-04",
-  "kpiVersion": "v3.1",
-  "score": 83,
+  "lastUpdated": "2026-08-06",
+  "kpiVersion": "v4",
+  "score": 79,
   "kpis": {
-    "legacyMigration": { "score": 71, "detail": "262 @tipico/ui imports vs 109 @tipico/components (legacy). 109 imports to migrate." },
-    "colorTokenDensity": { "score": 98, "detail": "378 token color lines vs 7 hardcoded hex + 1 arbitrary color line." },
-    "typographyCompliance": { "score": 67, "detail": "95 files using Tailwind typography vs 44 hardcoded + 2 arbitrary values." },
-    "replaceableCustom": { "score": 95, "detail": "4 replaceable components out of 270 total." }
+    "legacyMigration": { "score": 62, "detail": "103 SCSS module files remaining. 142 files still using CSS modules, 282 using Tailwind." },
+    "colorTokenDensity": { "score": 95, "detail": "8 hardcoded color instances (2 in TSX, 6 in SCSS). Near-perfect token adoption." },
+    "typographyCompliance": { "score": 72, "detail": "26 raw pixel font-size values. 67 transitional DS SCSS variables (acceptable)." },
+    "dsComponentAdoption": { "score": 92, "detail": "145 files import @tipico/ui. 11 native <button> elements should use DS Button." }
   },
   "dsBreadth": 50,
   "dsComponents": ["Alert", "AppBar", "Article", "Badge", "Button", "Chip", "Dialog", "Dropdown", "Icon", "Input", "InputBox", "List", "Page", "Pill", "Preloader", "RoundedIcon", "Section", "Skeleton", "StatusIcon", "Tab"],
-  "replaceableComponents": [
-    { "name": "Header", "dsEquivalent": "AppBar", "usageCount": 113, "notes": "Custom header with back navigation — highest-impact replacement", "storyUrl": null },
-    { "name": "BackButton", "dsEquivalent": "Button (icon variant)", "usageCount": 18, "notes": "Simple arrow-back button", "storyUrl": "https://ds.cx-workspace.com/?path=/docs/button--docs" },
-    { "name": "TabsGeneric", "dsEquivalent": "Tab", "usageCount": 5, "notes": "Generic tab switcher", "storyUrl": null },
-    { "name": "CardToggle", "dsEquivalent": "Collapsible", "usageCount": 8, "notes": "Expandable/collapsible card", "storyUrl": null }
-  ],
   "trend": [
     { "date": "2026-05-22", "score": 67, "kpiVersion": "v1" },
     { "date": "2026-06-01", "score": 87, "kpiVersion": "v1" },
@@ -29,17 +23,18 @@
     { "date": "2026-06-16", "score": 86, "kpiVersion": "v2" },
     { "date": "2026-06-17", "score": 83, "kpiVersion": "v3.1" },
     { "date": "2026-07-06", "score": 78, "kpiVersion": "v3.1" },
-    { "date": "2026-08-04", "score": 83, "kpiVersion": "v3.1" }
+    { "date": "2026-08-04", "score": 83, "kpiVersion": "v3.1" },
+    { "date": "2026-08-06", "score": 79, "kpiVersion": "v4" }
   ],
   "gap": {
-    "weakestKpi": "Typography Token Compliance",
-    "action": "Replace 44 hardcoded + 2 arbitrary typography values with Tailwind utilities",
-    "impactEstimate": "83% → 91%"
+    "weakestKpi": "Legacy Migration",
+    "action": "Migrate 103 SCSS module files to Tailwind utilities",
+    "impactEstimate": "79% → 90%"
   },
   "nextSteps": [
-    { "action": "Migrate 109 legacy imports to @tipico/ui", "impact": "+7%", "effort": "High" },
-    { "action": "Replace 44 hardcoded + 2 arbitrary typography values", "impact": "+8%", "effort": "Medium" },
-    { "action": "Replace Header component with DS AppBar (65 files)", "impact": "+1%", "effort": "Medium" },
-    { "action": "Fix 7 hardcoded + 1 arbitrary color values", "impact": "Negligible", "effort": "Low" }
+    { "action": "Replace 26 raw px font-sizes with Tailwind text utilities", "impact": "+3%", "effort": "Medium" },
+    { "action": "Replace 11 native <button> with DS Button", "impact": "+2%", "effort": "Low" },
+    { "action": "Migrate SCSS modules to Tailwind (priority: ResetPassword, LimitsHistory)", "impact": "+10%", "effort": "High" },
+    { "action": "Fix 8 hardcoded color values", "impact": "+1%", "effort": "Low" }
   ]
 }
